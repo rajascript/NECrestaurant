@@ -20,9 +20,16 @@ install:
   - npm run build
 script:
   - nohup npm run start &
-  - sleep 10
+  - sleep 3
   - npm run test
 
 branches:
   only:
     - master
+
+deploy:
+  provider: heroku
+  app: indique
+  api_key:
+    secure: "OQk7gcu+BiRvhXcG5gLMWvKRFfC82NCZ6ygULyrz+YScqtwNZL4oxo+goC5ZmPgqPXQz2U/CBB+QdhX60rg/DDfQ5T/ZGecwxaz4H114j131fdcitT9QQuWH5pbPwt4lu0v3YACvwBk/KnRGvFj4A1blYUkJ7quVEU5FbfASCRkjKTXCHsRqSN6GiSgA+cdxpHOr9EjXyxdUHZXWGM2k3D3ZN6lqAr40My6moV98MysrholKGcih7GgdDr+SzF13sZtOQHaidaoLOHzy4WMFdG8/Lg3qYj7gBHoyVEw1sKkN8b/Cq1MkbTBc2AU5M16tha603BrZJTHFylxjuAgs2sQLAtReWdqsekLYTSr0vueuBaylQKxRsCgJxDFXKRXPsH0h0Q9/JpWxrT2xWK1OO+9DeQrPBW3qKgMLsdzs1VRl83r5/JeJjxQlpo87i+E0sQ/kqZ6GHbBsfVbP60Pnro/78vOh8p0CMVW6eaIoJiwnGq7IWuhxKPchu5Jb8uEq8fmDlpBapPTgNURrjJyD19Ttd1ZtUmYl9hJLR5V3CZKl7ScFumjYCN1g2a6NpWqJmy/fuK/htNlMYzoQC5o9U2iP2cmyFhHt1a9SQRLN3xEqzzz4YkvYmj2eLTCG9gtj6OXyy36DYTr8YfNC57GTgcs9QJKi9Hr0nFRa6PKVJAY="
+  on: master
