@@ -35,6 +35,7 @@ class CustomPage {
 
 	async getContentsOf(selector) {
 		console.log(selector);
+		await this.page.waitFor(selector);
 		return this.page.evaluate(_selector => {
 			return document.querySelector(_selector).innerText;
 		}, selector);
