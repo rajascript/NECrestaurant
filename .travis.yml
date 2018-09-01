@@ -5,6 +5,8 @@ dist: trusty
 services:
   - mongodb
   - redis-server
+notifications:
+  slack: necrestaurant:VwID6LfFwXOBTmA2KYbqfRzC
 env:
   - NODE_ENV=ci PORT=3000
 cache:
