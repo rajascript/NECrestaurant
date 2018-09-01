@@ -5,7 +5,7 @@ class Header extends Component {
 		console.log(this.props);
 		return (
 			<nav>
-				<div className="header__text">I am a header.</div>
+				<p className="header__text">I am a header.</p>
 			</nav>
 		);
 	}

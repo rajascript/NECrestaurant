@@ -12,7 +12,7 @@ afterEach(async () => {
 });
 
 test("Header works", async () => {
-	const text = await page.getContentsOf(".header__text");
+	const text = await page.getContentsOf("p");
 	console.log(text);
 	expect(text).toEqual("I am a header.");
 });
