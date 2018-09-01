@@ -20,7 +20,7 @@ install:
   - npm run build
 script:
   - nohup npm run start &
-  - sleep 10
+  - sleep 3
   - npm run test
 
 branches:

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 class Dashboard extends Component {
 	render() {
-		return <div> I am a Dashboard</div>;
+		return <div> Alan Turing</div>;
 	}
 }
 export default Dashboard;
