@@ -15,7 +15,7 @@ app.use(cookieParser());
 
 require("./routes/users")(app);
 
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static("client/build"));
 
 app.get("/checkserver", (req, res) => {
 	res.send("42");

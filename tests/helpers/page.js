@@ -34,7 +34,11 @@ class CustomPage {
 	// }
 
 	async getContentsOf(selector) {
-		return this.page.evaluate(() => document.querySelector("p").innerText);
+		console.log(selector);
+		await this.page.waitFor(selector);
+		return this.page.evaluate(_selector => {
+			return document.querySelector(_selector).innerText;
+		}, selector);
 	}
 
 	get(path) {

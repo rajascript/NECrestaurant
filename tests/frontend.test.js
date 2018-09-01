@@ -12,8 +12,7 @@ afterEach(async () => {
 });
 
 test("Header works", async () => {
-	// 	const text = await page.getContentsOf("p");
-	let text = "I am a header.";
+	const text = await page.getContentsOf("p");
 	console.log(text);
 	expect(text).toEqual("I am a header.");
 });

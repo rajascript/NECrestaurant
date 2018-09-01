@@ -2,9 +2,13 @@ language: node_js
 node_js:
   - "9"
 dist: trusty
+addons:
+  chrome: stable
 services:
   - mongodb
   - redis-server
+notifications:
+  slack: necrestaurant:VwID6LfFwXOBTmA2KYbqfRzC
 env:
   - NODE_ENV=ci PORT=3000
 cache:
@@ -16,8 +20,9 @@ install:
   - npm run build
 script:
   - nohup npm run start &
-  - sleep 3
+  - sleep 10
   - npm run test
+
 branches:
   only:
     - master
