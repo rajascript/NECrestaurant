@@ -11,7 +11,7 @@ afterEach(async () => {
 	await page.close();
 });
 
-test("Submitting takes user to review screen", async () => {
+test("Header works", async () => {
 	const text = await page.getContentsOf(".header__text");
 
 	expect(text).toEqual("I am a header.");
