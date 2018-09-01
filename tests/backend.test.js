@@ -1,10 +1,9 @@
 const Page = require("./helpers/page");
-
-let page;
+const { testHost } = require("../config/keys");
 
 beforeEach(async () => {
 	page = await Page.build();
-	await page.goto("http://localhost:3000");
+	await page.goto(testHost);
 });
 
 afterEach(async () => {
@@ -12,6 +11,7 @@ afterEach(async () => {
 });
 
 test("server is running", async () => {
-	let res = await page.get("/");
+	let res = await page.get("/checkserver");
+
 	expect(res).toEqual(42);
 });
