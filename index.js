@@ -1,6 +1,6 @@
 var express = require("express");
 const passport = require("passport");
-var cookieParser = require("cookie-parser");
+var cookieSession = require("cookie-session");
 var bodyParser = require("body-parser");
 var keys = require("./config/keys");
 const mongoose = require("mongoose");
@@ -13,9 +13,13 @@ mongoose.connect(
 );
 require("./model/User");
 
-app.use(cookieParser());
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(
+	cookieSession({
+		maxAge: 30 * 24 * 60 * 60 * 1000,
+		keys: [keys.cookieKey]
+	})
+);
 
 //passport settings
 app.use(passport.initialize());
