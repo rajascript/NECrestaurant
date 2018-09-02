@@ -46,7 +46,7 @@ passport.use(
 					googleId: profile.id,
 					email: profile.emails[0].value,
 					name: profile.displayName,
-					credits: 0
+					credits: 100
 				}).save();
 				done(null, user);
 			}
@@ -60,10 +60,9 @@ passport.use(
 		{
 			usernameField: "email",
 			passwordField: "password",
-			nameField: "name",
 			passReqToCallback: true
 		},
-		async (req, email, password, name, done) => {
+		async (req, email, password, done) => {
 			try {
 				const existingUser = await User.findOne({ email: email });
 				if (existingUser) {
@@ -74,7 +73,7 @@ passport.use(
 					let newUser = {
 						email: email,
 						password: hash,
-						name: name
+						credits: 100
 					};
 					const user = await new User(newUser).save();
 					return done(null, user);
@@ -97,14 +96,10 @@ passport.use(
 		async (req, email, password, done) => {
 			try {
 				const existingUser = await User.findOne({ email: email });
-				console.log(password);
 				if (existingUser) {
-					console.log(existingUser);
 					bcrypt.compare(password, existingUser.password, function(err, res) {
 						if (err) return done(err, null);
-						console.log(res);
 						if (!res) return done(null, false);
-
 						return done(null, existingUser);
 					});
 				}
