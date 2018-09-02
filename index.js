@@ -1,5 +1,5 @@
 var express = require("express");
-var path = require("path");
+const passport = require("passport");
 var cookieParser = require("cookie-parser");
 var bodyParser = require("body-parser");
 var keys = require("./config/keys");
@@ -7,13 +7,22 @@ const mongoose = require("mongoose");
 var app = express();
 
 //mongoose setup
-mongoose.connect(keys.mongooseURI);
+mongoose.connect(
+	keys.mongooseURI,
+	{ useNewUrlParser: true }
+);
+require("./model/User");
 
+app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
 
-require("./routes/users")(app);
+//passport settings
+app.use(passport.initialize());
+app.use(passport.session());
+require("./services/passport");
+
+require("./routes/authRoutes")(app);
 
 app.use(express.static("client/build"));
 
