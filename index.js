@@ -27,6 +27,7 @@ app.use(passport.session());
 require("./services/passport");
 
 require("./routes/authRoutes")(app);
+require("./routes/billingRoutes")(app);
 
 app.use(express.static("client/build"));
 

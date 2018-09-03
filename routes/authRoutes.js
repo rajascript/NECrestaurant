@@ -6,7 +6,8 @@ module.exports = app => {
 	app.post("/api/login", passport.authenticate("local-login"), (req, res) => {
 		let currUser = {
 			email: req.user.email,
-			name: req.user.name
+			name: req.user.name,
+			credits: req.user.credits
 		};
 		res.send(currUser);
 	});
