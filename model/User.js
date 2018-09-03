@@ -5,8 +5,9 @@ let userSchema = new Schema({
 	credits: Number,
 	email: String,
 	googleId: String,
+	name: String,
 	password: String,
-	name: String
+	phone: Number
 });
 
 mongoose.model("User", userSchema);
