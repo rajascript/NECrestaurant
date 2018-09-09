@@ -63,10 +63,25 @@ passport.use(
 			passReqToCallback: true
 		},
 		async (req, email, password, done) => {
+			if (!performPhoneCheck(Number(req.body.phone))) {
+				return done(JSON.stringify({ responseError: "error in phone" }), false);
+			}
+			if (!performStringCheck(req.body.name))
+				return done(JSON.stringify({ responseError: "error in Name" }), false);
+			if (!performEmailCheck(req.body.email))
+				return done(JSON.stringify({ responseError: "error in email" }), false);
+			if (!performPasswordCheck(req.body.password))
+				return done(
+					JSON.stringify({ responseError: "error in password" }),
+					false
+				);
 			try {
 				const existingUser = await User.findOne({ email: email });
 				if (existingUser) {
-					return done(JSON.stringify({ message: "already exists" }), false);
+					return done(
+						JSON.stringify({ responseError: "already exists" }),
+						false
+					);
 				}
 				bcrypt.hash(password, saltRounds, async function(err, hash) {
 					if (err) return done(err, null);
@@ -95,17 +110,47 @@ passport.use(
 		},
 		async (req, email, password, done) => {
 			try {
+				if (!performEmailCheck(email)) return done(null, false);
+				if (!performPasswordCheck(password)) return done(null, false);
 				const existingUser = await User.findOne({ email: email });
 				if (existingUser) {
 					bcrypt.compare(password, existingUser.password, function(err, res) {
-						if (err) return done(err, null);
+						if (err) return done(err, false);
 						if (!res) return done(null, false);
 						return done(null, existingUser);
 					});
 				} else return done(null, false);
 			} catch (err) {
-				done(err, null);
+				return done(err, false);
 			}
 		}
 	)
 );
+function performStringCheck(val) {
+	if (typeof val !== "string" || val === null || typeof val === "undefined")
+		return false;
+	return true;
+}
+function performPhoneCheck(val) {
+	if (typeof val !== "number" || val === null || typeof val === "undefined") {
+		console.log("nax", typeof val);
+		return false;
+	}
+	if (val.toString().split("").length !== 10) {
+		console.log(val.toString().split("").length);
+		return false;
+	}
+	return true;
+}
+function performEmailCheck(val) {
+	if (typeof val !== "string" || val === null || typeof val === "undefined")
+		return false;
+	var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+	return re.test(String(val).toLowerCase());
+}
+function performPasswordCheck(val) {
+	if (typeof val !== "string" || val === null || typeof val === "undefined")
+		return false;
+	if (val.split("").length < 5) return false;
+	return true;
+}

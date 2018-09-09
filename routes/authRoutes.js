@@ -13,10 +13,11 @@ module.exports = app => {
 	});
 	app.post(
 		"/api/signup",
-		passport.authenticate("local-signup"),
+		passport.authenticate("local-signup", { session: false }),
 		async (req, res) => {
 			savedUser = await User.findOne({ email: req.user.email });
 			savedUser.name = req.body.name;
+			savedUser.phone = req.body.phone;
 			savedUser.save();
 			res.status(200).send("success");
 		}
@@ -44,7 +45,7 @@ module.exports = app => {
 		res.redirect("/checkserver");
 	});
 
-	app.get("/api/currentUser", requireLogin, (req, res) => {
+	app.get("/api/current_user", requireLogin, (req, res) => {
 		const currUser = {};
 		currUser.email = req.user.email;
 		currUser.credits = req.user.credits;
