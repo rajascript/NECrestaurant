@@ -40,7 +40,9 @@ class CustomPage {
 			return document.querySelector(_selector).innerText;
 		}, selector);
 	}
-
+	async performExecution(query) {
+		return this.page.evaluate(query);
+	}
 	get(path) {
 		return this.page.evaluate(_path => {
 			return fetch(_path, {
