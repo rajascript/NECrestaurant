@@ -33,15 +33,18 @@ class SignupForm extends Component {
     if (
       performPhoneCheck(Number(this.state.phoneValue)) &&
       performPasswordCheck(this.state.passwordValue) &&
+      performStringCheck(this.state.nameValue) &&
+      performEmailCheck(this.state.emailValue) &&
       performPasswordConfirmCheck(
         this.state.passwordValue,
         this.state.confirmPasswordValue
-      ) &&
-      performStringCheck(this.state.nameValue) &&
-      performEmailCheck(this.state.emailValue)
+      )
     ) {
-      console.log("comma daal kar response likho");
+      //comma daal kar response likho
+      console.log("All dada entered was of correct type");
       this.props.signup(user);
+    } else {
+      console.log("All Data entered was not of correct data type");
     }
 
     e.preventDefault();

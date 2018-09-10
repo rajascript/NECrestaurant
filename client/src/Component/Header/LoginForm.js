@@ -24,10 +24,10 @@ class LoginForm extends Component {
       performPasswordCheck(this.state.passwordValue) &&
       performEmailCheck(this.state.emailValue)
     ) {
-      console.log("i reached here");
+      console.log("You Entered the correct type of values");
       this.props.login(user);
     } else {
-      console.log("did not enter the correct type of values");
+      console.log("You did not enter the correct type of values");
     }
     e.preventDefault();
   }
