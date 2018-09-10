@@ -40,14 +40,17 @@ class SignupForm extends Component {
       performStringCheck(this.state.nameValue) &&
       performEmailCheck(this.state.emailValue)
     ) {
-      console.log("i reached here");
+      console.log("comma daal kar response likho");
       this.props.signup(user);
     }
+
     e.preventDefault();
   }
+
   handleEmailChange(e) {
     this.setState({ emailValue: e.target.value });
   }
+
   handleNameChange(e) {
     this.setState({ nameValue: e.target.value });
   }

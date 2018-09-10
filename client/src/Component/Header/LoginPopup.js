@@ -21,7 +21,6 @@ class LoginPopup extends Component {
   }
   moveToLogin() {
     this.setState({ openPopupWithSignup: false, displayLoginMessage: true });
-    //something not wokring. raja have a look.
   }
   renderPopupWithSignup() {
     return (
