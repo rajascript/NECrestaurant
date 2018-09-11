@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import LoginGoogle from "./Header/forms/LoginGoogle";
+
 import { connect } from "react-redux";
 import { signup } from "../../Action/index";
 class BookingForm extends Component {
@@ -25,13 +25,8 @@ class BookingForm extends Component {
 
 		if (
 			performPhoneCheck(Number(this.state.phoneValue)) &&
-			performPasswordCheck(this.state.passwordValue) &&
 			performStringCheck(this.state.nameValue) &&
-			performEmailCheck(this.state.emailValue) &&
-			performPasswordConfirmCheck(
-				this.state.passwordValue,
-				this.state.confirmPasswordValue
-			)
+			performEmailCheck(this.state.emailValue)
 		) {
 			//comma daal kar response likho
 			console.log("All dada entered was of correct type");
