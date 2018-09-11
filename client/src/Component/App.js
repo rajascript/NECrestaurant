@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actions from "../Action";
 import Header from "./Header/Header";
+import Booking from "./Booking/Booking";
 import Dashboard from "./Dashboard";
 import "./App.css";
 
@@ -18,7 +19,8 @@ class App extends Component {
 						<div>
 							<Header />
 						</div>
-						<Route path="/" component={Dashboard} />
+						<Route exact path="/" component={Dashboard} />
+						<Route exact path="/Booking" component={Booking} />
 					</div>
 				</Router>
 			</div>

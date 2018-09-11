@@ -33,6 +33,13 @@ class Header extends Component {
 				>
 					Signup
 				</button>
+				<button
+					onClick={this.openSignupPopup}
+					id="header__button--book"
+					className="header__button--book"
+				>
+					Book
+				</button>
 				{this.state.loginPopupVisible && (
 					<LoginPopup openPopupWithSignup={this.state.openPopupWithSignup} />
 				)}
