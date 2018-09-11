@@ -13,7 +13,7 @@ afterEach(async () => {
 
 test("Header works", async () => {
 	const text = await page.getContentsOf("p");
-	expect(text).toEqual("I am a header.");
+	expect(text).toEqual("Indique"); //edited by hansika. achievement unlocked.
 });
 
 test("Browser", async () => {
