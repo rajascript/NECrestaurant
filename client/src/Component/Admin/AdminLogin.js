@@ -18,7 +18,7 @@ class AdminLogin extends Component {
 	handleLogin(e) {
 		console.log(this.state);
 		let admin = {
-			userName: this.state.userNameValue,
+			username: this.state.userNameValue,
 			password: this.state.passwordValue
 		};
 
@@ -71,7 +71,6 @@ class AdminLogin extends Component {
 }
 
 function mapStateToProps({ auth }) {
-	console.log(auth);
 	return { auth };
 }
 
