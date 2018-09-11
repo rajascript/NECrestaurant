@@ -44,7 +44,6 @@ export const login = values => {
 	return async dispatch => {
 		try {
 			const res = await axios.post("/api/login", values);
-			console.log("fe", res);
 			dispatch({
 				type: USER_LOGIN,
 				payload: res.data
@@ -63,6 +62,25 @@ export const adminLogin = values => {
 	return async dispatch => {
 		try {
 			const res = await axios.post("/api/admin/login", values);
+
+			dispatch({
+				type: ADMIN_LOGIN,
+				payload: res.data
+			});
+		} catch (err) {
+			console.log("eer", err.response.status);
+			dispatch({
+				type: ADMIN_LOGIN_FAILED,
+				payload: err.response.status
+			});
+		}
+	};
+};
+
+export const adminDelete = values => {
+	return async dispatch => {
+		try {
+			const res = await axios.post("/api/admin/delete", values);
 			console.log("Read", res);
 			dispatch({
 				type: ADMIN_LOGIN,
@@ -70,6 +88,41 @@ export const adminLogin = values => {
 			});
 		} catch (err) {
 			console.log("eer", err.response.status);
+			dispatch({
+				type: ADMIN_LOGIN_FAILED,
+				payload: err.response.status
+			});
+		}
+	};
+};
+
+export const adminCreate = values => {
+	return async dispatch => {
+		try {
+			const res = await axios.post("/api/admin/create", values);
+			dispatch({
+				type: ADMIN_LOGIN,
+				payload: res.data
+			});
+		} catch (err) {
+			dispatch({
+				type: ADMIN_LOGIN_FAILED,
+				payload: err.response.status
+			});
+		}
+	};
+};
+
+export const adminUpdate = values => {
+	return async dispatch => {
+		try {
+			const res = await axios.post("/api/admin/update", values);
+
+			dispatch({
+				type: ADMIN_LOGIN,
+				payload: res.data
+			});
+		} catch (err) {
 			dispatch({
 				type: ADMIN_LOGIN_FAILED,
 				payload: err.response.status
