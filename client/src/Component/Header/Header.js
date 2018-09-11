@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import LoginPopup from "./LoginPopup";
 class Header extends Component {
 	state = { loginPopupVisible: false, openPopupWithSignup: false };
@@ -33,6 +34,11 @@ class Header extends Component {
 				>
 					Signup
 				</button>
+				<Link to="/booking">
+					<button id="header__button--book" className="header__button--book">
+						Book
+					</button>
+				</Link>
 				{this.state.loginPopupVisible && (
 					<LoginPopup openPopupWithSignup={this.state.openPopupWithSignup} />
 				)}
