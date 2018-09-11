@@ -24,7 +24,7 @@ export const fetchUser = () => {
 };
 export const fetchAdmin = () => {
 	return async dispatch => {
-		const res = await axios.get("/api/current_admin");
+		const res = await axios.get("/api/admin/current_admin");
 		dispatch({
 			type: FETCH_ADMIN,
 			payload: res.data

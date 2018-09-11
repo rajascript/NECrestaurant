@@ -7,10 +7,6 @@ export default class Admin extends Component {
 	}
 
 	render() {
-		return (
-			<View>
-				<Text> Admin </Text>
-			</View>
-		);
+		return <div> Admin </div>;
 	}
 }

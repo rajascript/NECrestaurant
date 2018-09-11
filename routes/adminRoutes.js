@@ -171,7 +171,13 @@ module.exports = app => {
 		"/api/admin/current_admin",
 		passport.authenticate("jwt", { session: false }),
 		(req, res) => {
-			res.status(200).send(currUser);
+			currAdmin = {
+				username: req.user.username,
+				id: req.user._id,
+				empId: req.user.empId,
+				name: req.user.name
+			};
+			res.status(200).send(currAdmin);
 		}
 	);
 };
