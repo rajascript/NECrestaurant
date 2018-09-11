@@ -7,6 +7,7 @@ import Footer from "./Footer/Footer";
 import Booking from "./Booking/Booking";
 import Dashboard from "./Dashboard";
 import AdminLogin from "./Admin/AdminLogin";
+import Admin from "./Admin/Admin";
 import "./App.css";
 
 class App extends Component {
@@ -22,6 +23,7 @@ class App extends Component {
 						<Route exact path="/" component={Dashboard} />
 						<Route exact path="/Booking" component={Booking} />
 						<Route exact path="/adminLogin" component={AdminLogin} />
+						<Route exact path="/admin" component={Admin} />
 						<Footer />
 					</div>
 				</Router>

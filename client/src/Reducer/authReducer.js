@@ -13,9 +13,6 @@ export default (state = null, action) => {
 		case FETCH_USER:
 			if (action.payload === "") return false;
 			return action.payload;
-		case FETCH_ADMIN:
-			if (action.payload === "") return false;
-			return action.payload;
 		case USER_SIGNUP:
 			if (action.payload === "" || typeof action.payload === "undefined")
 				return false;
@@ -25,15 +22,6 @@ export default (state = null, action) => {
 				return false;
 			return action.payload;
 		case USER_LOGIN_FAILED:
-			return action.payload;
-		case ADMIN_LOGIN:
-			if (action.payload === "" || typeof action.payload === "undefined")
-				return false;
-			else {
-				localStorage.setItem("adminToken", action.payload.token);
-				return action.payload;
-			}
-		case ADMIN_LOGIN_FAILED:
 			return action.payload;
 		default:
 			return state;

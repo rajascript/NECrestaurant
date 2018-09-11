@@ -1,20 +1,21 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { adminLogin } from "../../Action/index";
+import { adminLogin, fetchAdmin } from "../../Action/index";
+import { Redirect } from "react-router-dom";
+
 class AdminLogin extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			userNameValue: "",
-			passwordValue: ""
+			passwordValue: "",
+			admin: false
 		};
 		this.handleUserNameChange = this.handleUserNameChange.bind(this);
 		this.handlePasswordChange = this.handlePasswordChange.bind(this);
 		this.handleLogin = this.handleLogin.bind(this);
 	}
-	componentWillReceiveProps(props) {
-		console.log(props);
-	}
+
 	handleLogin(e) {
 		console.log(this.state);
 		let admin = {
@@ -40,38 +41,44 @@ class AdminLogin extends Component {
 	handlePasswordChange(e) {
 		this.setState({ passwordValue: e.target.value });
 	}
+	componentWillMount() {
+		this.props.fetchAdmin();
+	}
 	componentWillReceiveProps(props) {
-		console.log(props);
+		if (typeof props.admin !== "undefined" || props.admin !== false)
+			this.setState({ admin: props.admin });
 	}
 	render() {
-		return (
-			<div id="loginForm__container" className="loginForm__container">
-				<form onSubmit={this.handleLogin}>
-					<input
-						className="loginForm__Form--userName"
-						placeholder="Enter Username"
-						type="Name"
-						value={this.state.userNameValue}
-						onChange={this.handleUserNameChange}
-					/>
-					<br />
-					<input
-						className="loginForm__Form--password"
-						placeholder="Enter password"
-						type="password"
-						value={this.state.passwordValue}
-						onChange={this.handlePasswordChange}
-					/>
-					<br />
-					<input type="submit" value="Submit" />
-				</form>
-			</div>
-		);
+		if (this.state.admin) return <Redirect push to="/admin" />;
+		else
+			return (
+				<div id="loginForm__container" className="loginForm__container">
+					<form onSubmit={this.handleLogin}>
+						<input
+							className="loginForm__Form--userName"
+							placeholder="Enter Username"
+							type="Name"
+							value={this.state.userNameValue}
+							onChange={this.handleUserNameChange}
+						/>
+						<br />
+						<input
+							className="loginForm__Form--password"
+							placeholder="Enter password"
+							type="password"
+							value={this.state.passwordValue}
+							onChange={this.handlePasswordChange}
+						/>
+						<br />
+						<input type="submit" value="Submit" />
+					</form>
+				</div>
+			);
 	}
 }
 
-function mapStateToProps({ auth }) {
-	return { auth };
+function mapStateToProps({ admin }) {
+	return { admin };
 }
 
 function performPasswordCheck(val) {
@@ -89,5 +96,5 @@ function performUserNameCheck(val) {
 
 export default connect(
 	mapStateToProps,
-	{ adminLogin }
+	{ adminLogin, fetchAdmin }
 )(AdminLogin);
