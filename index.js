@@ -25,7 +25,7 @@ mongoose.connect(
 	{ useNewUrlParser: true }
 );
 require("./model/User");
-
+require("./model/Admin");
 app.use(bodyParser.json());
 app.use(
 	cookieSession({
@@ -39,6 +39,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 require("./services/passport");
 
+//routes config
+require("./routes/adminRoutes")(app);
 require("./routes/authRoutes")(app);
 require("./routes/billingRoutes")(app);
 require("./routes/bookingRoutes")(app, firebaseDB);

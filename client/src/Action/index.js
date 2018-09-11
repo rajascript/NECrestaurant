@@ -3,7 +3,9 @@ import {
 	FETCH_USER,
 	USER_SIGNUP,
 	USER_LOGIN,
-	USER_LOGIN_FAILED
+	USER_LOGIN_FAILED,
+	ADMIN_LOGIN_FAILED,
+	ADMIN_LOGIN
 } from "./types";
 
 export const fetchUser = () => {
@@ -36,7 +38,27 @@ export const login = values => {
 		} catch (err) {
 			console.log(err);
 			dispatch({
-				type: USER_LOGIN_FAILED
+				type: USER_LOGIN_FAILED,
+				payload: err.response.status
+			});
+		}
+	};
+};
+
+export const adminLogin = values => {
+	return async dispatch => {
+		try {
+			const res = await axios.post("/api/adminLogin", values);
+			console.log("Read", res);
+			dispatch({
+				type: ADMIN_LOGIN,
+				payload: res.data
+			});
+		} catch (err) {
+			console.log("eer", err.response.status);
+			dispatch({
+				type: ADMIN_LOGIN_FAILED,
+				payload: err.response.status
 			});
 		}
 	};
