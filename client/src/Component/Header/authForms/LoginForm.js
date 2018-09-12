@@ -7,8 +7,11 @@ class LoginForm extends Component {
     super(props);
     this.state = {
       emailValue: "",
+      emailError: false,
+      EmailErrorMessage: "",
       passwordValue: "",
-      ad: false
+      passwordError: false,
+      passwordErrorMessage: ""
     };
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
@@ -26,11 +29,11 @@ class LoginForm extends Component {
 
     if (!PasswordCheck.success) {
       console.log("error", PasswordCheck.message);
+      this.setState({ passwordError: true, passwordErrorMessage: "" });
     }
     if (!EmailCheck.success) {
       console.log("error", EmailCheck.message);
     } else {
-      console.log("Values entered are of correct type");
       this.props.login(user);
     }
     e.preventDefault();
@@ -91,15 +94,23 @@ function mapStateToProps({ auth }) {
 function performPasswordCheck(val) {
   if (typeof val !== "string" || val === null || typeof val === "undefined")
     return { success: false, message: "password poorly formatted" };
-  if (val.split("").length < 5) return false;
-  return true;
+  else if (val.split("").length < 0)
+    return { success: false, message: "password feild cant be left Empty" };
+  else if (val.split("").length < 5)
+    return { success: false, message: "password is too short" };
+  else return { success: true };
 }
-
 function performEmailCheck(val) {
   if (typeof val !== "string" || val === null || typeof val === "undefined")
-    return { success: false, messege: "Email poorly formatted" };
-  var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  return re.test(String(val).toLowerCase());
+    return { success: false };
+  let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  let k = re.test(String(val).toLowerCase());
+  if (k === true) return { success: true };
+  else
+    return {
+      success: false,
+      message: "the email is poorly formated"
+    };
 }
 
 export default connect(
