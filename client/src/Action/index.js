@@ -88,7 +88,7 @@ export const logoutUser = values => {
 	console.log("nda");
 	return async dispatch => {
 		try {
-			const res = await axios.get("/api/logout");
+			await axios.get("/api/logout");
 			dispatch({
 				type: USER_LOGOUT,
 				payload: false

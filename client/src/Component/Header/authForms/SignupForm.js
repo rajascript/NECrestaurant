@@ -41,7 +41,8 @@ class SignupForm extends Component {
 			)
 		) {
 			//comma daal kar response likho
-			console.log("All dada entered was of correct type");
+
+			console.log("All data entered was of correct type");
 			this.props.signup(user);
 		} else {
 			console.log("All Data entered was not of correct data type");
@@ -67,9 +68,10 @@ class SignupForm extends Component {
 	handleConfirmPasswordChange(e) {
 		this.setState({ confirmPasswordValue: e.target.value });
 	}
+
 	componentWillReceiveProps(props) {
 		console.log("received", props);
-		if (this.props.auth === 200) this.props.moveToLogin();
+		if (Number(props.auth) === 200) this.props.moveToLogin();
 		else this.setState({ displayServerError: true });
 	}
 	render() {

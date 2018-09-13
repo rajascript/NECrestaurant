@@ -112,7 +112,11 @@ class Header extends Component {
 		if (typeof this.props.auth === "undefined" || this.props.auth === null) {
 			return this.renderLoader();
 		}
-		if (!this.props.auth || this.props.auth === "login_failed")
+		if (
+			!this.props.auth ||
+			this.props.auth === "login_failed" ||
+			this.props.auth === 200
+		)
 			return this.renderLoggedOutUserHeader();
 		else return this.renderLoggedInUserHeader();
 	}

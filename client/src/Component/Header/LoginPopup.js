@@ -13,7 +13,6 @@ class LoginPopup extends Component {
 		this.state.loginWindowError = "";
 	}
 	displayLoginError(errorStatement) {
-		console.log("dahda", errorStatement);
 		this.setState({ loginWindowError: errorStatement });
 	}
 	activateLoginTab() {
@@ -25,6 +24,7 @@ class LoginPopup extends Component {
 			this.setState({ openPopupWithSignup: true });
 	}
 	moveToLogin() {
+		console.log("jnca");
 		this.setState({ openPopupWithSignup: false, displayLoginMessage: true });
 	}
 	renderPopupWithSignup() {
