@@ -29,16 +29,16 @@ class LoginPopup extends Component {
 	}
 	renderPopupWithSignup() {
 		return (
-			<div id="loginPopup__container" className="loginPopup__container">
+			<div id="loginPopupContainer" className="loginPopup__container">
 				<button
-					id="loginPopup__button--login"
+					id="loginPopupButtonLogin"
 					className="loginPopup__button--login"
 					onClick={this.activateLoginTab}
 				>
 					Login
 				</button>
 				<button
-					id="loginPopup__button--signup"
+					id="loginPopupButtonSignup"
 					className="loginPopup__button--signup"
 					onClick={this.activateSignupTab}
 				>
@@ -50,10 +50,10 @@ class LoginPopup extends Component {
 	}
 	renderPopupWithLogin() {
 		return (
-			<div id="loginPopup__container" className="loginPopup__container">
+			<div id="loginPopupContainer" className="loginPopup__container">
 				{this.state.displayLoginMessage && (
 					<p
-						id="loginPopup__signupSuccessMessage"
+						id="loginPopupSignupSuccessMessage"
 						className="loginPopup__signupSuccessMessage"
 					>
 						Signup successful! please login.
@@ -61,21 +61,21 @@ class LoginPopup extends Component {
 				)}
 
 				<button
-					id="loginPopup__button--login"
+					id="loginPopupButtonLogin"
 					className="loginPopup__button--login"
 					onClick={this.activateLoginTab}
 				>
 					Login
 				</button>
 				<button
-					id="loginPopup__button--signup"
+					id="loginPopupButtonSignup"
 					className="loginPopup__button--signup"
 					onClick={this.activateSignupTab}
 				>
 					Signup
 				</button>
 				<LoginForm />
-				<p id="loginPopup__error" className="loginPopup__error">
+				<p id="loginPopupError" className="loginPopup__error">
 					{this.state.loginWindowError}
 				</p>
 			</div>

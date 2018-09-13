@@ -74,7 +74,7 @@ class SignupForm extends Component {
 	}
 	render() {
 		return (
-			<div id="signupForm__container" className="signupForm__container">
+			<div id="signupFormContainer" className="signupForm__container">
 				<form onSubmit={this.handleSignup}>
 					<input
 						className="signupForm__Form--email"

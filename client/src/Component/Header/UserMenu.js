@@ -13,7 +13,7 @@ export default class UserMenu extends Component {
 				<li>
 					<button
 						onClick={this.props.logout}
-						id="userMenu__button--loader"
+						id="userMenuButtonLoader"
 						className="userMenu__button--loader"
 					>
 						Logout

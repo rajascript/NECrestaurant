@@ -62,7 +62,7 @@ class BookingForm extends Component {
 	}
 	render() {
 		return (
-			<div id="bookingForm__container" className="bookingForm__container">
+			<div id="bookingFormContainer" className="bookingForm__container">
 				<form onSubmit={this.handleSignup}>
 					<input
 						className="bookingForm__Form--name"

@@ -35,25 +35,25 @@ class Header extends Component {
 	renderLoggedOutUserHeader() {
 		return (
 			<nav>
-				<p id="header__text" className="header__text">
+				<p id="headerText" className="header__text">
 					Indique
 				</p>
 				<button
 					onClick={this.openLoginPopup}
-					id="header__button--login"
+					id="headerButtonLogin"
 					className="header__button--login"
 				>
 					Login
 				</button>
 				<button
 					onClick={this.openSignupPopup}
-					id="header__button--login"
+					id="headerButtonLogin"
 					className="header__button--login"
 				>
 					Signup
 				</button>
 				<Link to="/booking">
-					<button id="header__button--book" className="header__button--book">
+					<button id="headerButtonBook" className="header__button--book">
 						Book
 					</button>
 				</Link>
@@ -69,7 +69,7 @@ class Header extends Component {
 	renderLoader() {
 		return (
 			<nav>
-				<p id="header__text" className="header__text">
+				<p id="headerText" className="header__text">
 					Indique
 				</p>
 				<ButtonLoader />
@@ -79,12 +79,12 @@ class Header extends Component {
 	renderLoggedInUserHeader() {
 		return (
 			<nav>
-				<p id="header__text" className="header__text">
+				<p id="headerText" className="header__text">
 					Indique
 				</p>
 				<button
 					onClick={this.openUserMenu}
-					id="header__button--login"
+					id="headerButtonLogin"
 					className="header__button--login"
 				>
 					<IconContext.Provider
