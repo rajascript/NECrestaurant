@@ -7,5 +7,7 @@ module.exports = {
 	googleClientSecret: process.env.GOOGLE_CLIENT_SECRET,
 	mongooseURI: process.env.MONGOOSE_URI,
 	testHost: process.env.TEST_HOST,
-	jwtKey: process.env.JWT_KEY
+	jwtKey: process.env.JWT_KEY,
+	stripePublishableKey: process.env.STRIPE_PUB_KEY,
+	stripeSecretKey: process.env.STRIPE_SECRET
 };
