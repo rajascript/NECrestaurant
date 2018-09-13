@@ -10,6 +10,11 @@ class LoginPopup extends Component {
 		this.activateSignupTab = this.activateSignupTab.bind(this);
 		this.moveToLogin = this.moveToLogin.bind(this);
 		this.state.displayLoginMessage = false;
+		this.state.loginWindowError = "";
+	}
+	displayLoginError(errorStatement) {
+		console.log("dahda", errorStatement);
+		this.setState({ loginWindowError: errorStatement });
 	}
 	activateLoginTab() {
 		if (this.state.openPopupWithSignup === true)
@@ -70,6 +75,9 @@ class LoginPopup extends Component {
 					Signup
 				</button>
 				<LoginForm />
+				<p id="loginPopup__error" className="loginPopup__error">
+					{this.state.loginWindowError}
+				</p>
 			</div>
 		);
 	}

@@ -4,6 +4,7 @@ const User = mongoose.model("User");
 const requireLogin = require("../middlewares/requireLogin");
 module.exports = app => {
 	app.post("/api/login", passport.authenticate("local-login"), (req, res) => {
+		console.log("hitting login");
 		let currUser = {
 			email: req.user.email,
 			name: req.user.name,
@@ -39,17 +40,17 @@ module.exports = app => {
 	);
 
 	app.get("/api/logout", requireLogin, (req, res) => {
-		console.log(req.user);
 		req.logout();
-		console.log(req.user);
-		res.redirect("/checkserver");
+		res.status(200).send({});
 	});
 
 	app.get("/api/current_user", requireLogin, (req, res) => {
 		const currUser = {};
-		currUser.email = req.user.email;
-		currUser.credits = req.user.credits;
-		currUser.name = req.user.name;
+		if (req.user) {
+			currUser.email = req.user.email;
+			currUser.credits = req.user.credits;
+			currUser.name = req.user.name;
+		}
 		res.status(200).send(currUser);
 	});
 };

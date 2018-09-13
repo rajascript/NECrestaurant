@@ -1,9 +1,11 @@
 import axios from "axios";
 import {
 	FETCH_USER,
+	FETCH_USER_FAILED,
 	FETCH_ADMIN,
 	USER_SIGNUP,
 	USER_LOGIN,
+	USER_LOGOUT,
 	USER_LOGIN_FAILED,
 	ADMIN_LOGIN_FAILED,
 	ADMIN_LOGIN
@@ -15,11 +17,19 @@ axios.defaults.headers.common = {
 
 export const fetchUser = () => {
 	return async dispatch => {
-		const res = await axios.get("/api/current_user");
-		dispatch({
-			type: FETCH_USER,
-			payload: res.data
-		});
+		try {
+			const res = await axios.get("/api/current_user");
+			dispatch({
+				type: FETCH_USER,
+				payload: res.data
+			});
+		} catch (err) {
+			if (err.response.status === 401)
+				dispatch({
+					type: FETCH_USER_FAILED,
+					payload: false
+				});
+		}
 	};
 };
 export const fetchAdmin = () => {
@@ -49,15 +59,32 @@ export const login = values => {
 				payload: res.data
 			});
 		} catch (err) {
+			if (err.response.status === 401)
+				dispatch({
+					type: USER_LOGIN_FAILED,
+					payload: "login_failed"
+				});
+		}
+	};
+};
+export const logoutUser = values => {
+	console.log("nda");
+	return async dispatch => {
+		try {
+			const res = await axios.get("/api/logout");
+			dispatch({
+				type: USER_LOGOUT,
+				payload: res.data
+			});
+		} catch (err) {
 			console.log(err);
 			dispatch({
-				type: USER_LOGIN_FAILED,
+				type: USER_LOGOUT,
 				payload: err.response.status
 			});
 		}
 	};
 };
-
 export const adminLogin = values => {
 	return async dispatch => {
 		try {

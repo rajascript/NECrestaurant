@@ -1,11 +1,10 @@
 import {
 	FETCH_USER,
-	FETCH_ADMIN,
 	USER_SIGNUP,
 	USER_LOGIN,
-	ADMIN_LOGIN,
 	USER_LOGIN_FAILED,
-	ADMIN_LOGIN_FAILED
+	USER_LOGOUT,
+	FETCH_USER_FAILED
 } from "../Action/types";
 
 export default (state = null, action) => {
@@ -13,11 +12,17 @@ export default (state = null, action) => {
 		case FETCH_USER:
 			if (action.payload === "") return false;
 			return action.payload;
+		case FETCH_USER_FAILED:
+			return action.payload;
 		case USER_SIGNUP:
 			if (action.payload === "" || typeof action.payload === "undefined")
 				return false;
 			return action.payload;
 		case USER_LOGIN:
+			if (action.payload === "" || typeof action.payload === "undefined")
+				return false;
+			return action.payload;
+		case USER_LOGOUT:
 			if (action.payload === "" || typeof action.payload === "undefined")
 				return false;
 			return action.payload;
