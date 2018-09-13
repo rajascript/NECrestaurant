@@ -21,9 +21,15 @@ class LoginForm extends Component {
     };
 
     if (!performEmailCheck(this.state.emailValue)) {
-      console.log("1");
-    } else if (!performPasswordCheck(this.state.passwordValue)) {
-      console.log("1");
+    let PasswordCheck = performPasswordCheck(this.state.passwordValue);
+    let EmailCheck = performEmailCheck(this.state.emailValue);
+
+    if (!PasswordCheck.success) {
+      console.log("error", PasswordCheck.message);
+      this.setState({ passwordError: true, passwordErrorMessage: "" });
+    }
+    if (!EmailCheck.success) {
+      console.log("error", EmailCheck.message);
     } else {
       this.props.login(user);
     }
@@ -74,16 +80,24 @@ function mapStateToProps({ auth }) {
 
 function performPasswordCheck(val) {
   if (typeof val !== "string" || val === null || typeof val === "undefined")
-    return false;
-  if (val.split("").length < 5) return false;
-  return true;
+    return { success: false, message: "password poorly formatted" };
+  else if (val.split("").length < 0)
+    return { success: false, message: "password feild cant be left Empty" };
+  else if (val.split("").length < 5)
+    return { success: false, message: "password is too short" };
+  else return { success: true };
 }
-
 function performEmailCheck(val) {
   if (typeof val !== "string" || val === null || typeof val === "undefined")
-    return false;
-  var re = /^(([^<>()\\.,;:\s@"]+(\.[^<>()\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  return re.test(String(val).toLowerCase());
+    return { success: false };
+  let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  let k = re.test(String(val).toLowerCase());
+  if (k === true) return { success: true };
+  else
+    return {
+      success: false,
+      message: "the email is poorly formated"
+    };
 }
 
 export default connect(
