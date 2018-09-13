@@ -2,6 +2,7 @@ language: node_js
 node_js:
   - "9"
 dist: trusty
+warnings_are_errors: false
 addons:
   chrome: stable
 services:
@@ -26,7 +27,6 @@ script:
 branches:
   only:
     - master
-warnings_are_errors: false
 deploy:
   provider: heroku
   app: indique
