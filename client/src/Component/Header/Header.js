@@ -47,7 +47,7 @@ class Header extends Component {
         </button>
         <button
           onClick={this.openSignupPopup}
-          id="headerButtonLogin"
+          id="headerButtonSignup"
           className="header__button--login"
         >
           Signup

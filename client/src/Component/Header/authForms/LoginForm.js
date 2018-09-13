@@ -20,16 +20,16 @@ class LoginForm extends Component {
       password: this.state.passwordValue
     };
 
-    if (!performEmailCheck(this.state.emailValue)) {
     let PasswordCheck = performPasswordCheck(this.state.passwordValue);
     let EmailCheck = performEmailCheck(this.state.emailValue);
 
-    if (!PasswordCheck.success) {
-      console.log("error", PasswordCheck.message);
-      this.setState({ passwordError: true, passwordErrorMessage: "" });
-    }
     if (!EmailCheck.success) {
       console.log("error", EmailCheck.message);
+      this.props.displayLoginError(EmailCheck.message);
+    } else if (!PasswordCheck.success) {
+      console.log("error", PasswordCheck.message);
+      this.setState({ passwordError: true, passwordErrorMessage: "" });
+      this.props.displayLoginError(PasswordCheck.message);
     } else {
       this.props.login(user);
     }
@@ -52,7 +52,7 @@ class LoginForm extends Component {
           <input
             className="loginForm__Form--email"
             placeholder="enter email"
-            type="email"
+            type="name"
             value={this.state.emailValue}
             onChange={this.handleEmailChange}
           />
@@ -82,7 +82,7 @@ function performPasswordCheck(val) {
   if (typeof val !== "string" || val === null || typeof val === "undefined")
     return { success: false, message: "password poorly formatted" };
   else if (val.split("").length < 0)
-    return { success: false, message: "password feild cant be left Empty" };
+    return { success: false, message: "password field cannot be left Empty" };
   else if (val.split("").length < 5)
     return { success: false, message: "password is too short" };
   else return { success: true };
@@ -90,7 +90,7 @@ function performPasswordCheck(val) {
 function performEmailCheck(val) {
   if (typeof val !== "string" || val === null || typeof val === "undefined")
     return { success: false };
-  let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  let re = /^(([^<>()\\.,;:\s@"]+(\.[^<>()\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   let k = re.test(String(val).toLowerCase());
   if (k === true) return { success: true };
   else
