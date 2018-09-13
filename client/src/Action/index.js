@@ -50,6 +50,23 @@ export const signup = values => {
 		});
 	};
 };
+export const loginGoogle = values => {
+	return async dispatch => {
+		try {
+			const res = await axios.get("/api/auth/google");
+			dispatch({
+				type: USER_LOGIN,
+				payload: res.data
+			});
+		} catch (err) {
+			if (err.response.status === 401)
+				dispatch({
+					type: USER_LOGIN_FAILED,
+					payload: "google_login_failed"
+				});
+		}
+	};
+};
 export const login = values => {
 	return async dispatch => {
 		try {
@@ -74,7 +91,7 @@ export const logoutUser = values => {
 			const res = await axios.get("/api/logout");
 			dispatch({
 				type: USER_LOGOUT,
-				payload: res.data
+				payload: false
 			});
 		} catch (err) {
 			console.log(err);

@@ -10,7 +10,7 @@ let userSchema = new Schema({
 	email: requiredProperty,
 	googleId: String,
 	name: String,
-	password: requiredProperty,
+	password: String,
 	phone: Number
 });
 

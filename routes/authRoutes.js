@@ -35,7 +35,7 @@ module.exports = app => {
 		"/auth/google/callback",
 		passport.authenticate("google"),
 		(req, res) => {
-			res.redirect("/checkserver");
+			res.redirect("/");
 		}
 	);
 
