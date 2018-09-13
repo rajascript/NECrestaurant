@@ -43,7 +43,7 @@ class LoginForm extends Component {
 	}
 	render() {
 		return (
-			<div id="loginForm__container" className="loginForm__container">
+			<div id="loginFormContainer" className="loginForm__container">
 				<form onSubmit={this.handleLogin}>
 					<input
 						className="loginForm__Form--email"
@@ -84,7 +84,7 @@ function performPasswordCheck(val) {
 function performEmailCheck(val) {
 	if (typeof val !== "string" || val === null || typeof val === "undefined")
 		return false;
-	var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+	var re = /^(([^<>()\\.,;:\s@"]+(\.[^<>()\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 	return re.test(String(val).toLowerCase());
 }
 

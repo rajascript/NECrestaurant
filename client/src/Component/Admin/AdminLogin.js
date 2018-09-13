@@ -52,7 +52,7 @@ class AdminLogin extends Component {
 		if (this.state.admin) return <Redirect push to="/admin" />;
 		else
 			return (
-				<div id="loginForm__container" className="loginForm__container">
+				<div id="loginFormContainer" className="loginForm__container">
 					<form onSubmit={this.handleLogin}>
 						<input
 							className="loginForm__Form--userName"

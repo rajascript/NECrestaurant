@@ -46,8 +46,6 @@ export default (state = null, action) => {
 			else {
 				return action.payload;
 			}
-		case ADMIN_LOGIN_FAILED:
-			return action.payload;
 		default:
 			return state;
 	}

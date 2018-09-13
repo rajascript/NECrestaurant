@@ -74,7 +74,7 @@ class SignupForm extends Component {
 	}
 	render() {
 		return (
-			<div id="signupForm__container" className="signupForm__container">
+			<div id="signupFormContainer" className="signupForm__container">
 				<form onSubmit={this.handleSignup}>
 					<input
 						className="signupForm__Form--email"
@@ -132,7 +132,7 @@ function mapStateToProps({ auth }) {
 function performEmailCheck(val) {
 	if (typeof val !== "string" || val === null || typeof val === "undefined")
 		return false;
-	var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+	var re = /^(([^<>()\\.,;:\s@"]+(\.[^<>()\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 	return re.test(String(val).toLowerCase());
 }
 

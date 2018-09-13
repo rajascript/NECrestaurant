@@ -52,6 +52,15 @@ module.exports = (app, firebaseDB) => {
 		bookingData[userId] = "canceled by user";
 		bookingsRef.set(bookingData);
 	});
+	/**
+	 * POST method for admin to revoke user booking request and refund some credits.
+	 * @param userId
+	 * @param slot
+	 * @param date
+	 * @param seats
+	 * @param refundAmount
+	 *
+	 */
 	app.post("/api/revokeAndRefundBooking", (req, res) => {
 		const userId = req.body.userId;
 		const slot = req.body.slot;
@@ -64,6 +73,13 @@ module.exports = (app, firebaseDB) => {
 		req.user.credits += refundAmount;
 		new User(req.user).save();
 	});
+	/**
+	 * POST method for user to post booking request.
+	 * @param userId
+	 * @param slot
+	 * @param date
+	 * @param seats
+	 */
 	app.post("/api/requestBooking", (req, res) => {
 		const userId = req.body.userId;
 		const slot = req.body.slot;
@@ -71,6 +87,7 @@ module.exports = (app, firebaseDB) => {
 		bookingsRef = firebaseDB.ref(bookingsRefString + "/" + date + "/" + slot);
 		bookingData = {};
 		bookingData[userId] = "waiting";
+		bookingData.seats = req.body.seats;
 		bookingsRef.set(bookingData);
 	});
 };

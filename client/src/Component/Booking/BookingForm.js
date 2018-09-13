@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+//import Calendar from "react-calendar";
 import { connect } from "react-redux";
 import { signup } from "../../Action/index";
 class BookingForm extends Component {
@@ -62,7 +62,7 @@ class BookingForm extends Component {
 	}
 	render() {
 		return (
-			<div id="bookingForm__container" className="bookingForm__container">
+			<div id="bookingFormContainer" className="bookingForm__container">
 				<form onSubmit={this.handleSignup}>
 					<input
 						className="bookingForm__Form--name"
@@ -103,7 +103,7 @@ function mapStateToProps({ auth }) {
 function performEmailCheck(val) {
 	if (typeof val !== "string" || val === null || typeof val === "undefined")
 		return false;
-	var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+	var re = /^(([^<>()\\.,;:\s@"]+(\.[^<>()\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 	return re.test(String(val).toLowerCase());
 }
 
@@ -119,21 +119,9 @@ function performPhoneCheck(val) {
 	return true;
 }
 
-function performPasswordCheck(val) {
-	if (typeof val !== "string" || val === null || typeof val === "undefined")
-		return false;
-	if (val.split("").length < 5) return false;
-	return true;
-}
-
 function performStringCheck(val) {
 	if (typeof val !== "string" || val === null || typeof val === "undefined")
 		return false;
-	return true;
-}
-
-function performPasswordConfirmCheck(val_1, val_2) {
-	if (val_1 !== val_2) return false;
 	return true;
 }
 
