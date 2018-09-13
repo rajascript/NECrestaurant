@@ -2,9 +2,22 @@ var express = require("express");
 const passport = require("passport");
 var cookieSession = require("cookie-session");
 var bodyParser = require("body-parser");
+const firebase = require("firebase");
 var keys = require("./config/keys");
 const mongoose = require("mongoose");
 var app = express();
+
+//firebase config
+
+var config = {
+	apiKey: keys.firebaseApiKey,
+	authDomain: keys.firebaseAuthDomain,
+	databaseURL: keys.firebaseDatabaseURL
+};
+firebase.initializeApp(config);
+const firebaseDB = firebase.database();
+
+//firebase config
 
 //mongoose setup
 mongoose.connect(
@@ -12,7 +25,7 @@ mongoose.connect(
 	{ useNewUrlParser: true }
 );
 require("./model/User");
-
+require("./model/Admin");
 app.use(bodyParser.json());
 app.use(
 	cookieSession({
@@ -26,7 +39,11 @@ app.use(passport.initialize());
 app.use(passport.session());
 require("./services/passport");
 
+//routes config
+require("./routes/adminRoutes")(app);
 require("./routes/authRoutes")(app);
+require("./routes/billingRoutes")(app);
+require("./routes/bookingRoutes")(app, firebaseDB);
 
 app.use(express.static("client/build"));
 

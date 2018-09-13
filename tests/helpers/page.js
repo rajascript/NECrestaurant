@@ -6,7 +6,7 @@ class CustomPage {
 	static async build() {
 		const browser = await puppeteer.launch({
 			headless: true,
-			args: ["--no-sandbox"]
+			args: ["--no-sandbox","--disable-setuid-sandbox"]
 		});
 
 		const page = await browser.newPage();
@@ -40,7 +40,9 @@ class CustomPage {
 			return document.querySelector(_selector).innerText;
 		}, selector);
 	}
-
+	async performExecution(query) {
+		return this.page.evaluate(query);
+	}
 	get(path) {
 		return this.page.evaluate(_path => {
 			return fetch(_path, {
