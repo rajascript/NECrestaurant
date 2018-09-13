@@ -16,7 +16,7 @@ test("Header works", async () => {
 	expect(text).toEqual("Indique"); //edited by hansika. achievement unlocked.
 });
 
-test.only("Browser support", async () => {
+test("Browser support", async () => {
 	const check = await page.performExecution("navigator.userAgent");
 	var ua= check, tem, M= ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
     if(/trident/i.test(M[1])){
@@ -30,6 +30,14 @@ test.only("Browser support", async () => {
     M= M[2]? [M[1], M[2]]: [navigator.appName, navigator.appVersion, '-?'];
     if((tem= ua.match(/version\/(\d+)/i))!= null) M.splice(1, 1, tem[1]);
     var x = Number(M[1]);
-    expect(x).toBeGreaterThanOrEqual(38);
     console.log(x);     //Browser support tested.
+    expect(x).toBeGreaterThanOrEqual(38);
 });
+
+test.only("Login Button", async () => {
+    await page.click('#headerlogin');
+
+    console.log(await page.getContentsOf("#loginPopuplogin"));
+    
+    })
+
