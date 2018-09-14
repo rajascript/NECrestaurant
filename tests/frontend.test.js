@@ -34,10 +34,18 @@ test("Browser support", async () => {
     expect(x).toBeGreaterThanOrEqual(38);
 });
 
-test.only("Login Button", async () => {
-    await page.click('#headerlogin');
+test("Login Button", async () => {
+    await page.click('#headerButtonLogin');
 
-    console.log(await page.getContentsOf("#loginPopuplogin"));
-    
-    })
+    console.log(await page.getContentsOf("#loginPopupButtonLogin"));
+});     // Login button tested.
 
+test("SignUp Button", async() => {
+    await page.click('#headerButtonLogin');
+    console.log(await page.getContentsOf('#loginPopupButtonSignup'));
+}); //SignUp successful.
+
+test("Booking", async() => {
+    await page.click('headerButtonBook');
+    console.log(page.getContentsOf('headerButtonBook'));
+});     //Booking test getting failed.
