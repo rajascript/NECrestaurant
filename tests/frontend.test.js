@@ -41,11 +41,12 @@ test("Login Button", async () => {
 });     // Login button tested.
 
 test("SignUp Button", async() => {
-    await page.click('#headerButtonLogin');
+    await page.click('#headerButtonSignup');
     console.log(await page.getContentsOf('#loginPopupButtonSignup'));
 }); //SignUp successful.
 
 test("Booking", async() => {
     await page.click('headerButtonBook');
-    console.log(page.getContentsOf('headerButtonBook'));
+    console.log(await page.getContentsOf('bookingFormContainer'));
+   
 });     //Booking test getting failed.
