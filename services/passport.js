@@ -34,10 +34,9 @@ passport.use(
 			const existingUser = await User.findOne({
 				email: profile.emails[0].value
 			});
-			console.log("existing", existingUser);
+
 			if (existingUser) {
 				if (existingUser.googleId === null) {
-					console.log("i am existing but don't have account", existingUser);
 					//he already has an account just update google info
 					const user = existingUser;
 					user.googleId = profile.id;
@@ -187,11 +186,9 @@ function performStringCheck(val) {
 }
 function performPhoneCheck(val) {
 	if (typeof val !== "number" || val === null || typeof val === "undefined") {
-		console.log("nax", typeof val);
 		return false;
 	}
 	if (val.toString().split("").length !== 10) {
-		console.log(val.toString().split("").length);
 		return false;
 	}
 	return true;
