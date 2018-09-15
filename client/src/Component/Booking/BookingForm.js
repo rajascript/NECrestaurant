@@ -102,8 +102,14 @@ class BookingForm extends Component {
 		this.setState({ confirmPasswordValue: e.target.value });
 	}
 	componentWillReceiveProps(props) {
-		if (this.props.booking === 200) this.props.moveToLogin();
+		if (props.booking === 200) props.moveToLogin();
 		else this.setState({ displayServerError: true });
+		if (props.auth) {
+			let emailValue = props.auth.email || "";
+			let nameValue = props.auth.name || "";
+			let phoneValue = props.auth.phone || "";
+			this.setState({ emailValue, nameValue, phoneValue });
+		}
 	}
 	render() {
 		return (
@@ -136,10 +142,6 @@ class BookingForm extends Component {
 						onChange={this.handleEmailChange}
 					/>
 					<br />
-					<input id="submit"
-							type="submit" 
-							value="Submit" 
-					/>
 					<input
 						id="bookingFormDate"
 						className="bookingForm__Form--date"
@@ -154,10 +156,10 @@ class BookingForm extends Component {
 							moment={this.state.moment}
 							onChange={this.handleDateChange}
 							onSave={this.handleSave}
-							minStep={15} // default
-							hourStep={1} // default
-							prevMonthIcon="ion-ios-arrow-left" // default
-							nextMonthIcon="ion-ios-arrow-right" // default
+							minStep={1}
+							hourStep={1}
+							prevMonthIcon="ion-ios-arrow-left"
+							nextMonthIcon="ion-ios-arrow-right"
 						/>
 					)}
 					<br />
@@ -177,7 +179,6 @@ class BookingForm extends Component {
 					</select>
 					<br />
 					<input type="submit" value="Submit" onClick={this.handleBooking} />
-
 				</form>
 				<p>
 					{this.state.bookingErrorVisible && this.state.bookingErrorMessage}
@@ -187,9 +188,8 @@ class BookingForm extends Component {
 	}
 }
 
-function mapStateToProps({ booking }) {
-	console.log(booking);
-	return { booking };
+function mapStateToProps({ booking, auth }) {
+	return { booking, auth };
 }
 
 function performEmailCheck(val) {
