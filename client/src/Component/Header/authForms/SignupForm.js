@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import LoginGoogle from "./LoginGoogle";
 import { connect } from "react-redux";
 import { signup } from "../../../Action/index";
+
 class SignupForm extends Component {
   constructor(props) {
     super(props);
@@ -21,8 +22,8 @@ class SignupForm extends Component {
     this.handlePhoneChange = this.handlePhoneChange.bind(this);
     this.handleSignup = this.handleSignup.bind(this);
   }
+
   handleSignup(e) {
-    console.log(this.state);
     let user = {
       email: this.state.emailValue,
       password: this.state.passwordValue,
@@ -38,6 +39,7 @@ class SignupForm extends Component {
     );
     let StringCheck = performStringCheck(this.state.nameValue);
     let PhoneCheck = performPhoneCheck(Number(this.state.phoneValue));
+    console.log(StringCheck);
 
     if (!EmailCheck.success) {
       console.log("error", EmailCheck.message);
@@ -56,9 +58,9 @@ class SignupForm extends Component {
       this.props.displayLoginError(PhoneCheck.message);
     } else {
       console.log("Data types ok");
+      this.props.removeLoginWindowError();
       this.props.signup(user);
     }
-
     e.preventDefault();
   }
 
@@ -88,7 +90,7 @@ class SignupForm extends Component {
   render() {
     return (
       <div id="signupFormContainer" className="signupForm__container">
-        <form onSubmit={this.handleSignup}>
+        <form>
           <input
             className="signupForm__Form--email"
             placeholder="enter email"
@@ -146,7 +148,8 @@ function performEmailCheck(val) {
   if (typeof val !== "string" || val === null || typeof val === "undefined")
     return { success: false, message: "Email poorly formatted" };
   var re = /^(([^<>()\\.,;:\s@"]+(\.[^<>()\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  return re.test(String(val).toLowerCase());
+  let ans = re.test(String(val).toLowerCase());
+  return { success: ans, message: "Email is poorly formatted" };
 }
 
 function performPhoneCheck(val) {
@@ -159,8 +162,7 @@ function performPhoneCheck(val) {
       success: false,
       message: "phone number must be atleast 10 digits"
     };
-  }
-  return { success: true };
+  } else return { success: true };
 }
 
 function performPasswordCheck(val) {
@@ -168,19 +170,23 @@ function performPasswordCheck(val) {
     return { success: false, message: "password poorly formatted" };
   else if (val.split("").length < 5)
     return { success: false, message: "password too short" };
-  return true;
+  return { success: true };
 }
 
 function performStringCheck(val) {
   if (typeof val !== "string" || val === null || typeof val === "undefined")
     return { success: false, message: "name can only contain alphabets" };
-  return true;
+  else if (val.length < 1)
+    return { success: false, message: "Name cannot be left empty" };
+  /*else if ()
+    return { success: false, message: "Name can only be an alphabet" };*/ else
+    return { success: true };
 }
 
 function performPasswordConfirmCheck(val_1, val_2) {
   if (val_1 !== val_2)
     return { success: false, message: "passwords do not match" };
-  return true;
+  else return { success: true };
 }
 
 export default connect(
