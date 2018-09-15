@@ -1,0 +1,846 @@
+/*============header===========*/
+
+.dhead{
+position: absolute;
+width: 1280px;
+height: 112px;
+left: 150px;
+top: 0px;
+
+background: #100F0F;
+}
+
+.drestaurantName{
+position: absolute;
+width: 310px;
+height: 102px;
+left: 490px;
+top: 9px;
+
+font-family: Abril Fatface;
+font-style: normal;
+font-weight: normal;
+line-height: normal;
+font-size: 44px;
+text-align: center;
+
+color: #FFFFFF;
+}
+
+.bLogin{
+position: absolute;
+width: 60px;
+height: 28px;
+left: 1071px;
+top: 32px;
+background-color:red;
+border: none;
+border-radius:12px;
+}
+
+.bSignup{
+position: absolute;
+width: 60px;
+height: 28px;
+left: 1139px;
+top: 32px;
+background-color:red;
+border: none;
+border-radius:12px;
+}
+/*----------------Links in header----------*/
+
+.Labout{
+position: absolute;
+height: 41.25px;
+left: 21.33%;
+right: 70.39%;
+top: 72px;
+
+font-family: Scada;
+font-style: normal;
+font-weight: bold;
+line-height: normal;
+font-size: 20px;
+text-align: center;
+text-decoration:none;
+letter-spacing: 0.2em;
+
+color: #FF6B00;
+border-radius: 10px;
+}
+
+.Lmenu{
+position: absolute;
+height: 42px;
+left: 32.97%;
+right: 57.11%;
+top: 72px;
+
+font-family: Scada;
+font-style: normal;
+font-weight: bold;
+line-height: normal;
+font-size: 20px;
+text-align: center;
+letter-spacing: 0.2em;
+text-decoration:none;
+color: #F3F9F9;
+border-radius: 10px;
+}
+
+.Lbooking{
+position: absolute;
+height: 41.25px;
+left: 46.25%;
+right: 45.47%;
+top: 72.5px;
+text-decoration:none;
+font-family: Scada;
+font-style: normal;
+font-weight: bold;
+line-height: normal;
+font-size: 20px;
+text-align: center;
+letter-spacing: 0.2em;
+
+color: #F3F9F9;
+border-radius: 10px;
+}
+
+.Ldelivery{
+position: absolute;
+height: 42px;
+left: 57.97%;
+right: 32.89%;
+top: 72px;
+text-decoration:none;
+font-family: Scada;
+font-style: normal;
+font-weight: bold;
+line-height: normal;
+font-size: 20px;
+text-align: center;
+letter-spacing: 0.2em;
+
+color: #F3F9F9;
+border-radius: 10px;
+}
+
+/*==========below header========*/
+
+.belowHead{
+position: absolute;
+width: 1280px;
+height: 608px;
+left: 150px;
+top: 112px;
+
+background:mix-blend-mode normal;
+}
+
+#P1{
+position: absolute;
+height: 24px;
+left: 2.92%;
+right: 72.03%;
+top: 180px;
+
+font-family: 'Tangerine', serif;
+font-style: normal;
+font-weight: normal;
+line-height: normal;
+font-size: 64px;
+text-align: center;
+
+color: Yellow;
+border-radius: 10px;
+}
+
+#P2{
+position: absolute;
+height: 199px;
+left: 24.77%;
+right: 24.06%;
+top: 390px;
+
+font-family: Lobster;
+font-style: normal;
+font-weight: normal;
+line-height: normal;
+font-size: 48px;
+letter-spacing: -0.05em;
+
+color:white;
+border-radius: 10px;
+}
+
+/*============= about chef===========*/
+
+.imgchef1{
+position: absolute;
+width: 300px;
+height: 300px;
+left: 169px;
+top: 821px;
+
+background: url(img/chef1.jpg), #C4C4C4;
+border-radius: 20px;
+}
+
+#namechef1{
+position: absolute;
+width: 224px;
+height: 62px;
+left: 643px;
+top: 830px;
+
+font-family: Playfair Display;
+font-style: normal;
+font-weight: normal;
+line-height: normal;
+font-size: 24px;
+
+color: #000000;
+}
+
+#aboutChef1{
+position: absolute;
+height: 199px;
+left: 30.47%;
+right: 33.47%;
+top: 892px;
+
+font-family: Playfair Display;
+font-style: normal;
+font-weight: normal;
+line-height: normal;
+font-size: 24px;
+
+color: #696969;
+border-radius: 10px;
+}
+
+.imgchef2{
+position: absolute;
+width: 300px;
+height: 300px;
+left: 1111px;
+top: 1109px;
+
+background: url(img/chef2.jpg), #C4C4C4;
+border-radius: 20px;
+}
+
+#namechef2{
+position: absolute;
+width: 224px;
+height: 62px;
+left: 658px;
+top: 1140px;
+
+font-family: Playfair Display;
+font-style: normal;
+font-weight: normal;
+line-height: normal;
+font-size: 24px;
+}
+
+#aboutChef2{
+position: absolute;
+height: 199px;
+left: 30.47%;
+right: 30.47%;
+top: 1204px;
+
+font-family: Playfair Display;
+font-style: normal;
+font-weight: normal;
+line-height: normal;
+font-size: 24px;
+
+color: #696969;
+border-radius: 10px;
+}
+
+.imgchef3{
+position: absolute;
+width: 300px;
+height: 300px;
+left: 169px;
+top: 1409px;
+
+background: url(img/chef3.jpg), #C4C4C4;
+border-radius: 20px;
+}
+
+#namechef3{
+position: absolute;
+width: 224px;
+height: 62px;
+left: 660px;
+top: 1442px;
+
+font-family: Playfair Display;
+font-style: normal;
+font-weight: normal;
+line-height: normal;
+font-size: 24px;
+
+color: #000000;
+}
+
+#aboutChef3{
+position: absolute;
+height: 199px;
+left: 30.47%;
+right: 30.47%;
+top: 1504px;
+
+font-family: Playfair Display;
+font-style: normal;
+font-weight: normal;
+line-height: normal;
+font-size: 24px;
+
+color: #696969;
+border-radius: 10px;
+}
+
+.imgchef4{
+position: absolute;
+width: 300px;
+height: 300px;
+left: 1111px;
+top: 1709px;
+
+background: url(img/chef4.jpg), #C4C4C4;
+border-radius: 20px;
+}
+
+#namechef4{
+position: absolute;
+width: 224px;
+height: 62px;
+left: 660px;
+top: 1742px;
+
+font-family: Playfair Display;
+font-style: normal;
+font-weight: normal;
+line-height: normal;
+font-size: 24px;
+
+color: #000000;
+}
+
+#aboutChef4{
+position: absolute;
+height: 199px;
+left: 30.47%;
+right: 30.47%;
+top: 1804px;
+
+font-family: Playfair Display;
+font-style: normal;
+font-weight: normal;
+line-height: normal;
+font-size: 24px;
+
+color: #696969;
+border-radius: 10px;
+}
+
+/*==============footer=============*/
+
+.footer{
+position: absolute;
+width: 100%;
+height: 40px;
+left: 150px;
+top: 2050px;
+
+background: #100F0F;
+}
+
+.LcontactUs{
+position: absolute;
+height: 41.25px;
+left: 22.39%;
+right: 45.33%;
+top: 10px;
+
+font-family: Scada;
+font-style: normal;
+font-weight: bold;
+line-height: normal;
+font-size: 16px;
+text-align: center;
+letter-spacing: 0.2em;
+
+color: #F3F9F9;
+text-decoration:none;
+border-radius: 12px;
+}
+
+/*===========home Page=========*/
+
+#hP1{
+position: absolute;
+width: 320px;
+height: 106px;
+left: 122px;
+top: 101px;
+
+font-family: Great Vibes;
+font-style: normal;
+font-weight: normal;
+line-height: normal;
+font-size: 64px;
+text-align: center;
+
+color: #000000;
+}
+
+#hP2{
+position: absolute;
+width: 429px;
+height: 106px;
+left: 122px;
+top: 282px;
+
+font-family: Raleway;
+font-style: normal;
+font-weight: normal;
+line-height: normal;
+font-size: 36px;
+
+color: #000000;
+}
+
+#hP3{
+position: absolute;
+width: 341px;
+height: 167px;
+left: 210px;
+top: 403px;
+
+font-family: Raleway;
+font-style: normal;
+font-weight: normal;
+line-height: 25px;
+font-size: 18px;
+letter-spacing: 0.05em;
+color: #000000;
+}
+
+#hP4{
+position: absolute;
+width: 175px;
+height: 106px;
+left: 362px;
+top: 539px;
+
+font-family: Raleway;
+font-style: normal;
+font-weight: normal;
+line-height: normal;
+font-size: 36px;
+color: #000000;
+}
+
+.homeImage{
+position: absolute;
+width: 740px;
+height: 608px;
+left: 540px;
+top: 0px;
+background: url(img/creamymushroom.jpg);
+}
+
+.homeMiddlePart{
+position: absolute;
+width: 1280px;
+height: 720px;
+left:150px;
+top: 720px;
+background: #EAE8E8;
+}
+#hP4{
+position: absolute;
+width: 320px;
+height: 106px;
+left: 122px;
+top: 777px;
+
+font-family: Great Vibes;
+font-style: normal;
+font-weight: normal;
+line-height: normal;
+font-size: 64px;
+text-align: center;
+
+color: #000000;
+}
+
+
+
+/*=============login and Signup page===========*/
+
+.back{
+position: relative;
+width: 1280px;
+height: 720px;
+
+background: #FFFFFF;
+}
+
+.sign{
+position: absolute;
+left: 34.38%;
+right: 34.38%;
+top: 14.86%;
+bottom: 15.69%;
+
+background: #F3F9F9;
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+border-radius: 20px;
+}
+
+
+#sH1{
+position: absolute;
+left: 30.92%;
+right: 39.9%;
+top: 8.56%;
+bottom: 70.16%;
+
+font-family: Abril Fatface;
+font-style: normal;
+font-weight: normal;
+line-height: normal;
+font-size: 44px;
+text-align: center;
+
+color: #100F0F;
+}
+
+
+.sdetails{
+position: absolute;
+width: 250px;
+height: 250px;
+left: 115px;
+top: 137px;
+}
+
+
+
+#sEmail{
+position: absolute;
+    height: 30px;
+    left: 0%;
+    right: 0%;
+    text-align:center;
+    top: 0%;
+    /* bottom: 86.55%; */
+    background: #F3F9F9;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+}
+
+#sPass{
+    position: absolute;
+    height: 30px;
+    text-align:center;
+    left: 0%;
+    right: 0%;
+    top: 21.97%;
+    /* bottom: 64.57%; */
+    background: #F3F9F9;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+}
+
+#sconfirmPass{
+position: absolute;
+    left: 0%;
+    right: 0%;
+    height: 30px;
+    top: 43.5%;
+    /* bottom: 43.05%; */
+    background: #F3F9F9;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    text-align:center;
+}
+
+#sName{
+position: absolute;
+    left: 0%;
+    right: 0%;
+    height: 30px;
+    top: 65.47%;
+    /* bottom: 21.08%; */
+    background: #F3F9F9;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    text-align:center;
+    border-radius: 20px;
+}
+
+#sMobileNo{
+position: absolute;
+    left: 0%;
+    right: 0%;
+    top: 86.55%;
+    height: 30px;
+    /* bottom: 0%; */
+     text-align:center;
+    background: #F3F9F9;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+}
+
+#bSignup{
+    position: absolute;
+    left: 20.12%;
+    right: 50.12%;
+    height:25px;
+    border-radius:20px;
+    top: 100%;
+     bottom: 18.33%;
+    font-family: Raleway;
+    font-style: normal;
+    font-weight: bold;
+    line-height: normal;
+    font-size 12px;
+    text-align: center;
+    color: purple;
+    margin-top:9px;
+}
+
+#belowSign{
+position: absolute;
+    left: 13.45%;
+    
+    top: 115%;
+    
+    font-family: Raleway;
+    font-style: normal;
+    font-weight: normal;
+    line-height: normal;
+    font-size: 10px;
+    text-align: center;
+    margin-top:5px;
+    color: #000000;
+    text-decoration:none;
+}
+
+
+
+#blogin{
+    position: absolute;
+    width: 48px;
+    height: 30px;
+    left: 60px;
+    top: 120px;
+    border-radius: 15px;
+}
+
+#or{
+    position: absolute;
+    left: 11.45%;
+    right: 44.45%;
+    top: 67.31%;
+    bottom: 36.81%;
+
+font-family: Raleway;
+font-style: normal;
+font-weight: normal;
+line-height: normal;
+font-size: 13px;
+text-align: center;
+letter-spacing: 0.1em;
+
+color: #696969;
+}
+
+#orlineL{
+    position: absolute;
+    width: 110px;
+    height: 0px;
+    left: -50px;
+    top: 175px;
+    border: 1px solid #C4C4C4;
+}
+
+#orlineR{
+    position: absolute;
+    width: 110px;
+    height: 0px;
+    left: 100px;
+    top: 175px;
+    border: 1px solid #C4C4C4;
+}
+#bgooglelogin{
+    position: absolute;
+    width: 104px;
+    height: 30px;
+    left: 32px;
+    top: 202px;
+    border-radius: 15px;
+    background-color:#FF4500;
+    color:white;
+}
+
+.belowlogin{
+    position: absolute;
+    left: 3.45%;
+    right: 35.45%;
+    top: 104.53%;
+    bottom: 24.58%;
+
+font-family: Raleway;
+font-style: normal;
+font-weight: normal;
+line-height: normal;
+font-size: 9px;
+text-align: center;
+text-decoration:none;
+
+color: #000000;
+}
+
+/*==================Menu=========================*/
+
+
+.Menudiv{
+position: relative;
+width: 1280px;
+height: 1600px;
+
+background: #FFFFFF;
+}
+
+.userimage{
+position: absolute;
+width: 50px;
+height: 50px;
+left: 1007px;
+top: 22px;
+border-radius:100px;
+background: url(user.jpg), #C4C4C4;
+}
+
+.userWel{
+position: absolute;
+width: 116px;
+height: 17px;
+left: 1074px;
+top: 39px;
+
+font-family: Raleway;
+font-style: normal;
+font-weight: bold;
+line-height: normal;
+font-size: 14px;
+text-align: center;
+
+color: #FFFFFF;
+}
+
+#mP1{
+position: absolute;
+width: 320px;
+height: 106px;
+left: 113px;
+top: 150px;
+
+font-family: Great Vibes;
+font-style: normal;
+font-weight: normal;
+line-height: normal;
+font-size: 64px;
+text-align: center;
+
+color: #000000;
+}
+
+.msalad1{
+position: absolute;
+width: 250px;
+height: 250px;
+left: 135px;
+top: 256px;
+
+background: #FFFFFF;
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+border-radius: 10px;
+}
+
+.msalad1img{
+    position: absolute;
+    width: 230px;
+    height: 200px;
+    left: 9px;
+    top: 19px;
+    background: url(images.jpg), #F3F9F9;
+    border-radius: 10px;
+}
+
+.msalad1name{
+position: absolute;
+width: 184px;
+height: 30px;
+left: 17px;
+top: 230px;
+
+font-family: Raleway;
+font-style: normal;
+font-weight: normal;
+line-height: normal;
+font-size: 16px;
+text-align: center;
+
+color: #100F0F;
+}
+
+#msalad2
+{
+position: absolute;
+width: 250px;
+height: 250px;
+left: 389px;
+top: 256px;
+
+background: #FFFFFF;
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+border-radius: 10px;
+
+}
+
+#msalad2img
+{
+    position: absolute;
+    width: 230px;
+    height: 200px;
+    left: 12px;
+    top: 22px;
+    background: url(images (5).jpg), #F3F9F9;
+    border-radius: 10px;
+}
+
+#msalad2name{
+    position: absolute;
+    width: 184px;
+    height: 30px;
+    left: 22px;
+    top: 230px;
+    font-family: Raleway;
+    font-style: normal;
+    font-weight: normal;
+    line-height: normal;
+    font-size: 16px;
+    text-align: center;
+    color: #100F0F;
+}
