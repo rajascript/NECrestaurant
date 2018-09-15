@@ -4,11 +4,14 @@ import {
 	FETCH_USER_FAILED,
 	FETCH_ADMIN,
 	USER_SIGNUP,
+	USER_SIGNUP_FAILED,
 	USER_LOGIN,
 	USER_LOGOUT,
 	USER_LOGIN_FAILED,
 	ADMIN_LOGIN_FAILED,
-	ADMIN_LOGIN
+	ADMIN_LOGIN,
+	BOOK_TABLE,
+	BOOK_TABLE_FAILED
 } from "./types";
 //axios settings
 axios.defaults.headers.common = {
@@ -43,11 +46,20 @@ export const fetchAdmin = () => {
 };
 export const signup = values => {
 	return async dispatch => {
-		const res = await axios.post("/api/signup", values);
-		dispatch({
-			type: USER_SIGNUP,
-			payload: res.status
-		});
+		try {
+			const res = await axios.post("/api/signup", values);
+			dispatch({
+				type: USER_SIGNUP,
+				payload: res.data
+			});
+		} catch (err) {
+			console.log(err.response);
+			if (err.response.status === 500)
+				dispatch({
+					type: USER_SIGNUP,
+					payload: err.response.status
+				});
+		}
 	};
 };
 export const loginGoogle = values => {
@@ -169,6 +181,24 @@ export const adminUpdate = values => {
 		} catch (err) {
 			dispatch({
 				type: ADMIN_LOGIN_FAILED,
+				payload: err.response.status
+			});
+		}
+	};
+};
+
+export const bookTable = values => {
+	return async dispatch => {
+		try {
+			const res = await axios.post("/api/requestBooking", values);
+
+			dispatch({
+				type: BOOK_TABLE,
+				payload: res.data
+			});
+		} catch (err) {
+			dispatch({
+				type: BOOK_TABLE_FAILED,
 				payload: err.response.status
 			});
 		}

@@ -67,24 +67,18 @@ passport.use(
 		},
 		async (req, email, password, done) => {
 			if (!performPhoneCheck(Number(req.body.phone))) {
-				return done(JSON.stringify({ responseError: "error in phone" }), false);
+				return done(true, false, { message: "Phone error" });
 			}
 			if (!performStringCheck(req.body.name))
-				return done(JSON.stringify({ responseError: "error in Name" }), false);
+				return done(true, false, { message: "Name error" });
 			if (!performEmailCheck(req.body.email))
-				return done(JSON.stringify({ responseError: "error in email" }), false);
+				return done(true, false, { message: "Email error" });
 			if (!performPasswordCheck(req.body.password))
-				return done(
-					JSON.stringify({ responseError: "error in password" }),
-					false
-				);
+				return done(true, false, { message: "Password error" });
 			try {
 				const existingUser = await User.findOne({ email: email });
 				if (existingUser) {
-					return done(
-						JSON.stringify({ responseError: "already exists" }),
-						false
-					);
+					return done(null, false, { message: "User already exists" });
 				}
 				bcrypt.hash(password, saltRounds, async function(err, hash) {
 					if (err) return done(err, null);
