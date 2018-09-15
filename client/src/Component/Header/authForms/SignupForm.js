@@ -82,6 +82,71 @@ class SignupForm extends Component {
     this.setState({ confirmPasswordValue: e.target.value });
   }
 
+<<<<<<< HEAD
+	componentWillReceiveProps(props) {
+		console.log("received", props);
+		if (Number(props.auth) === 200) this.props.moveToLogin();
+		else this.setState({ displayServerError: true });
+	}
+	render() {
+		return (
+			<div id="signupFormContainer" className="signupForm__container">
+				<form onSubmit={this.handleSignup}>
+					<input
+						id="signupFormEmail" 
+						className="signupForm__Form--email"
+						placeholder="enter email"
+						type="email"
+						value={this.state.emailValue}
+						onChange={this.handleEmailChange}
+					/>
+					<br />
+					<input
+						id="signupFormPassword"
+						className="signupForm__Form--password"
+						placeholder="enter password"
+						type="password"
+						value={this.state.passwordValue}
+						onChange={this.handlePasswordChange}
+					/>
+					<br />
+					<input
+						id="signupFormConfirmPassword"
+						className="signupForm__Form--confirmPassword"
+						placeholder="confirm password"
+						type="password"
+						value={this.state.confirmPasswordValue}
+						onChange={this.handleConfirmPasswordChange}
+					/>
+					<br />
+					<input
+						id="signupFormName"
+						className="signupForm__Form--name"
+						placeholder="Name"
+						type="text"
+						value={this.state.nameValue}
+						onChange={this.handleNameChange}
+					/>
+					<br />
+					<input
+						id="signupFormPhone"
+						className="signupForm__Form--phone"
+						placeholder="Phone"
+						type="phone"
+						value={this.state.phoneValue}
+						onChange={this.handlePhoneChange}
+					/>
+					<br />
+					<input 
+							id="submit"
+							type="submit"
+							value="Submit" />
+				</form>
+				<LoginGoogle />
+			</div>
+		);
+	}
+=======
   componentWillReceiveProps(props) {
     console.log("received", props);
     if (Number(props.auth) === 200) this.props.moveToLogin();
@@ -140,6 +205,7 @@ class SignupForm extends Component {
       </div>
     );
   }
+>>>>>>> 404faab84c8d6a015c50a7290a7700cd79d64073
 }
 
 function mapStateToProps({ auth }) {

@@ -110,6 +110,7 @@ class BookingForm extends Component {
 			<div id="bookingFormContainer" className="bookingForm__container">
 				<form onSubmit={this.handleSignup}>
 					<input
+						id="bookingFormName"
 						className="bookingForm__Form--name"
 						placeholder="Name"
 						type="text"
@@ -118,6 +119,7 @@ class BookingForm extends Component {
 					/>
 					<br />
 					<input
+						id="bookingFormPhone"
 						className="bookingForm__Form--phone"
 						placeholder="Phone"
 						type="phone"
@@ -126,13 +128,24 @@ class BookingForm extends Component {
 					/>
 					<br />
 					<input
+<<<<<<< HEAD
+						id="bookingFormEmail"
+						className="bookingForm__Form--seats"
+=======
 						className="bookingForm__Form--email"
+>>>>>>> 404faab84c8d6a015c50a7290a7700cd79d64073
 						placeholder="enter email"
 						type="email"
 						value={this.state.emailValue}
 						onChange={this.handleEmailChange}
 					/>
 					<br />
+<<<<<<< HEAD
+					<input id="submit"
+							type="submit" 
+							value="Submit" 
+					/>
+=======
 					<input
 						className="bookingForm__Form--date"
 						placeholder="Date"
@@ -154,6 +167,7 @@ class BookingForm extends Component {
 					)}
 					<br />
 					<input type="submit" value="Submit" />
+>>>>>>> 404faab84c8d6a015c50a7290a7700cd79d64073
 				</form>
 				<p>
 					{this.state.bookingErrorVisible && this.state.bookingErrorMessage}
