@@ -139,7 +139,7 @@ top: 112px;
 background:mix-blend-mode normal;
 }
 
-#P1{
+.P1{
 position: absolute;
 height: 24px;
 left: 2.92%;
@@ -157,7 +157,7 @@ color: Yellow;
 border-radius: 10px;
 }
 
-#P2{
+.P2{
 position: absolute;
 height: 199px;
 left: 24.77%;
@@ -188,7 +188,7 @@ background: url(img/chef1.jpg), #C4C4C4;
 border-radius: 20px;
 }
 
-#namechef1{
+.namechef1{
 position: absolute;
 width: 224px;
 height: 62px;
@@ -204,7 +204,7 @@ font-size: 24px;
 color: #000000;
 }
 
-#aboutChef1{
+.aboutChef1{
 position: absolute;
 height: 199px;
 left: 30.47%;
@@ -232,7 +232,7 @@ background: url(img/chef2.jpg), #C4C4C4;
 border-radius: 20px;
 }
 
-#namechef2{
+.namechef2{
 position: absolute;
 width: 224px;
 height: 62px;
@@ -246,7 +246,7 @@ line-height: normal;
 font-size: 24px;
 }
 
-#aboutChef2{
+.aboutChef2{
 position: absolute;
 height: 199px;
 left: 30.47%;
@@ -274,7 +274,7 @@ background: url(img/chef3.jpg), #C4C4C4;
 border-radius: 20px;
 }
 
-#namechef3{
+.namechef3{
 position: absolute;
 width: 224px;
 height: 62px;
@@ -290,7 +290,7 @@ font-size: 24px;
 color: #000000;
 }
 
-#aboutChef3{
+.aboutChef3{
 position: absolute;
 height: 199px;
 left: 30.47%;
@@ -318,7 +318,7 @@ background: url(img/chef4.jpg), #C4C4C4;
 border-radius: 20px;
 }
 
-#namechef4{
+.namechef4{
 position: absolute;
 width: 224px;
 height: 62px;
@@ -334,7 +334,7 @@ font-size: 24px;
 color: #000000;
 }
 
-#aboutChef4{
+.aboutChef4{
 position: absolute;
 height: 199px;
 left: 30.47%;
@@ -385,7 +385,7 @@ border-radius: 12px;
 
 /*===========home Page=========*/
 
-#hP1{
+.hP1{
 position: absolute;
 width: 320px;
 height: 106px;
@@ -402,7 +402,7 @@ text-align: center;
 color: #000000;
 }
 
-#hP2{
+.hP2{
 position: absolute;
 width: 429px;
 height: 106px;
@@ -418,7 +418,7 @@ font-size: 36px;
 color: #000000;
 }
 
-#hP3{
+.hP3{
 position: absolute;
 width: 341px;
 height: 167px;
@@ -434,7 +434,7 @@ letter-spacing: 0.05em;
 color: #000000;
 }
 
-#hP4{
+.hP4{
 position: absolute;
 width: 175px;
 height: 106px;
@@ -466,7 +466,8 @@ left:150px;
 top: 720px;
 background: #EAE8E8;
 }
-#hP4{
+
+.hP4{
 position: absolute;
 width: 320px;
 height: 106px;
@@ -508,7 +509,7 @@ border-radius: 20px;
 }
 
 
-#sH1{
+.sH1{
 position: absolute;
 left: 30.92%;
 right: 39.9%;
@@ -536,7 +537,7 @@ top: 137px;
 
 
 
-#sEmail{
+.sEmail{
 position: absolute;
     height: 30px;
     left: 0%;
@@ -549,7 +550,7 @@ position: absolute;
     border-radius: 20px;
 }
 
-#sPass{
+.sPass{
     position: absolute;
     height: 30px;
     text-align:center;
@@ -562,7 +563,7 @@ position: absolute;
     border-radius: 20px;
 }
 
-#sconfirmPass{
+.sconfirmPass{
 position: absolute;
     left: 0%;
     right: 0%;
@@ -575,7 +576,7 @@ position: absolute;
     text-align:center;
 }
 
-#sName{
+.sName{
 position: absolute;
     left: 0%;
     right: 0%;
@@ -588,7 +589,7 @@ position: absolute;
     border-radius: 20px;
 }
 
-#sMobileNo{
+.sMobileNo{
 position: absolute;
     left: 0%;
     right: 0%;
@@ -601,7 +602,7 @@ position: absolute;
     border-radius: 20px;
 }
 
-#bSignup{
+.bSignup{
     position: absolute;
     left: 20.12%;
     right: 50.12%;
@@ -619,7 +620,7 @@ position: absolute;
     margin-top:9px;
 }
 
-#belowSign{
+.belowSign{
 position: absolute;
     left: 13.45%;
     
@@ -638,7 +639,7 @@ position: absolute;
 
 
 
-#blogin{
+.blogin{
     position: absolute;
     width: 48px;
     height: 30px;
@@ -647,7 +648,7 @@ position: absolute;
     border-radius: 15px;
 }
 
-#or{
+.or{
     position: absolute;
     left: 11.45%;
     right: 44.45%;
@@ -665,7 +666,7 @@ letter-spacing: 0.1em;
 color: #696969;
 }
 
-#orlineL{
+.orlineL{
     position: absolute;
     width: 110px;
     height: 0px;
@@ -674,7 +675,7 @@ color: #696969;
     border: 1px solid #C4C4C4;
 }
 
-#orlineR{
+.orlineR{
     position: absolute;
     width: 110px;
     height: 0px;
@@ -682,7 +683,7 @@ color: #696969;
     top: 175px;
     border: 1px solid #C4C4C4;
 }
-#bgooglelogin{
+.bgooglelogin{
     position: absolute;
     width: 104px;
     height: 30px;
@@ -805,7 +806,7 @@ text-align: center;
 color: #100F0F;
 }
 
-#msalad2
+.msalad2
 {
 position: absolute;
 width: 250px;
@@ -819,7 +820,7 @@ border-radius: 10px;
 
 }
 
-#msalad2img
+.msalad2img
 {
     position: absolute;
     width: 230px;
@@ -830,7 +831,7 @@ border-radius: 10px;
     border-radius: 10px;
 }
 
-#msalad2name{
+.msalad2name{
     position: absolute;
     width: 184px;
     height: 30px;
