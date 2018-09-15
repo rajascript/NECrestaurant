@@ -155,10 +155,10 @@ class BookingForm extends Component {
 							moment={this.state.moment}
 							onChange={this.handleDateChange}
 							onSave={this.handleSave}
-							minStep={15} // default
-							hourStep={1} // default
-							prevMonthIcon="ion-ios-arrow-left" // default
-							nextMonthIcon="ion-ios-arrow-right" // default
+							minStep={1}
+							hourStep={1}
+							prevMonthIcon="ion-ios-arrow-left"
+							nextMonthIcon="ion-ios-arrow-right"
 						/>
 					)}
 					<br />
