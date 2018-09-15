@@ -102,8 +102,14 @@ class BookingForm extends Component {
 		this.setState({ confirmPasswordValue: e.target.value });
 	}
 	componentWillReceiveProps(props) {
-		if (this.props.booking === 200) this.props.moveToLogin();
+		if (props.booking === 200) props.moveToLogin();
 		else this.setState({ displayServerError: true });
+		if (props.auth) {
+			let emailValue = props.auth.email || "";
+			let nameValue = props.auth.name || "";
+			let phoneValue = props.auth.phone || "";
+			this.setState({ emailValue, nameValue, phoneValue });
+		}
 	}
 	render() {
 		return (
@@ -181,9 +187,8 @@ class BookingForm extends Component {
 	}
 }
 
-function mapStateToProps({ booking }) {
-	console.log(booking);
-	return { booking };
+function mapStateToProps({ booking, auth }) {
+	return { booking, auth };
 }
 
 function performEmailCheck(val) {
