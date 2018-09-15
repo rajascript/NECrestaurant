@@ -9,12 +9,20 @@ class LoginPopup extends Component {
     this.activateLoginTab = this.activateLoginTab.bind(this);
     this.activateSignupTab = this.activateSignupTab.bind(this);
     this.displayLoginError = this.displayLoginError.bind(this);
+    this.removeLoginWindowError = this.removeLoginWindowError.bind(this);
     this.moveToLogin = this.moveToLogin.bind(this);
     this.state.displayLoginMessage = false;
+    this.state.loginWindowErrorVisible = false;
     this.state.loginWindowError = "";
   }
   displayLoginError(errorStatement) {
-    this.setState({ loginWindowError: errorStatement });
+    this.setState({
+      loginWindowErrorVisible: true,
+      loginWindowError: errorStatement
+    });
+  }
+  removeLoginWindowError() {
+    this.setState({ loginWindowErrorVisible: false });
   }
   activateLoginTab() {
     if (this.state.openPopupWithSignup === true)
@@ -45,7 +53,16 @@ class LoginPopup extends Component {
         >
           Signup
         </button>
-        <SignupForm moveToLogin={this.moveToLogin} />
+        <SignupForm
+          removeLoginWindowError={this.removeLoginWindowError}
+          displayLoginError={this.displayLoginError}
+          moveToLogin={this.moveToLogin}
+        />
+        {this.state.loginWindowErrorVisible && (
+          <p id="loginPopupError" className="loginPopup__error">
+            {this.state.loginWindowError}
+          </p>
+        )}
       </div>
     );
   }
@@ -74,7 +91,10 @@ class LoginPopup extends Component {
         >
           Signup
         </button>
-        <LoginForm displayLoginError={this.displayLoginError} />
+        <LoginForm
+          displayLoginError={this.displayLoginError}
+          removeLoginWindowError={this.removeLoginWindowError}
+        />
         <p id="loginPopupError" className="loginPopup__error">
           {this.state.loginWindowError}
         </p>

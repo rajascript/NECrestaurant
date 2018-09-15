@@ -28,12 +28,13 @@ class LoginForm extends Component {
       this.props.displayLoginError(EmailCheck.message);
     } else if (!PasswordCheck.success) {
       console.log("error", PasswordCheck.message);
-      this.setState({ passwordError: true, passwordErrorMessage: "" });
       this.props.displayLoginError(PasswordCheck.message);
     } else {
       console.log("Data types ok");
+      this.props.removeLoginWindowError();
       this.props.login(user);
     }
+
     e.preventDefault();
   }
 

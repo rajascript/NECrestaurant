@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import LoginGoogle from "./LoginGoogle";
 import { connect } from "react-redux";
 import { signup } from "../../../Action/index";
+
 class SignupForm extends Component {
   constructor(props) {
     super(props);
@@ -21,8 +22,8 @@ class SignupForm extends Component {
     this.handlePhoneChange = this.handlePhoneChange.bind(this);
     this.handleSignup = this.handleSignup.bind(this);
   }
+
   handleSignup(e) {
-    console.log(this.state);
     let user = {
       email: this.state.emailValue,
       password: this.state.passwordValue,
@@ -38,7 +39,8 @@ class SignupForm extends Component {
     );
     let StringCheck = performStringCheck(this.state.nameValue);
     let PhoneCheck = performPhoneCheck(Number(this.state.phoneValue));
-
+    console.log(StringCheck);
+    debugger;
     if (!EmailCheck.success) {
       console.log("error", EmailCheck.message);
       this.props.displayLoginError(EmailCheck.message);
@@ -55,10 +57,10 @@ class SignupForm extends Component {
       console.log("error", PhoneCheck.message);
       this.props.displayLoginError(PhoneCheck.message);
     } else {
-      console.log("Data types ok");
+      console.log("Data type ok");
+      this.props.removeLoginWindowError();
       this.props.signup(user);
     }
-
     e.preventDefault();
   }
 
@@ -80,89 +82,28 @@ class SignupForm extends Component {
     this.setState({ confirmPasswordValue: e.target.value });
   }
 
-<<<<<<< HEAD
-	componentWillReceiveProps(props) {
-		console.log("received", props);
-		if (Number(props.auth) === 200) this.props.moveToLogin();
-		else this.setState({ displayServerError: true });
-	}
-	render() {
-		return (
-			<div id="signupFormContainer" className="signupForm__container">
-				<form onSubmit={this.handleSignup}>
-					<input
-						id="signupFormEmail" 
-						className="signupForm__Form--email"
-						placeholder="enter email"
-						type="email"
-						value={this.state.emailValue}
-						onChange={this.handleEmailChange}
-					/>
-					<br />
-					<input
-						id="signupFormPassword"
-						className="signupForm__Form--password"
-						placeholder="enter password"
-						type="password"
-						value={this.state.passwordValue}
-						onChange={this.handlePasswordChange}
-					/>
-					<br />
-					<input
-						id="signupFormConfirmPassword"
-						className="signupForm__Form--confirmPassword"
-						placeholder="confirm password"
-						type="password"
-						value={this.state.confirmPasswordValue}
-						onChange={this.handleConfirmPasswordChange}
-					/>
-					<br />
-					<input
-						id="signupFormName"
-						className="signupForm__Form--name"
-						placeholder="Name"
-						type="text"
-						value={this.state.nameValue}
-						onChange={this.handleNameChange}
-					/>
-					<br />
-					<input
-						id="signupFormPhone"
-						className="signupForm__Form--phone"
-						placeholder="Phone"
-						type="phone"
-						value={this.state.phoneValue}
-						onChange={this.handlePhoneChange}
-					/>
-					<br />
-					<input 
-							id="submit"
-							type="submit"
-							value="Submit" />
-				</form>
-				<LoginGoogle />
-			</div>
-		);
-	}
-=======
   componentWillReceiveProps(props) {
     console.log("received", props);
     if (Number(props.auth) === 200) this.props.moveToLogin();
-    else this.setState({ displayServerError: true });
+    else if (Number(props.auth) === 401)
+      this.props.displayLoginError("User already exists");
+    else this.props.displayLoginError("Server Error");
   }
   render() {
     return (
       <div id="signupFormContainer" className="signupForm__container">
         <form onSubmit={this.handleSignup}>
           <input
+            id="signupFormEmail"
             className="signupForm__Form--email"
             placeholder="enter email"
-            type="text"
+            type="email"
             value={this.state.emailValue}
             onChange={this.handleEmailChange}
           />
           <br />
           <input
+            id="signupFormPassword"
             className="signupForm__Form--password"
             placeholder="enter password"
             type="password"
@@ -171,6 +112,7 @@ class SignupForm extends Component {
           />
           <br />
           <input
+            id="signupFormConfirmPassword"
             className="signupForm__Form--confirmPassword"
             placeholder="confirm password"
             type="password"
@@ -179,6 +121,7 @@ class SignupForm extends Component {
           />
           <br />
           <input
+            id="signupFormName"
             className="signupForm__Form--name"
             placeholder="Name"
             type="text"
@@ -187,20 +130,20 @@ class SignupForm extends Component {
           />
           <br />
           <input
+            id="signupFormPhone"
             className="signupForm__Form--phone"
             placeholder="Phone"
-            type="text"
+            type="phone"
             value={this.state.phoneValue}
             onChange={this.handlePhoneChange}
           />
           <br />
-          <input type="submit" value="Submit" onClick={this.handleSignup} />
+          <input id="submit" type="submit" value="Submit" />
         </form>
         <LoginGoogle />
       </div>
     );
   }
->>>>>>> 404faab84c8d6a015c50a7290a7700cd79d64073
 }
 
 function mapStateToProps({ auth }) {
@@ -212,7 +155,8 @@ function performEmailCheck(val) {
   if (typeof val !== "string" || val === null || typeof val === "undefined")
     return { success: false, message: "Email poorly formatted" };
   var re = /^(([^<>()\\.,;:\s@"]+(\.[^<>()\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  return re.test(String(val).toLowerCase());
+  let ans = re.test(String(val).toLowerCase());
+  return { success: ans, message: "Email is poorly formatted" };
 }
 
 function performPhoneCheck(val) {
@@ -225,8 +169,7 @@ function performPhoneCheck(val) {
       success: false,
       message: "phone number must be atleast 10 digits"
     };
-  }
-  return { success: true };
+  } else return { success: true };
 }
 
 function performPasswordCheck(val) {
@@ -234,19 +177,23 @@ function performPasswordCheck(val) {
     return { success: false, message: "password poorly formatted" };
   else if (val.split("").length < 5)
     return { success: false, message: "password too short" };
-  return true;
+  return { success: true };
 }
 
 function performStringCheck(val) {
   if (typeof val !== "string" || val === null || typeof val === "undefined")
     return { success: false, message: "name can only contain alphabets" };
-  return true;
+  else if (val.length < 1)
+    return { success: false, message: "Name cannot be left empty" };
+  /*else if ()
+    return { success: false, message: "Name can only be an alphabet" };*/ else
+    return { success: true };
 }
 
 function performPasswordConfirmCheck(val_1, val_2) {
   if (val_1 !== val_2)
     return { success: false, message: "passwords do not match" };
-  return true;
+  else return { success: true };
 }
 
 export default connect(

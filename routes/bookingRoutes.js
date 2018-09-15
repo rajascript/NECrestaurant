@@ -2,6 +2,7 @@ const keys = require("../config/keys");
 const mongoose = require("mongoose");
 const User = mongoose.model("User");
 const uuid = require("uuid/v4");
+var shortid = require("shortid");
 module.exports = (app, firebaseDB) => {
 	let bookingsRefString = "bookings";
 	app.post("/api/getBookings", (req, res) => {
@@ -79,15 +80,21 @@ module.exports = (app, firebaseDB) => {
 	 * @param slot
 	 * @param date
 	 * @param seats
+	 * * @param name
+	 * * @param email
 	 */
 	app.post("/api/requestBooking", (req, res) => {
-		const userId = req.body.userId;
-		const slot = req.body.slot;
-		const date = req.body.date;
+		const shortId = shortid.generate();
+		const { email, phone, slot, date, name, seats } = req.body;
+		const userId = req.body.userId || shortid;
 		bookingsRef = firebaseDB.ref(bookingsRefString + "/" + date + "/" + slot);
 		bookingData = {};
 		bookingData[userId] = "waiting";
-		bookingData.seats = req.body.seats;
+		bookingData.email = email;
+		bookingData.phone = phone;
+		bookingData.name = name;
+		bookingData.seats = seats;
 		bookingsRef.set(bookingData);
+		res.status(200).send(bookingData);
 	});
 };

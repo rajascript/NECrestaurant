@@ -3,7 +3,7 @@ import moment from "moment";
 import "../../../node_modules/input-moment/dist/input-moment.css";
 import InputMoment from "input-moment";
 import { connect } from "react-redux";
-import { signup } from "../../Action/index";
+import { bookTable } from "../../Action/index";
 class BookingForm extends Component {
 	constructor(props) {
 		super(props);
@@ -12,11 +12,13 @@ class BookingForm extends Component {
 			nameValue: "",
 			phoneValue: "",
 			dateValue: "",
+			seatsValue: 4,
 			moment: moment(),
 			bookingErrorVisible: false,
 			bookingErrorMessage: "",
 			calednarVisible: false
 		};
+		this.handleSelectChange = this.handleSelectChange.bind(this);
 		this.handleEmailChange = this.handleEmailChange.bind(this);
 		this.handleNameChange = this.handleNameChange.bind(this);
 		this.handlePhoneChange = this.handlePhoneChange.bind(this);
@@ -25,30 +27,41 @@ class BookingForm extends Component {
 		this.handleBooking = this.handleBooking.bind(this);
 		this.toggleCalendar = this.toggleCalendar.bind(this);
 	}
+	handleSelectChange(event) {
+		this.setState({ seatsValue: event.target.value });
+	}
 	toggleCalendar() {
 		if (this.state.calednarVisible) this.setState({ calednarVisible: false });
 		else this.setState({ calednarVisible: true });
 	}
+	getDateFromMoment(momentDate) {
+		return momentDate.split(" ")[0];
+	}
+	getSlotFromMoment(momentDate) {
+		return momentDate.split(" ")[1].split(":")[0];
+	}
 	handleBooking(e) {
-		console.log(this.state);
 		let user = {
 			email: this.state.emailValue,
 			name: this.state.nameValue,
-			phone: this.state.phoneValue
+			phone: this.state.phoneValue,
+			seats: this.state.seatsValue,
+			date: this.getDateFromMoment(this.state.dateValue),
+			slot: this.getSlotFromMoment(this.state.dateValue)
 		};
-
 		if (
 			performPhoneCheck(Number(this.state.phoneValue)) &&
 			performStringCheck(this.state.nameValue) &&
 			performEmailCheck(this.state.emailValue)
+			//TODO make a date and time and seat check function
+			//TODO Handle and display errors individualy
 		) {
-			//comma daal kar response likho
-			console.log("All dada entered was of correct type");
-			this.props.signup(user);
+			console.log("All data entered was of correct type");
+			console.log(user);
+			this.props.bookTable(user);
 		} else {
 			console.log("All Data entered was not of correct data type");
 		}
-
 		e.preventDefault();
 	}
 	handleSave() {
@@ -63,27 +76,14 @@ class BookingForm extends Component {
 				bookingErrorMessage: "Error: Restaurant timings 11 AM to 10 PM."
 			});
 		} else {
-			this.setState({ dateValue: this.state.moment.format("DD/MM/YY HH:MM") });
+			this.setState({ dateValue: this.state.moment.format("DD-MM-YY HH:mm") });
 		}
 		this.toggleCalendar();
 	}
 	handleDateChange(moment) {
 		this.setState({ moment });
 	}
-	isValidEndDate(date) {
-		let currDate = new Date(date);
-		let currStartDate = new Date(this.state.startDate);
-		if (currDate.getDate() !== currStartDate.getDate()) return false;
-		if (currDate.getMonth() !== currStartDate.getMonth()) return false;
-		if (currDate.getYear() !== currStartDate.getYear()) return false;
-		if (currDate <= currStartDate) return false;
-		return true;
-	}
-	isValidStartDate(date) {
-		let startDate = new Date(date);
-		if (startDate.getDate() !== startDate.getDate()) return false;
-		return true;
-	}
+
 	handleEmailChange(e) {
 		this.setState({ emailValue: e.target.value });
 	}
@@ -102,7 +102,7 @@ class BookingForm extends Component {
 		this.setState({ confirmPasswordValue: e.target.value });
 	}
 	componentWillReceiveProps(props) {
-		if (this.props.auth === 200) this.props.moveToLogin();
+		if (this.props.booking === 200) this.props.moveToLogin();
 		else this.setState({ displayServerError: true });
 	}
 	render() {
@@ -129,13 +129,17 @@ class BookingForm extends Component {
 					<br />
 					<input
 						id="bookingFormEmail"
-						className="bookingForm__Form--email"
+						className="bookingForm__Form--seats"
 						placeholder="enter email"
 						type="email"
 						value={this.state.emailValue}
 						onChange={this.handleEmailChange}
 					/>
 					<br />
+					<input id="submit"
+							type="submit" 
+							value="Submit" 
+					/>
 					<input
 						id="bookingFormDate"
 						className="bookingForm__Form--date"
@@ -157,9 +161,23 @@ class BookingForm extends Component {
 						/>
 					)}
 					<br />
-					<input 
-						id="submit"
-						type="submit" value="Submit" />
+					<select
+						type="number"
+						value={this.state.seatsValue}
+						onChange={this.handleSelectChange}
+					>
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+						<option value="6">6</option>
+						<option value="7">7</option>
+						<option value="8">8</option>
+					</select>
+					<br />
+					<input type="submit" value="Submit" onClick={this.handleBooking} />
+
 				</form>
 				<p>
 					{this.state.bookingErrorVisible && this.state.bookingErrorMessage}
@@ -169,9 +187,9 @@ class BookingForm extends Component {
 	}
 }
 
-function mapStateToProps({ auth }) {
-	console.log(auth);
-	return { auth };
+function mapStateToProps({ booking }) {
+	console.log(booking);
+	return { booking };
 }
 
 function performEmailCheck(val) {
@@ -199,5 +217,5 @@ function performStringCheck(val) {
 
 export default connect(
 	mapStateToProps,
-	{ signup }
+	{ bookTable }
 )(BookingForm);
