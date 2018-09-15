@@ -1,7 +1,6 @@
-const keys = require("../config/keys");
+const passport = require("passport");
 const mongoose = require("mongoose");
 const User = mongoose.model("User");
-const uuid = require("uuid/v4");
 var shortid = require("shortid");
 module.exports = (app, firebaseDB) => {
 	let bookingsRefString = "bookings";

@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actions from "../Action";
-import Header from "./Header/Header";
-import Footer from "./Footer/Footer";
 import Booking from "./Booking/Booking";
 import Dashboard from "./Dashboard";
 import AdminLogin from "./Admin/AdminLogin";
