@@ -30,22 +30,33 @@ class SignupForm extends Component {
       phone: this.state.phoneValue
     };
 
-    if (
-      performPhoneCheck(Number(this.state.phoneValue)) &&
-      performPasswordCheck(this.state.passwordValue) &&
-      performStringCheck(this.state.nameValue) &&
-      performEmailCheck(this.state.emailValue) &&
-      performPasswordConfirmCheck(
-        this.state.passwordValue,
-        this.state.confirmPasswordValue
-      )
-    ) {
-      //comma daal kar response likho
+    let EmailCheck = performEmailCheck(this.state.emailValue);
+    let PasswordCheck = performPasswordCheck(this.state.passwordValue);
+    let PasswordConfirmCheck = performPasswordConfirmCheck(
+      this.state.passwordValue,
+      this.state.confirmPasswordValue
+    );
+    let StringCheck = performStringCheck(this.state.nameValue);
+    let PhoneCheck = performPhoneCheck(Number(this.state.phoneValue));
 
-      console.log("All data entered was of correct type");
-      this.props.signup(user);
+    if (!EmailCheck.success) {
+      console.log("error", EmailCheck.message);
+      this.props.displayLoginError(EmailCheck.message);
+    } else if (!PasswordCheck.success) {
+      console.log("error", PasswordCheck.message);
+      this.props.displayLoginError(PasswordCheck.message);
+    } else if (!PasswordConfirmCheck.success) {
+      console.log("error", PasswordConfirmCheck.message);
+      this.props.displayLoginError(PasswordConfirmCheck.message);
+    } else if (!StringCheck.success) {
+      console.log("error", StringCheck.message);
+      this.props.displayLoginError(StringCheck.message);
+    } else if (!PhoneCheck.success) {
+      console.log("error", PhoneCheck.message);
+      this.props.displayLoginError(PhoneCheck.message);
     } else {
-      console.log("All Data entered was not of correct data type");
+      console.log("Data types ok");
+      this.props.signup(user);
     }
 
     e.preventDefault();
@@ -81,7 +92,7 @@ class SignupForm extends Component {
           <input
             className="signupForm__Form--email"
             placeholder="enter email"
-            type="email"
+            type="text"
             value={this.state.emailValue}
             onChange={this.handleEmailChange}
           />
@@ -113,12 +124,12 @@ class SignupForm extends Component {
           <input
             className="signupForm__Form--phone"
             placeholder="Phone"
-            type="phone"
+            type="text"
             value={this.state.phoneValue}
             onChange={this.handlePhoneChange}
           />
           <br />
-          <input type="submit" value="Submit" />
+          <input type="submit" value="Submit" onClick={this.handleSignup} />
         </form>
         <LoginGoogle />
       </div>
