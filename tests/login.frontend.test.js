@@ -16,8 +16,8 @@ test("loginForm check", async () => {
     await page.waitForSelector('#loginPopupButtonLogin');
     await page.click("input[id=loginFormEmail]");
     await page.type("input[id=loginFormEmail]", "abc@yahoo.com");
-	await page.click("input[id=lofinFormPassword]");
-    await page.type("input[id=lofinFormPassword]", '123qwerty');
+	await page.click("input[id=loginFormPassword]");
+    await page.type("input[id=loginFormPassword]", '123qwerty');
 
 await page.click("#submit");
     
