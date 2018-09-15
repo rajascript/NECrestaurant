@@ -1,4 +1,9 @@
-import { BOOK_TABLE, BOOK_TABLE_FAILED } from "../Action/types";
+import {
+	BOOK_TABLE,
+	BOOK_TABLE_FAILED,
+	FETCH_BOOKINGS,
+	FETCH_BOOKINGS_FAILED
+} from "../Action/types";
 
 export default (state = null, action) => {
 	switch (action.type) {
@@ -6,6 +11,10 @@ export default (state = null, action) => {
 			if (action.payload === "") return false;
 			return action.payload;
 		case BOOK_TABLE_FAILED:
+			return action.payload;
+		case FETCH_BOOKINGS:
+			return action.payload;
+		case FETCH_BOOKINGS_FAILED:
 			return action.payload;
 		default:
 			return state;

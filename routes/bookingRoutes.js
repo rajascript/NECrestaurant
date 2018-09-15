@@ -4,8 +4,8 @@ const User = mongoose.model("User");
 var shortid = require("shortid");
 module.exports = (app, firebaseDB) => {
 	let bookingsRefString = "bookings";
-	app.post(
-		"/api/getBookings",
+	app.get(
+		"/api/fetchBookings",
 		passport.authenticate("jwt", { session: false }),
 		(req, res) => {
 			bookingsRef = firebaseDB.ref("/");

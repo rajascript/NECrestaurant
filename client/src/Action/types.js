@@ -17,3 +17,5 @@ export const UPDATE_ADMIN = "admin_update";
 
 export const BOOK_TABLE = "book_table";
 export const BOOK_TABLE_FAILED = "book_table_failed";
+export const FETCH_BOOKINGS = "fetch_bookings";
+export const FETCH_BOOKINGS_FAILED = "fetch_bookings_failed";

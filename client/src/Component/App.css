@@ -505,3 +505,70 @@ body {
 .loginBtn--google:focus {
 	background: #e74b37;
 }
+.adminPanel__body {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+.adminPanel {
+	display: flex;
+}
+.adminPanel__sidebar {
+	box-shadow: 1px 4px 10px 1px #000;
+	width: 60px;
+	height: 100vh;
+}
+.adminPanel__header {
+	color: white;
+	padding: 10px;
+	padding-left: 20%;
+	height: 50px;
+	width: 120%;
+	background: linear-gradient(to bottom, #f36451, #e74b37);
+	box-shadow: 1px 2px 1px 1px #999;
+	margin-bottom: 20px;
+	margin-left: -20%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.adminPanel__header__adminInfo--username {
+	font-weight: 200;
+	margin-right: 10px;
+}
+.adminPanel__header__adminInfo--icon {
+	box-shadow: 0px 0px 1px 1px #777;
+	border-radius: 50%;
+	padding: 10px;
+}
+.adminPanel__panel {
+	width: 99%;
+	margin-left: 10px;
+	box-shadow: 1px 2px 5px 1px #777;
+	height: 90vh;
+}
+.adminPanel__panel__bookings__container {
+	display: flex;
+	width: 100%;
+	justify-content: space-around;
+}
+.adminPanel__panel__header {
+	display: flex;
+	align-items: center;
+	height: 70px;
+	justify-content: space-around;
+	background-color: #f8d9cb;
+	width: 100%;
+}
+
+.adminPanel__sidebar {
+	z-index: 1;
+}
+.adminPanel__sidebar--item {
+	margin-bottom: 10px;
+}
+.adminPanel__sidebar--logo {
+	height: 51px;
+	width: 100%;
+	background-color: #e74b37;
+}
