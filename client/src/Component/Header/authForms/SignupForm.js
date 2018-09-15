@@ -79,6 +79,7 @@ class SignupForm extends Component {
 			<div id="signupFormContainer" className="signupForm__container">
 				<form onSubmit={this.handleSignup}>
 					<input
+						id="signupFormEmail" 
 						className="signupForm__Form--email"
 						placeholder="enter email"
 						type="email"
@@ -87,6 +88,7 @@ class SignupForm extends Component {
 					/>
 					<br />
 					<input
+						id="signupFormPassword"
 						className="signupForm__Form--password"
 						placeholder="enter password"
 						type="password"
@@ -95,6 +97,7 @@ class SignupForm extends Component {
 					/>
 					<br />
 					<input
+						id="signupFormConfirmPassword"
 						className="signupForm__Form--confirmPassword"
 						placeholder="confirm password"
 						type="password"
@@ -103,6 +106,7 @@ class SignupForm extends Component {
 					/>
 					<br />
 					<input
+						id="signupFormName"
 						className="signupForm__Form--name"
 						placeholder="Name"
 						type="text"
@@ -111,6 +115,7 @@ class SignupForm extends Component {
 					/>
 					<br />
 					<input
+						id="signupFormPhone"
 						className="signupForm__Form--phone"
 						placeholder="Phone"
 						type="phone"
@@ -118,7 +123,10 @@ class SignupForm extends Component {
 						onChange={this.handlePhoneChange}
 					/>
 					<br />
-					<input type="submit" value="Submit" />
+					<input 
+							id="submit"
+							type="submit"
+							value="Submit" />
 				</form>
 				<LoginGoogle />
 			</div>
