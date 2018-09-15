@@ -128,25 +128,16 @@ class BookingForm extends Component {
 					/>
 					<br />
 					<input
-<<<<<<< HEAD
 						id="bookingFormEmail"
-						className="bookingForm__Form--seats"
-=======
 						className="bookingForm__Form--email"
->>>>>>> 404faab84c8d6a015c50a7290a7700cd79d64073
 						placeholder="enter email"
 						type="email"
 						value={this.state.emailValue}
 						onChange={this.handleEmailChange}
 					/>
 					<br />
-<<<<<<< HEAD
-					<input id="submit"
-							type="submit" 
-							value="Submit" 
-					/>
-=======
 					<input
+						id="bookingFormDate"
 						className="bookingForm__Form--date"
 						placeholder="Date"
 						type="text"
@@ -166,8 +157,9 @@ class BookingForm extends Component {
 						/>
 					)}
 					<br />
-					<input type="submit" value="Submit" />
->>>>>>> 404faab84c8d6a015c50a7290a7700cd79d64073
+					<input 
+						id="submit"
+						type="submit" value="Submit" />
 				</form>
 				<p>
 					{this.state.bookingErrorVisible && this.state.bookingErrorMessage}
