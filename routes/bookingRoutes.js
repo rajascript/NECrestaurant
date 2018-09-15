@@ -86,15 +86,18 @@ module.exports = (app, firebaseDB) => {
 	app.post("/api/requestBooking", (req, res) => {
 		const shortId = shortid.generate();
 		const { email, phone, slot, date, name, seats } = req.body;
-		const userId = req.body.userId || shortid;
+		const userId = req.body.userId || shortId;
 		bookingsRef = firebaseDB.ref(bookingsRefString + "/" + date + "/" + slot);
 		bookingData = {};
-		bookingData[userId] = "waiting";
+		bookingData.status = "waiting";
 		bookingData.email = email;
 		bookingData.phone = phone;
 		bookingData.name = name;
 		bookingData.seats = seats;
-		bookingsRef.set(bookingData);
+		bookingData.userId = userId;
+		finalBookingData = {};
+		finalBookingData[userId] = bookingData;
+		bookingsRef.child(userId).set(bookingData);
 		res.status(200).send(bookingData);
 	});
 };

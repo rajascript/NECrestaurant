@@ -136,10 +136,6 @@ class BookingForm extends Component {
 						onChange={this.handleEmailChange}
 					/>
 					<br />
-					<input id="submit"
-							type="submit" 
-							value="Submit" 
-					/>
 					<input
 						className="bookingForm__Form--date"
 						placeholder="Date"
@@ -176,7 +172,6 @@ class BookingForm extends Component {
 					</select>
 					<br />
 					<input type="submit" value="Submit" onClick={this.handleBooking} />
-
 				</form>
 				<p>
 					{this.state.bookingErrorVisible && this.state.bookingErrorMessage}
