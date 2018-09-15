@@ -40,7 +40,7 @@ class SignupForm extends Component {
     let StringCheck = performStringCheck(this.state.nameValue);
     let PhoneCheck = performPhoneCheck(Number(this.state.phoneValue));
     console.log(StringCheck);
-
+    debugger;
     if (!EmailCheck.success) {
       console.log("error", EmailCheck.message);
       this.props.displayLoginError(EmailCheck.message);
@@ -57,7 +57,7 @@ class SignupForm extends Component {
       console.log("error", PhoneCheck.message);
       this.props.displayLoginError(PhoneCheck.message);
     } else {
-      console.log("Data types ok");
+      console.log("Data type ok");
       this.props.removeLoginWindowError();
       this.props.signup(user);
     }
@@ -85,7 +85,10 @@ class SignupForm extends Component {
   componentWillReceiveProps(props) {
     console.log("received", props);
     if (Number(props.auth) === 200) this.props.moveToLogin();
-    else this.setState({ displayServerError: true });
+    /*else if (Number(props.auth) === 500) this.props.displayLoginError("User Already Exists");
+	*/ else {
+      this.props.displayLoginError("Undefined Error");
+    }
   }
   render() {
     return (

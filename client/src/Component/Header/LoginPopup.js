@@ -58,9 +58,11 @@ class LoginPopup extends Component {
           displayLoginError={this.displayLoginError}
           moveToLogin={this.moveToLogin}
         />
-        <p id="loginPopupError" className="loginPopup__error">
-          {this.state.loginWindowError}
-        </p>
+        {this.state.loginWindowErrorVisible && (
+          <p id="loginPopupError" className="loginPopup__error">
+            {this.state.loginWindowError}
+          </p>
+        )}
       </div>
     );
   }
