@@ -28,11 +28,13 @@ class LoginForm extends Component {
       this.props.displayLoginError(EmailCheck.message);
     } else if (!PasswordCheck.success) {
       console.log("error", PasswordCheck.message);
-      this.setState({ passwordError: true, passwordErrorMessage: "" });
       this.props.displayLoginError(PasswordCheck.message);
     } else {
+      console.log("Data types ok");
+      this.props.removeLoginWindowError();
       this.props.login(user);
     }
+
     e.preventDefault();
   }
 
@@ -50,6 +52,7 @@ class LoginForm extends Component {
       <div id="loginFormContainer" className="loginForm__container">
         <form onSubmit={this.handleLogin}>
           <input
+            id="loginFormEmail"
             className="loginForm__Form--email"
             placeholder="enter email"
             type="name"
@@ -58,6 +61,7 @@ class LoginForm extends Component {
           />
           <br />
           <input
+            id="loginFormPassword"
             className="loginForm__Form--password"
             placeholder="enter password"
             type="password"
@@ -65,7 +69,10 @@ class LoginForm extends Component {
             onChange={this.handlePasswordChange}
           />
           <br />
-          <input type="submit" value="Submit" />
+          <input 
+            id="submit"
+            type="submit"
+            value="Submit" />
         </form>
         <LoginGoogle />
       </div>

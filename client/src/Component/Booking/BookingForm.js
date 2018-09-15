@@ -110,6 +110,7 @@ class BookingForm extends Component {
 			<div id="bookingFormContainer" className="bookingForm__container">
 				<form onSubmit={this.handleSignup}>
 					<input
+						id="bookingFormName"
 						className="bookingForm__Form--name"
 						placeholder="Name"
 						type="text"
@@ -118,6 +119,7 @@ class BookingForm extends Component {
 					/>
 					<br />
 					<input
+						id="bookingFormPhone"
 						className="bookingForm__Form--phone"
 						placeholder="Phone"
 						type="phone"
@@ -126,13 +128,18 @@ class BookingForm extends Component {
 					/>
 					<br />
 					<input
-						className="bookingForm__Form--email"
+						id="bookingFormEmail"
+						className="bookingForm__Form--seats"
 						placeholder="enter email"
 						type="email"
 						value={this.state.emailValue}
 						onChange={this.handleEmailChange}
 					/>
 					<br />
+					<input id="submit"
+							type="submit" 
+							value="Submit" 
+					/>
 					<input
 						className="bookingForm__Form--date"
 						placeholder="Date"
@@ -169,6 +176,7 @@ class BookingForm extends Component {
 					</select>
 					<br />
 					<input type="submit" value="Submit" onClick={this.handleBooking} />
+
 				</form>
 				<p>
 					{this.state.bookingErrorVisible && this.state.bookingErrorMessage}
