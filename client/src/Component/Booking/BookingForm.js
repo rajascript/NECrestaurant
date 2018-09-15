@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import Datetime from "react-datetime";
+import moment from "moment";
+import "../../../node_modules/input-moment/dist/input-moment.css";
+import InputMoment from "input-moment";
 import { connect } from "react-redux";
 import { signup } from "../../Action/index";
 class BookingForm extends Component {
@@ -9,42 +11,23 @@ class BookingForm extends Component {
 			emailValue: "",
 			nameValue: "",
 			phoneValue: "",
-			moment: new Date()
+			dateValue: "",
+			moment: moment(),
+			bookingErrorVisible: false,
+			bookingErrorMessage: "",
+			calednarVisible: false
 		};
 		this.handleEmailChange = this.handleEmailChange.bind(this);
 		this.handleNameChange = this.handleNameChange.bind(this);
 		this.handlePhoneChange = this.handlePhoneChange.bind(this);
+		this.handleSave = this.handleSave.bind(this);
+		this.handleDateChange = this.handleDateChange.bind(this);
 		this.handleBooking = this.handleBooking.bind(this);
-		this.handleStartDateChange = this.handleStartDateChange.bind(this);
-		this.handleEndDateChange = this.handleEndDateChange.bind(this);
-		this.isValidEndDate = this.isValidEndDate.bind(this);
-		this.isValidStartDate = this.isValidStartDate.bind(this);
+		this.toggleCalendar = this.toggleCalendar.bind(this);
 	}
-	componentDidMount() {
-		if (
-			this.state.endDate.getMinutes() % 15 !== 0 ||
-			this.state.startDate.getMinutes() % 15 !== 0
-		) {
-			let newEndMinute = this.state.endDate.getMinutes();
-			let newStartMinute = this.state.startDate.getMinutes();
-			newEndMinute = (Math.round(newEndMinute / 15) * 15) % 60;
-			newStartMinute = (Math.round(newStartMinute / 15) * 15) % 60;
-			if (
-				newEndMinute < this.state.endDate.getMinutes() ||
-				newStartMinute < this.state.startDate.getMinutes()
-			) {
-				newEndMinute += 15;
-				newStartMinute += 15;
-			}
-			if (newEndMinute >= 60) newEndMinute = 0;
-			if (newStartMinute >= 60) newStartMinute = 0;
-			let newEndDate = new Date();
-			newEndDate.setMinutes(newEndMinute);
-			console.log(newEndDate);
-			let newStartDate = new Date();
-			newStartDate.setMinutes(newStartMinute);
-			this.setState({ endDate: newEndDate, startDate: newStartMinute });
-		}
+	toggleCalendar() {
+		if (this.state.calednarVisible) this.setState({ calednarVisible: false });
+		else this.setState({ calednarVisible: true });
 	}
 	handleBooking(e) {
 		console.log(this.state);
@@ -68,8 +51,24 @@ class BookingForm extends Component {
 
 		e.preventDefault();
 	}
-	handleDateChange(date) {
-		this.setState({ moment: date });
+	handleSave() {
+		if (this.state.moment < new Date()) {
+			this.setState({
+				bookingErrorVisible: true,
+				bookingErrorMessage: "Error: Please select a future date and time."
+			});
+		} else if (this.state.moment.hour() < 11 || this.state.moment.hour() > 22) {
+			this.setState({
+				bookingErrorVisible: true,
+				bookingErrorMessage: "Error: Restaurant timings 11 AM to 10 PM."
+			});
+		} else {
+			this.setState({ dateValue: this.state.moment.format("DD/MM/YY HH:MM") });
+		}
+		this.toggleCalendar();
+	}
+	handleDateChange(moment) {
+		this.setState({ moment });
 	}
 	isValidEndDate(date) {
 		let currDate = new Date(date);
@@ -103,12 +102,10 @@ class BookingForm extends Component {
 		this.setState({ confirmPasswordValue: e.target.value });
 	}
 	componentWillReceiveProps(props) {
-		console.log("received", props);
 		if (this.props.auth === 200) this.props.moveToLogin();
 		else this.setState({ displayServerError: true });
 	}
 	render() {
-		console.log(this.state.endDate);
 		return (
 			<div id="bookingFormContainer" className="bookingForm__container">
 				<form onSubmit={this.handleSignup}>
@@ -129,24 +126,38 @@ class BookingForm extends Component {
 					/>
 					<br />
 					<input
-						className="bookingForm__Form--seats"
+						className="bookingForm__Form--email"
 						placeholder="enter email"
 						type="email"
 						value={this.state.emailValue}
 						onChange={this.handleEmailChange}
 					/>
 					<br />
-					<input type="submit" value="Submit" />
-					<InputMoment
-						moment={this.state.moment}
-						onChange={this.handleDateChange}
-						onSave={this.handleSave}
-						minStep={15} // default
-						hourStep={1} // default
-						prevMonthIcon="ion-ios-arrow-left" // default
-						nextMonthIcon="ion-ios-arrow-right" // default
+					<input
+						className="bookingForm__Form--date"
+						placeholder="Date"
+						type="text"
+						value={this.state.dateValue}
+						onClick={this.toggleCalendar}
 					/>
+					<br />
+					{this.state.calednarVisible && (
+						<InputMoment
+							moment={this.state.moment}
+							onChange={this.handleDateChange}
+							onSave={this.handleSave}
+							minStep={15} // default
+							hourStep={1} // default
+							prevMonthIcon="ion-ios-arrow-left" // default
+							nextMonthIcon="ion-ios-arrow-right" // default
+						/>
+					)}
+					<br />
+					<input type="submit" value="Submit" />
 				</form>
+				<p>
+					{this.state.bookingErrorVisible && this.state.bookingErrorMessage}
+				</p>
 			</div>
 		);
 	}
