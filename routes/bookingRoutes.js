@@ -5,68 +5,166 @@ var shortid = require("shortid");
 module.exports = (app, firebaseDB) => {
 	let bookingsRefString = "bookings";
 	app.post(
-		"/api/getBookings",
+		"/api/fetchBookings",
 		passport.authenticate("jwt", { session: false }),
-		(req, res) => {
-			bookingsRef = firebaseDB.ref("/");
-			bookingsRef.on("value", function(snapshot) {
-				snapshot.forEach(function(childSnapshot) {
-					var childData = childSnapshot.val();
-					res.json(childData);
+		async (req, res) => {
+			console.log("dajnd");
+			try {
+				bookingsRef = await firebaseDB.ref(
+					"bookings/" + req.body.date + "/" + req.body.date
+				);
+				console.log("cmac");
+				await bookingsRef.on("value", function(snapshot) {
+					console.log("da");
+					if (snapshot.numChildren() === 0)
+						res.status(404).json({ responseError: "No bookings here." });
+					let childData = snapshot.val();
+					console.log("das");
+					res.status(200).json(childData);
+					console.log("dadad");
 				});
-			});
+			} catch (ex) {
+				console.log("error at fectchbookings", ex);
+				res.status(300).json({ errorMessage: "Server not working properly." });
+			}
 		}
 	);
 	app.post(
 		"/api/confirmBooking",
 		passport.authenticate("jwt", { session: false }),
-		(req, res) => {
+		async (req, res) => {
 			const bookingId = req.body.bookingId;
 			const slot = req.body.slot;
 			const date = req.body.date;
-			bookingsRef = firebaseDB.ref(bookingsRefString + "/" + date + "/" + slot);
-			bookingData = {};
-			bookingData[userId] = "confirmed";
-			bookingsRef.set(bookingData);
+			const by = req.body.by;
+			try {
+				bookingsRef = await firebaseDB.ref(
+					bookingsRefString +
+						"/" +
+						date +
+						"/" +
+						date +
+						"/" +
+						slot +
+						"/" +
+						bookingId
+				);
+				bookingData = {};
+				bookingData.status = "confirmed";
+				bookingData.by = by;
+				await bookingsRef.update(bookingData);
+				res
+					.status(200)
+					.json({ response: "Booking confirmed.", bookingId: bookingId });
+			} catch (ex) {
+				console.log("exception in confirmBookin", ex);
+				res.status(500).json({
+					responseError: "Internal Server Error, try again.",
+					bookingId: bookingId
+				});
+			}
 		}
 	);
 	app.post(
 		"/api/reserve",
 		passport.authenticate("jwt", { session: false }),
-		(req, res) => {
-			const bookingId = "admin-" + uuidv4();
-			const slot = req.body.slot;
-			const date = req.body.date;
-			bookingsRef = firebaseDB.ref(bookingsRefString + "/" + date + "/" + slot);
+		async (req, res) => {
+			const bookingId = shortid.generate();
 			bookingData = {};
-			bookingData[bookingId] = "confirmed";
-			bookingsRef.set(bookingData);
+			const { slot, date, seats, by } = req.body;
+			bookingData.status = "reserved";
+			bookingData.email = by;
+			bookingData.phone = by;
+			bookingData.name = by;
+			bookingData.seats = seats;
+			bookingData.bookingId = bookingId;
+			bookingData.userId = by;
+			bookingData.by = by;
+			bookingsRef = await firebaseDB.ref(
+				bookingsRefString + "/" + date + "/" + date + "/" + slot
+			);
+			try {
+				//	await bookingsRef.update(bookingData);
+				res
+					.status(200)
+					.json({ response: "Booking reserved.", bookingId: bookingId });
+			} catch (ex) {
+				console.log("exception in confirmBookin", ex);
+				res.status(500).json({
+					responseError: "Internal Server Error, try again.",
+					bookingId: bookingId
+				});
+			}
 		}
 	);
 	app.post(
 		"/api/cancelBooking",
 		passport.authenticate("jwt", { session: false }),
-		(req, res) => {
+		async (req, res) => {
 			const bookingId = req.body.bookingId;
 			const slot = req.body.slot;
 			const date = req.body.date;
-			bookingsRef = firebaseDB.ref(bookingsRefString + "/" + date + "/" + slot);
-			bookingData = {};
-			bookingData.date = date;
-			bookingData.slot = slot;
-
-			bookingData[bookingId] = "canceled by restaurant";
-			bookingsRef.set(bookingData);
+			const by = req.body.by;
+			try {
+				bookingsRef = await firebaseDB.ref(
+					bookingsRefString +
+						"/" +
+						date +
+						"/" +
+						date +
+						"/" +
+						slot +
+						"/" +
+						bookingId
+				);
+				bookingData = {};
+				bookingData.by = by;
+				bookingData.status = "canceled by restaurant";
+				await bookingsRef.update(bookingData);
+				res
+					.status(200)
+					.json({ response: "Booking canceled", bookingId: bookingId });
+			} catch (ex) {
+				console.log("exception in cancelBooking", ex);
+				res.status(500).json({
+					responseError: "Internal Server Error, try again.",
+					bookingId: bookingId
+				});
+			}
 		}
 	);
-	app.post("/api/revokeBooking", (req, res) => {
+	app.post("/api/revokeBooking", async (req, res) => {
 		const bookingId = req.body.bookingId;
 		const slot = req.body.slot;
 		const date = req.body.date;
-		bookingsRef = firebaseDB.ref(bookingsRefString + "/" + date + "/" + slot);
-		bookingData = {};
-		bookingData[bookingId] = "canceled by user";
-		bookingsRef.set(bookingData);
+		const by = req.body.by;
+		try {
+			bookingsRef = await firebaseDB.ref(
+				bookingsRefString +
+					"/" +
+					date +
+					"/" +
+					date +
+					"/" +
+					slot +
+					"/" +
+					bookingId
+			);
+			bookingData = {};
+			bookingData.by = by;
+			bookingData.status = "canceled by user";
+
+			await bookingsRef.update(bookingData);
+			res
+				.status(200)
+				.json({ response: "Booking revoked.", bookingId: bookingId });
+		} catch (ex) {
+			console.log("exception in revokeBooking", ex);
+			res.status(500).json({
+				responseError: "Internal Server Error, try again.",
+				bookingId: bookingId
+			});
+		}
 	});
 	/**
 	 * POST method for admin to revoke user booking request and refund some credits.
@@ -77,17 +175,65 @@ module.exports = (app, firebaseDB) => {
 	 * @param refundAmount
 	 *
 	 */
-	app.post("/api/revokeAndRefundBooking", (req, res) => {
+	app.post("/api/revokeAndRefundBooking", async (req, res) => {
 		const bookingId = req.body.bookingId;
 		const slot = req.body.slot;
 		const date = req.body.date;
 		const refundAmount = req.body.refundAmount;
-		bookingsRef = firebaseDB.ref(bookingsRefString + "/" + date + "/" + slot);
+		const by = req.body.by;
+		try {
+			bookingsRef = await firebaseDB.ref(
+				bookingsRefString +
+					"/" +
+					date +
+					"/" +
+					date +
+					"/" +
+					slot +
+					"/" +
+					bookingId
+			);
+		} catch (ex) {
+			console.log("exception in rnrbooking", ex);
+			res.status(500).json({
+				responseError: "Internal Server Error, try again.",
+				bookingId: bookingId
+			});
+		}
 		bookingData = {};
-		bookingData[bookingId] = "canceled and refunded";
-		bookingsRef.set(bookingData);
-		req.user.credits += refundAmount;
-		new User(req.user).save();
+		bookingData.by = by;
+		bookingData.status = "canceled and refunded";
+		if (req.user) {
+			req.user.credits += refundAmount;
+			try {
+				await new User(req.user).save();
+			} catch (ex) {
+				console.log("exception in rnrbooking", ex);
+				res.status(500).json({
+					responseError: "Internal Server Error, try again.",
+					bookingId: bookingId
+				});
+			}
+			try {
+				await bookingsRef.update(bookingData);
+				res.status(200).json({
+					response: "Booking canceled and user refunded",
+					bookingId: bookingId
+				});
+			} catch (ex) {
+				req.user.credits -= refundAmount;
+				new User(req.user).save();
+				console.log("exception in confirmBookin", ex);
+				res.status(500).json({
+					responseError: "Internal Server Error, try again.",
+					bookingId: bookingId
+				});
+			}
+		} else {
+			res
+				.status(404)
+				.json({ responseError: "User doesn't exist.", bookingId: bookingId });
+		}
 	});
 	/**
 	 * POST method for user to post booking request.
@@ -98,12 +244,14 @@ module.exports = (app, firebaseDB) => {
 	 * @param name
 	 * @param email
 	 */
-	app.post("/api/requestBooking", (req, res) => {
+	app.post("/api/requestBooking", async (req, res) => {
 		const shortId = shortid.generate();
-		const bookingId = bookingId.generate();
+		const bookingId = shortid.generate();
 		const { email, phone, slot, date, name, seats } = req.body;
 		const userId = req.body.userId || shortId;
-		bookingsRef = firebaseDB.ref(bookingsRefString + "/" + date + "/" + slot);
+		bookingsRef = await firebaseDB.ref(
+			bookingsRefString + "/" + date + "/" + date + "/" + slot
+		);
 		bookingData = {};
 		bookingData.status = "waiting";
 		bookingData.email = email;
@@ -112,7 +260,15 @@ module.exports = (app, firebaseDB) => {
 		bookingData.seats = seats;
 		bookingData.bookingId = bookingId;
 		bookingData.userId = userId;
-		bookingsRef.child(bookingId).set(bookingData);
-		res.status(200).send(bookingData);
+		bookingData.by = "user";
+		try {
+			await bookingsRef.child(bookingId).set(bookingData);
+			res.status(200).send(bookingData);
+		} catch (ex) {
+			console.log("exception in requestBooking", ex);
+			res
+				.status(500)
+				.json({ responseError: "Internal Server Error, try again." });
+		}
 	});
 };

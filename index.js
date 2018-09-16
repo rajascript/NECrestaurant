@@ -44,6 +44,7 @@ require("./routes/adminRoutes")(app);
 require("./routes/authRoutes")(app);
 require("./routes/billingRoutes")(app);
 require("./routes/bookingRoutes")(app, firebaseDB);
+app.disable("etag");
 
 app.use(express.static("client/build"));
 
