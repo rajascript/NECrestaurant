@@ -187,7 +187,9 @@ class BookingForm extends Component {
             <option value="8">8</option>
           </select>
           <br />
-          <input type="submit" value="Submit" onClick={this.handleBooking} />
+          <input 
+            id="submitB"
+            type="submit" value="Submit" onClick={this.handleBooking} />
         </form>
         <p>
           {this.state.bookingErrorVisible && this.state.bookingErrorMessage}

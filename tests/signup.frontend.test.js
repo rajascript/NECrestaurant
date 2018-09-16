@@ -11,7 +11,7 @@ afterEach(async () => {
 	await page.close();
 });
 
-test("signupForm check", async () => {
+test.only("signupForm check", async () => {
     await page.click('#headerButtonSignup');
     await page.waitForSelector('#signupFormContainer');
 	await page.click("input[id=signupFormEmail]");
@@ -23,8 +23,26 @@ test("signupForm check", async () => {
     await page.click("input[id=signupFormName]");
     await page.type("input[id=signupFormName]", "hansika");
     await page.click("input[id=signupFormPhone]");
-    await page.type("input[id=signupFormPhone]", "8482592952");
-
-await page.click("#submit");
+	await page.type("input[id=signupFormPhone]", "8482592952");
 	
+//await page.click("#submit");
+})
+
+test("signup fails", async () => {
+    await page.click('#headerButtonSignup');
+    await page.waitForSelector('#signupFormContainer');
+	await page.click("input[id=signupFormEmail]");
+	await page.type("input[id=signupFormEmail]", "a.bc@yahoocom");
+	await page.click("input[id=signupFormPassword]");
+	await page.type("input[id=signupFormPassword]", '123qwerty');
+	await page.click("input[id=signupFormConfirmPassword]");
+    await page.type("input[id=signupFormConfirmPassword]", "123qwerty");
+    await page.click("input[id=signupFormName]");
+    await page.type("input[id=signupFormName]", "hansika");
+    await page.click("input[id=signupFormPhone]");
+	await page.type("input[id=signupFormPhone]", "8482592952");
+await page.click("#submitS");
+await page.waitForSelector("#loginPopupError")
+await page.getContentsOf("#loginPopupError")
+
 })

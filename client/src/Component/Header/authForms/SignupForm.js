@@ -138,7 +138,7 @@ class SignupForm extends Component {
             onChange={this.handlePhoneChange}
           />
           <br />
-          <input id="submit" type="submit" value="Submit" />
+          <input id="submitS" type="submit" value="Submit" />
         </form>
         <LoginGoogle />
       </div>

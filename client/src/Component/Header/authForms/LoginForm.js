@@ -70,7 +70,7 @@ class LoginForm extends Component {
           />
           <br />
           <input 
-            id="submit"
+            id="submitL"
             type="submit"
             value="Submit" />
         </form>
