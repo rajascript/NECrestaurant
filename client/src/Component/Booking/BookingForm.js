@@ -58,17 +58,26 @@ class BookingForm extends Component {
 
     if (!PhoneCheck.sucess) {
       console.log("error", PhoneCheck.message);
-      this.props.displayBookingError(PhoneCheck.message); //TODO create it
+      this.setState({
+        bookingErrorVisible: true,
+        bookingErrorMessage: PhoneCheck.message
+      });
     } else if (!StringCheck.sucess) {
       console.log("error", StringCheck.message);
-      this.props.displayBookingError(StringCheck.message);
+      this.setState({
+        bookingErrorVisible: true,
+        bookingErrorMessage: StringCheck.message
+      });
     } else if (!EmailCheck.sucess) {
       console.log("error", EmailCheck.message);
-      this.props.displayBookingError(EmailCheck.message);
+      this.setState({
+        bookingErrorVisible: true,
+        bookingErrorMessage: EmailCheck.message
+      });
     } else {
       console.log("All data entered was of correct type");
       console.log(user);
-      this.props.removeBookingWindowError(); //TODO create it
+      this.setState({ bookingErrorVisible: false });
       this.props.bookTable(user);
     }
     e.preventDefault();
@@ -85,6 +94,7 @@ class BookingForm extends Component {
         bookingErrorMessage: "Error: Restaurant timings 11 AM to 10 PM."
       });
     } else {
+      this.setState({ bookingErrorVisible: false });
       this.setState({ dateValue: this.state.moment.format("DD-MM-YY HH:mm") });
     }
     this.toggleCalendar();
