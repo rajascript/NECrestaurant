@@ -34,8 +34,9 @@ export const bookTable = values => {
 export const fetchBookings = date => {
 	return async dispatch => {
 		try {
+			console.log("igi");
 			const res = await axios.post("/api/fetchBookings", date);
-
+			console.log("igo", res.data);
 			dispatch({
 				type: FETCH_BOOKINGS,
 				payload: res.data

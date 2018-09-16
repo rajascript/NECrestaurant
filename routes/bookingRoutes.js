@@ -7,16 +7,21 @@ module.exports = (app, firebaseDB) => {
 	app.post(
 		"/api/fetchBookings",
 		passport.authenticate("jwt", { session: false }),
-		(req, res) => {
+		async (req, res) => {
+			console.log("dajnd");
 			try {
-				bookingsRef = firebaseDB.ref("bookings/" + req.body.date);
-				bookingsRef.on("value", function(snapshot) {
+				bookingsRef = await firebaseDB.ref(
+					"bookings/" + req.body.date + "/" + req.body.date
+				);
+				console.log("cmac");
+				await bookingsRef.on("value", function(snapshot) {
+					console.log("da");
 					if (snapshot.numChildren() === 0)
-						res.status(454).json({ responseError: "No bookings here." });
-					snapshot.forEach(function(childSnapshot) {
-						var childData = childSnapshot.val();
-						res.status(200).json(childData);
-					});
+						res.status(404).json({ responseError: "No bookings here." });
+					let childData = snapshot.val();
+					console.log("das");
+					res.status(200).json(childData);
+					console.log("dadad");
 				});
 			} catch (ex) {
 				console.log("error at fectchbookings", ex);
@@ -27,14 +32,13 @@ module.exports = (app, firebaseDB) => {
 	app.post(
 		"/api/confirmBooking",
 		passport.authenticate("jwt", { session: false }),
-		(req, res) => {
-			console.log(req.body);
+		async (req, res) => {
 			const bookingId = req.body.bookingId;
 			const slot = req.body.slot;
 			const date = req.body.date;
 			const by = req.body.by;
 			try {
-				bookingsRef = firebaseDB.ref(
+				bookingsRef = await firebaseDB.ref(
 					bookingsRefString +
 						"/" +
 						date +
@@ -48,7 +52,7 @@ module.exports = (app, firebaseDB) => {
 				bookingData = {};
 				bookingData.status = "confirmed";
 				bookingData.by = by;
-				bookingsRef.update(bookingData);
+				await bookingsRef.update(bookingData);
 				res
 					.status(200)
 					.json({ response: "Booking confirmed.", bookingId: bookingId });
@@ -64,28 +68,23 @@ module.exports = (app, firebaseDB) => {
 	app.post(
 		"/api/reserve",
 		passport.authenticate("jwt", { session: false }),
-		(req, res) => {
-			console.log(req.body);
-			const bookingId = req.body.bookingId;
-			const slot = req.body.slot;
-			const date = req.body.date;
-			const by = req.body.by;
-			bookingsRef = firebaseDB.ref(
-				bookingsRefString +
-					"/" +
-					date +
-					"/" +
-					date +
-					"/" +
-					slot +
-					"/" +
-					bookingId
-			);
+		async (req, res) => {
+			const bookingId = shortid.generate();
 			bookingData = {};
-			bookingData.by = by;
+			const { slot, date, seats, by } = req.body;
 			bookingData.status = "reserved";
+			bookingData.email = by;
+			bookingData.phone = by;
+			bookingData.name = by;
+			bookingData.seats = seats;
+			bookingData.bookingId = bookingId;
+			bookingData.userId = by;
+			bookingData.by = by;
+			bookingsRef = await firebaseDB.ref(
+				bookingsRefString + "/" + date + "/" + date + "/" + slot
+			);
 			try {
-				//	bookingsRef.update(bookingData);
+				//	await bookingsRef.update(bookingData);
 				res
 					.status(200)
 					.json({ response: "Booking reserved.", bookingId: bookingId });
@@ -101,14 +100,13 @@ module.exports = (app, firebaseDB) => {
 	app.post(
 		"/api/cancelBooking",
 		passport.authenticate("jwt", { session: false }),
-		(req, res) => {
-			console.log(req.body);
+		async (req, res) => {
 			const bookingId = req.body.bookingId;
 			const slot = req.body.slot;
 			const date = req.body.date;
 			const by = req.body.by;
 			try {
-				bookingsRef = firebaseDB.ref(
+				bookingsRef = await firebaseDB.ref(
 					bookingsRefString +
 						"/" +
 						date +
@@ -122,7 +120,7 @@ module.exports = (app, firebaseDB) => {
 				bookingData = {};
 				bookingData.by = by;
 				bookingData.status = "canceled by restaurant";
-				bookingsRef.update(bookingData);
+				await bookingsRef.update(bookingData);
 				res
 					.status(200)
 					.json({ response: "Booking canceled", bookingId: bookingId });
@@ -135,13 +133,13 @@ module.exports = (app, firebaseDB) => {
 			}
 		}
 	);
-	app.post("/api/revokeBooking", (req, res) => {
+	app.post("/api/revokeBooking", async (req, res) => {
 		const bookingId = req.body.bookingId;
 		const slot = req.body.slot;
 		const date = req.body.date;
 		const by = req.body.by;
 		try {
-			bookingsRef = firebaseDB.ref(
+			bookingsRef = await firebaseDB.ref(
 				bookingsRefString +
 					"/" +
 					date +
@@ -156,7 +154,7 @@ module.exports = (app, firebaseDB) => {
 			bookingData.by = by;
 			bookingData.status = "canceled by user";
 
-			bookingsRef.update(bookingData);
+			await bookingsRef.update(bookingData);
 			res
 				.status(200)
 				.json({ response: "Booking revoked.", bookingId: bookingId });
@@ -184,7 +182,7 @@ module.exports = (app, firebaseDB) => {
 		const refundAmount = req.body.refundAmount;
 		const by = req.body.by;
 		try {
-			bookingsRef = firebaseDB.ref(
+			bookingsRef = await firebaseDB.ref(
 				bookingsRefString +
 					"/" +
 					date +
@@ -217,7 +215,7 @@ module.exports = (app, firebaseDB) => {
 				});
 			}
 			try {
-				bookingsRef.update(bookingData);
+				await bookingsRef.update(bookingData);
 				res.status(200).json({
 					response: "Booking canceled and user refunded",
 					bookingId: bookingId
@@ -246,12 +244,12 @@ module.exports = (app, firebaseDB) => {
 	 * @param name
 	 * @param email
 	 */
-	app.post("/api/requestBooking", (req, res) => {
+	app.post("/api/requestBooking", async (req, res) => {
 		const shortId = shortid.generate();
 		const bookingId = shortid.generate();
 		const { email, phone, slot, date, name, seats } = req.body;
 		const userId = req.body.userId || shortId;
-		bookingsRef = firebaseDB.ref(
+		bookingsRef = await firebaseDB.ref(
 			bookingsRefString + "/" + date + "/" + date + "/" + slot
 		);
 		bookingData = {};
@@ -264,7 +262,7 @@ module.exports = (app, firebaseDB) => {
 		bookingData.userId = userId;
 		bookingData.by = "user";
 		try {
-			bookingsRef.child(bookingId).set(bookingData);
+			await bookingsRef.child(bookingId).set(bookingData);
 			res.status(200).send(bookingData);
 		} catch (ex) {
 			console.log("exception in requestBooking", ex);

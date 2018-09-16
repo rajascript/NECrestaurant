@@ -13,8 +13,10 @@ export default (state = null, action) => {
 		case BOOK_TABLE_FAILED:
 			return action.payload;
 		case FETCH_BOOKINGS:
+			console.log("iga");
 			return action.payload;
 		case FETCH_BOOKINGS_FAILED:
+			console.log("igf");
 			return action.payload;
 		default:
 			return state;
