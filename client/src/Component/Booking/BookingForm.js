@@ -106,27 +106,6 @@ class BookingForm extends Component {
 		this.setState({ emailValue: e.target.value });
 	}
 
-	handleSave() {
-		if (this.state.moment < new Date()) {
-			this.setState({
-				bookingErrorVisible: true,
-				bookingErrorMessage: "Error: Please select a future date and time."
-			});
-		} else if (this.state.moment.hour() < 11 || this.state.moment.hour() > 22) {
-			this.setState({
-				bookingErrorVisible: true,
-				bookingErrorMessage: "Error: Restaurant timings 11 AM to 10 PM."
-			});
-		} else {
-			this.setState({ bookingErrorVisible: false });
-			this.setState({ dateValue: this.state.moment.format("DD-MM-YY HH:mm") });
-		}
-		this.toggleCalendar();
-	}
-	handleDateChange(moment) {
-		this.setState({ moment });
-	}
-
 	handleNameChange(e) {
 		this.setState({ nameValue: e.target.value });
 	}
@@ -141,8 +120,16 @@ class BookingForm extends Component {
 		this.setState({ confirmPasswordValue: e.target.value });
 	}
 	componentWillReceiveProps(props) {
-		if (props.booking === 200) props.moveToLogin();
-		else this.setState({ displayServerError: true });
+		if (
+			typeof props.bookings !== "undefined" &&
+			props.bookings !== null &&
+			typeof props.bookings.bookingId !== "undefined"
+		) {
+			this.setState({
+				bookingConfirmed: true,
+				bookingId: props.bookings.bookingId
+			});
+		} else this.setState({ displayServerError: true });
 		if (props.auth) {
 			let emailValue = props.auth.email || "";
 			let nameValue = props.auth.name || "";
@@ -151,9 +138,21 @@ class BookingForm extends Component {
 		}
 	}
 	render() {
+		if (this.state.bookingConfirmed)
+			return (
+				<Redirect
+					push
+					to={{
+						pathname: "/thankyou",
+						bookingId: this.state.bookingId,
+						date: this.getDateFromMoment(this.state.dateValue),
+						slot: this.getSlotFromMoment(this.state.dateValue)
+					}}
+				/>
+			);
 		return (
 			<div id="bookingFormContainer" className="bookingForm__container">
-				<form onSubmit={this.handleSignup}>
+				<form>
 					<input
 						id="bookingFormName"
 						className="bookingForm__Form--name"
@@ -190,7 +189,7 @@ class BookingForm extends Component {
 						onClick={this.toggleCalendar}
 					/>
 					<br />
-					{this.state.calednarVisible && (
+					{this.state.calendarVisible && (
 						<InputMoment
 							moment={this.state.moment}
 							onChange={this.handleDateChange}
@@ -217,12 +216,7 @@ class BookingForm extends Component {
 						<option value="8">8</option>
 					</select>
 					<br />
-					<input
-						id="submitB"
-						type="submit"
-						value="Submit"
-						onClick={this.handleBooking}
-					/>
+					<input type="submit" value="Submit" onClick={this.handleBooking} />
 				</form>
 				<p>
 					{this.state.bookingErrorVisible && this.state.bookingErrorMessage}
