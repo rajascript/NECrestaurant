@@ -19,3 +19,12 @@ export const BOOK_TABLE = "book_table";
 export const BOOK_TABLE_FAILED = "book_table_failed";
 export const FETCH_BOOKINGS = "fetch_bookings";
 export const FETCH_BOOKINGS_FAILED = "fetch_bookings_failed";
+export const CONFIRM_BOOKINGS_FAILED = "confirm_bookings_failed";
+export const CONFIRM_BOOKINGS = "confirm_bookings";
+export const CANCEL_BOOKINGS_FAILED = "cancel_bookings_failed";
+export const CANCEL_BOOKINGS = "cancel_bookings";
+export const RESERVE_BOOKINGS_FAILED = "reserve_bookings_failed";
+export const RESERVE_BOOKINGS = "reserve_bookings";
+export const REVOKE_AND_REFUND_BOOKINGS_FAILED =
+	"revoke_refund_bookings_failed";
+export const REVOKE_AND_REFUND_BOOKINGS = "revoke_refund_bookings";

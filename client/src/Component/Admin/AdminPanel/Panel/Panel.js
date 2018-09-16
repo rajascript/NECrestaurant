@@ -14,17 +14,32 @@ class Panel extends Component {
 	}
 	componentDidMount() {
 		if (this.state.date === "")
-			this.setState({ date: this.state.moment.format("DD-MM-YYYY") });
-		this.props.fetchBookings({ date: this.state.date });
+			this.setState({ date: this.state.moment.format("DD-MM-YY") });
+		this.props.fetchBookings({ date: this.state.moment.format("DD-MM-YY") });
 	}
 	renderData() {
-		return this.state.valuesArray.map((data, key) => {
-			return (
-				<div className="adminPanel__panel__data" key={key}>
-					<DataRow data={data} />
-				</div>
-			);
+		let key = -1;
+		return this.state.valuesArray.map(data => {
+			let dat = [];
+			for (let slot in data) {
+				let currSlot = data[slot];
+				for (let booking in currSlot) {
+					key += 1;
+					let currBooking = currSlot[booking];
+					currBooking.slot = slot;
+					currBooking.date = this.state.date;
+					dat.push(
+						<div className="adminPanel__panel__data" key={key}>
+							<DataRow data={currBooking} />
+						</div>
+					);
+				}
+			}
+			return dat;
 		});
+	}
+	componentWillReceiveProps(props) {
+		this.setState({ valuesArray: [props.bookings] });
 	}
 	render() {
 		return (

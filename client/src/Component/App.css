@@ -560,7 +560,66 @@ body {
 	background-color: #f8d9cb;
 	width: 100%;
 }
-
+.adminPanel__panel__data {
+	margin-top: 30px;
+	display: flex;
+	padding: 0 5px;
+	justify-content: space-around;
+}
+.adminPanel__panel__data--item {
+	max-width: 100px;
+	word-wrap: break-word;
+}
+.adminPanel__panel__data--seats {
+	margin-right: 20px;
+}
+.adminPanel__panel__data--slot {
+	position: relative;
+	left: 30px;
+}
+.adminPanel__panel__data--actions {
+	display: flex;
+	justify-content: space-around;
+	width: 120px;
+	padding: 10px;
+	margin-top: -10px;
+}
+.adminPanel__panel__data--unread {
+	width: 5px;
+	height: 5px;
+	border-radius: 50%;
+	left: 100px;
+	position: absolute;
+}
+.adminPanel__panel__popup__container {
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 2;
+	background-color: grey;
+	opacity: 0.8;
+	width: 100%;
+	height: 100%;
+}
+.adminPanel__panel__popup {
+	position: absolute;
+	width: 350px;
+	height: 200px;
+	background-color: white;
+	box-shadow: 1px 2px 2px 1px #888;
+	border-radius: 5px;
+	top: 50%;
+	left: 50%;
+	opacity: 1;
+	transform: translate(-50%, -50%);
+	z-index: 5;
+}
+.adminPanel__panel__data__actions--item {
+	box-shadow: 0px 0px 1px 1px #777;
+	border-radius: 50%;
+	padding: 5px 7px;
+	cursor: pointer;
+}
 .adminPanel__sidebar {
 	z-index: 1;
 }
@@ -571,4 +630,23 @@ body {
 	height: 51px;
 	width: 100%;
 	background-color: #e74b37;
+}
+.adminPanel__panel__popup {
+	padding: 50px 30px;
+	text-align: center;
+}
+.adminPanel__panel__popup--title {
+	margin-bottom: 60px;
+}
+.adminPanel__panel__popup__actions {
+	display: flex;
+	justify-content: space-between;
+}
+.adminPanel__panel__popup__actions--action {
+	width: 80px;
+	height: 20px;
+	padding: 2px 5px;
+	box-shadow: 0px 0px 0.1px 0.1px #999;
+	text-align: center;
+	cursor: pointer;
 }
