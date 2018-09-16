@@ -70,8 +70,8 @@ body{
     border-radius: 50%;
     height: 40px;
     width: 40px;
-
 }
+
 
 .bottomhalfcontentwrapper{
   display: flex;
@@ -98,7 +98,7 @@ body{
 }
 
 .navbarlink:hover{
-  color: orange;
+  color: lightblue;
 }
 
 /*==============================================HOMEPAGE==============================================*/
@@ -314,4 +314,8 @@ color: #000000;
   width: 50%;
   padding: 5%;
 }
+
+
+/*=====================================================LOGIN PAGE===========================================================*/
+
 
