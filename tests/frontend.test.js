@@ -51,19 +51,3 @@ test("Booking", async() => {
    
 });     //Booking test successful
 
-/*test("SignUp Form", async (done) => {
-    await page.click('#headerButtonSignup');
-   // await page.getContentsOf('#loginPopupButtonSignup');
-    await page.waitForSelector('#loginPopupButtonSignup');
-	await page.click("input[name=email]");
-	await page.type("input[name=email]", person.name);
-	await page.click("input[name=email]");
-	await page.type("input[name=email]", person.email);
-	await page.click("textarea[name=message]");
-	await page.type("textarea[name=message]", person.message);
-	await page.click("input[type=checkbox]");
-    done();
-
-});
-*/
-

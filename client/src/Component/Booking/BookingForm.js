@@ -141,16 +141,8 @@ class BookingForm extends Component {
 		this.setState({ confirmPasswordValue: e.target.value });
 	}
 	componentWillReceiveProps(props) {
-		if (
-			typeof props.bookings !== "undefined" &&
-			props.bookings !== null &&
-			typeof props.bookings.bookingId !== "undefined"
-		) {
-			this.setState({
-				bookingConfirmed: true,
-				bookingId: props.bookings.bookingId
-			});
-		} else this.setState({ displayServerError: true });
+		if (props.booking === 200) props.moveToLogin();
+		else this.setState({ displayServerError: true });
 		if (props.auth) {
 			let emailValue = props.auth.email || "";
 			let nameValue = props.auth.name || "";
@@ -159,21 +151,9 @@ class BookingForm extends Component {
 		}
 	}
 	render() {
-		if (this.state.bookingConfirmed)
-			return (
-				<Redirect
-					push
-					to={{
-						pathname: "/thankyou",
-						bookingId: "wS32RvcnTb" || this.state.bookingId,
-						date: "17-09-18" || this.getDateFromMoment(this.state.dateValue),
-						slot: "18" || this.getSlotFromMoment(this.state.dateValue)
-					}}
-				/>
-			);
 		return (
 			<div id="bookingFormContainer" className="bookingForm__container">
-				<form>
+				<form onSubmit={this.handleSignup}>
 					<input
 						id="bookingFormName"
 						className="bookingForm__Form--name"
@@ -210,7 +190,7 @@ class BookingForm extends Component {
 						onClick={this.toggleCalendar}
 					/>
 					<br />
-					{this.state.calendarVisible && (
+					{this.state.calednarVisible && (
 						<InputMoment
 							moment={this.state.moment}
 							onChange={this.handleDateChange}
@@ -237,7 +217,12 @@ class BookingForm extends Component {
 						<option value="8">8</option>
 					</select>
 					<br />
-					<input type="submit" value="Submit" onClick={this.handleBooking} />
+					<input
+						id="submitB"
+						type="submit"
+						value="Submit"
+						onClick={this.handleBooking}
+					/>
 				</form>
 				<p>
 					{this.state.bookingErrorVisible && this.state.bookingErrorMessage}

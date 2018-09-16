@@ -24,8 +24,11 @@ test("Contents of Booking", async () => {
 	await page.click("input[id=bookingFormEmail]");
 	await page.type("input[id=bookingFormEmail]", "adhkiak@yahoo.com");
 	
+	await page.click("input[id=bookingFormDate]");
+	await page.type("input[id=bookingFormDate]", "28-09-18 12:34");
 
-//await page.click("#submit");
+
+await page.click("#submit");
 })
 
 afterEach(async () => {
