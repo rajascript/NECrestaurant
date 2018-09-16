@@ -12,7 +12,7 @@ afterEach(async () => {
 });
 
 test("signupForm check", async () => {
-   // await page.click('#headerButtonSignup');
+    await page.click('#headerButtonSignup');
     await page.waitForSelector('#signupFormContainer');
 	await page.click("input[id=signupFormEmail]");
 	await page.type("input[id=signupFormEmail]", "abc@yahoo.com");
