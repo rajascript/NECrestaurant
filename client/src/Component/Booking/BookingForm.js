@@ -56,23 +56,30 @@ class BookingForm extends Component {
 		let StringCheck = performStringCheck(this.state.nameValue);
 		let EmailCheck = performEmailCheck(this.state.emailValue);
 
-		//TODO make a date and time and seat check function
-		//TODO Handle and display errors individualy
-		// debugger;
-		// if (!PhoneCheck.sucess) {
-		console.log("error", PhoneCheck.message);
-		// 	displayBookingError(PhoneCheck.message); //TODO create it
-		// } else if (!StringCheck.sucess) {
-		console.log("error", StringCheck.message);
-		// 	displayBookingError(StringCheck.message);
-		// } else if (!EmailCheck.sucess) {
-		console.log("error", EmailCheck.message);
-		// 	displayBookingError(EmailCheck.message);
-		// } else {
-		console.log("All data entered was of correct type");
-		//this.props.removeBookingWindowError(); //TODO create it
-		this.props.bookTable(user);
-		//}
+		if (!PhoneCheck.sucess) {
+			console.log("error", PhoneCheck.message);
+			this.setState({
+				bookingErrorVisible: true,
+				bookingErrorMessage: PhoneCheck.message
+			});
+		} else if (!StringCheck.sucess) {
+			console.log("error", StringCheck.message);
+			this.setState({
+				bookingErrorVisible: true,
+				bookingErrorMessage: StringCheck.message
+			});
+		} else if (!EmailCheck.sucess) {
+			console.log("error", EmailCheck.message);
+			this.setState({
+				bookingErrorVisible: true,
+				bookingErrorMessage: EmailCheck.message
+			});
+		} else {
+			console.log("All data entered was of correct type");
+			console.log(user);
+			this.setState({ bookingErrorVisible: false });
+			this.props.bookTable(user);
+		}
 		e.preventDefault();
 	}
 	handleSave() {
@@ -97,6 +104,27 @@ class BookingForm extends Component {
 
 	handleEmailChange(e) {
 		this.setState({ emailValue: e.target.value });
+	}
+
+	handleSave() {
+		if (this.state.moment < new Date()) {
+			this.setState({
+				bookingErrorVisible: true,
+				bookingErrorMessage: "Error: Please select a future date and time."
+			});
+		} else if (this.state.moment.hour() < 11 || this.state.moment.hour() > 22) {
+			this.setState({
+				bookingErrorVisible: true,
+				bookingErrorMessage: "Error: Restaurant timings 11 AM to 10 PM."
+			});
+		} else {
+			this.setState({ bookingErrorVisible: false });
+			this.setState({ dateValue: this.state.moment.format("DD-MM-YY HH:mm") });
+		}
+		this.toggleCalendar();
+	}
+	handleDateChange(moment) {
+		this.setState({ moment });
 	}
 
 	handleNameChange(e) {
