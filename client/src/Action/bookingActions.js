@@ -18,7 +18,6 @@ export const bookTable = values => {
 	return async dispatch => {
 		try {
 			const res = await axios.post("/api/requestBooking", values);
-
 			dispatch({
 				type: BOOK_TABLE,
 				payload: res.data
