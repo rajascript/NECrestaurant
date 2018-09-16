@@ -143,6 +143,7 @@ class BookingForm extends Component {
 					/>
 					<br />
 					<input
+						id="bookingFormDate"
 						className="bookingForm__Form--date"
 						placeholder="Date"
 						type="text"
