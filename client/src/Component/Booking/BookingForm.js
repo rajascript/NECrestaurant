@@ -19,7 +19,7 @@ class BookingForm extends Component {
 			bookingErrorMessage: "",
 			calendarVisible: false,
 			bookingId: "",
-			bookingConfirmed: true
+			bookingConfirmed: false
 		};
 		this.handleSelectChange = this.handleSelectChange.bind(this);
 		this.handleEmailChange = this.handleEmailChange.bind(this);
@@ -203,6 +203,7 @@ class BookingForm extends Component {
 					<br />
 					<select
 						type="number"
+						id="seatsSelector"
 						value={this.state.seatsValue}
 						onChange={this.handleSelectChange}
 					>

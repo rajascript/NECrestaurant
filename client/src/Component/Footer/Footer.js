@@ -9,7 +9,9 @@ export default class componentName extends Component {
 	render() {
 		return (
 			<footer>
-				<Link to="/adminLogin">Admin Login</Link>
+				<Link id="adminHref" to="/adminLogin">
+					Admin Login
+				</Link>
 			</footer>
 		);
 	}

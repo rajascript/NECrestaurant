@@ -78,7 +78,6 @@ export const login = values => {
 	};
 };
 export const logoutUser = values => {
-	console.log("nda");
 	return async dispatch => {
 		try {
 			await axios.get("/api/logout");
