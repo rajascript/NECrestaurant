@@ -1,5 +1,7 @@
 const passport = require("passport");
 const mongoose = require("mongoose");
+const keys = require("../config/keys");
+const axios = require("axios");
 const User = mongoose.model("User");
 var shortid = require("shortid");
 module.exports = (app, firebaseDB) => {
@@ -8,21 +10,16 @@ module.exports = (app, firebaseDB) => {
 		"/api/fetchBookings",
 		passport.authenticate("jwt", { session: false }),
 		async (req, res) => {
-			console.log("dajnd");
 			try {
-				bookingsRef = await firebaseDB.ref(
-					"bookings/" + req.body.date + "/" + req.body.date
+				firebaseRes = await axios.get(
+					keys.firebaseDatabaseURL +
+						"/bookings/" +
+						req.body.date +
+						"/" +
+						req.body.date +
+						".json"
 				);
-				console.log("cmac");
-				await bookingsRef.on("value", function(snapshot) {
-					console.log("da");
-					if (snapshot.numChildren() === 0)
-						res.status(404).json({ responseError: "No bookings here." });
-					let childData = snapshot.val();
-					console.log("das");
-					res.status(200).json(childData);
-					console.log("dadad");
-				});
+				res.status(200).json(firebaseRes.data);
 			} catch (ex) {
 				console.log("error at fectchbookings", ex);
 				res.status(300).json({ errorMessage: "Server not working properly." });

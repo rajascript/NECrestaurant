@@ -29,7 +29,13 @@ class Panel extends Component {
 		this.setState({ moment: tomorrow, date: tomorrow.format("DD-MM-YY") });
 		this.props.fetchBookings({ date: tomorrow.format("DD-MM-YY") });
 	}
-	clickPrev() {}
+	clickPrev() {
+		let currDay = this.state.moment;
+		let yesteday = moment(currDay).add(-1, "days");
+		console.log(yesteday);
+		this.setState({ moment: yesteday, date: yesteday.format("DD-MM-YY") });
+		this.props.fetchBookings({ date: yesteday.format("DD-MM-YY") });
+	}
 	renderData() {
 		if (
 			this.state.valuesArray[0] === 404 ||
