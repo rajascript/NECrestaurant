@@ -41,7 +41,8 @@ class Header extends Component {
 			<div className="headerWrapper">
 				<div className="headerLeftFiller" />
 				<div className="logowrapper">Indique</div>
-				<div className="toprightcontentwrapper">
+				<div id = "Options"
+					className="toprightcontentwrapper">
 					<button
 						onClick={this.openLoginPopup}
 						id="headerButtonLogin"
