@@ -11,7 +11,7 @@ afterEach(async () => {
 	await page.close();
 });
 
-test.only("successful Signup", async () => {
+test("successful Signup", async () => {
 	var dice = Math.floor(Math.random() * 200) + 1;
 	var mail = dice + "abc@yahoo.com";
 	await page.click("#headerButtonSignup");

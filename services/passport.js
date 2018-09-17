@@ -120,7 +120,7 @@ passport.use(
 						if (!res) return done(null, false);
 						return done(null, existingUser);
 					});
-				} else return done(true, false);
+				} else return done(null, false);
 			} catch (err) {
 				return done(err, false);
 			}

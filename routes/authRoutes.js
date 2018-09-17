@@ -1,20 +1,24 @@
 const passport = require("passport");
 const mongoose = require("mongoose");
+const keys = require("../config/keys");
 const User = mongoose.model("User");
 const requireLogin = require("../middlewares/requireLogin");
 module.exports = app => {
-	app.post("/api/login", passport.authenticate("local-login",{
-	
-		failureRedirect: "/loginfailurejson"
-	}), (req, res) => {
-		console.log("hitting login");
-		let currUser = {
-			email: req.user.email,
-			name: req.user.name,
-			credits: req.user.credits
-		};
-		res.send(currUser);
-	});
+	app.post(
+		"/api/login",
+		passport.authenticate("local-login", {
+			failureRedirect: `${keys.testHost}/loginfailurejson`
+		}),
+		(req, res) => {
+			console.log("hitting login");
+			let currUser = {
+				email: req.user.email,
+				name: req.user.name,
+				credits: req.user.credits
+			};
+			res.send(currUser);
+		}
+	);
 	app.get("/failurejson", function(req, res) {
 		res.json({ message: "signup failed" });
 	});
@@ -22,7 +26,7 @@ module.exports = app => {
 	app.get("/loginfailurejson", function(req, res) {
 		res.json({ message: "login failed" });
 	});
-	
+
 	// app.post("/api/signup", function(req, res, next) {
 	// 	passport.authenticate("local-signup", async function(err, user, info) {
 	// 		if (err) {
@@ -40,14 +44,14 @@ module.exports = app => {
 		"/api/signup",
 		passport.authenticate("local-signup", {
 			session: false,
-			failureRedirect: "/failurejson"
+			failureRedirect: `${keys.testHost}/failurejson`
 		}),
 		async (req, res) => {
 			savedUser = await User.findOne({ email: req.user.email });
 			savedUser.name = req.body.name;
 			savedUser.phone = req.body.phone;
 			savedUser.save();
-			res.status(200).json({message:"success"});
+			res.status(200).json({ message: "success" });
 		}
 	);
 

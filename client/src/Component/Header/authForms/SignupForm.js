@@ -83,7 +83,7 @@ class SignupForm extends Component {
 	}
 
 	componentWillReceiveProps(props) {
-		if (props.auth === "success") this.props.moveToLogin();
+		if (props.auth.message === "success") this.props.moveToLogin();
 		else if (Number(props.auth) === 401)
 			this.props.displayLoginError("User already exists");
 		else this.props.displayLoginError("Server Error");

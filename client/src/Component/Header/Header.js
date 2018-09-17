@@ -41,8 +41,7 @@ class Header extends Component {
 			<div className="headerWrapper">
 				<div className="headerLeftFiller" />
 				<div className="logowrapper">Indique</div>
-				<div id = "Options"
-					className="toprightcontentwrapper">
+				<div id="Options" className="toprightcontentwrapper">
 					<button
 						onClick={this.openLoginPopup}
 						id="headerButtonLogin"
@@ -111,7 +110,7 @@ class Header extends Component {
 		);
 	}
 	componentWillReceiveProps(props) {
-		if (props.auth === "login_failed") {
+		if (props.auth.message === "login failed") {
 			this.loginPopupChild.displayLoginError("Error: Wrong credentials");
 		}
 	}
@@ -121,14 +120,15 @@ class Header extends Component {
 		}
 		if (
 			!this.props.auth ||
-			this.props.auth === "login_failed" ||
-			this.props.auth === "success"
+			this.props.auth.message === "login failed" ||
+			this.props.auth.message === "success"
 		)
 			return this.renderLoggedOutUserHeader();
 		else return this.renderLoggedInUserHeader();
 	}
 }
 function mapStateToProps({ auth }) {
+	console.log(auth);
 	return { auth };
 }
 export default connect(

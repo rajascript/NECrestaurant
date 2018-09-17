@@ -41,7 +41,7 @@ class LoginPopup extends Component {
 			this.setState({ openPopupWithSignup: true });
 	}
 	moveToLogin() {
-		this.setState({ openPopupWithSignup: false, displayLoginMessage: true });
+		this.setState({ openPopupWithSignup: false });
 	}
 	componentDidMount() {
 		if (this.props.openPopupWithSignup) {

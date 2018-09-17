@@ -12,27 +12,26 @@ afterEach(async () => {
 });
 
 test("login success", async () => {
-    await page.click('#headerButtonLogin');
-    await page.waitForSelector('#loginFormContainer');
-    await page.click("input[id=loginFormEmail]");
-    await page.type("input[id=loginFormEmail]", "abc@yahoo.com");
+	await page.click("#headerButtonLogin");
+	await page.waitForSelector("#loginPopupContainer");
+	await page.click("input[id=loginFormEmail]");
+	await page.type("input[id=loginFormEmail]", "abc@yahoo.com");
 	await page.click("input[id=loginFormPassword]");
-    await page.type("input[id=loginFormPassword]", '123qwerty');
+	await page.type("input[id=loginFormPassword]", "123qwerty");
 
-    await page.click("#submitL");   
-
+	await page.click("#submitL");
 });
 
 test("login fail", async () => {
-    await page.click('#headerButtonLogin');
-    await page.waitForSelector('#loginFormContainer');
-    await page.click("input[id=loginFormEmail]");
-    await page.type("input[id=loginFormEmail]", "abc@yahoo.com");
+	await page.click("#headerButtonLogin");
+	await page.waitForSelector("#loginPopupContainer");
+	await page.click("input[id=loginFormEmail]");
+	await page.type("input[id=loginFormEmail]", "abc@yahoo.com");
 	await page.click("input[id=loginFormPassword]");
-    await page.type("input[id=loginFormPassword]", '123qgfwerty');
+	await page.type("input[id=loginFormPassword]", "123qxx");
 
-    await page.click("#submitL");   
-    const check = await page.getContentsOf("#loginPopupError");
-    expect(check).toEqual("Error: Wrong credentials")
-
+	await page.click("#submitL");
+	const check = await page.getContentsOf("#loginPopupError");
+	console.log(check);
+	expect(check).toEqual("Error: Wrong credentials");
 });
