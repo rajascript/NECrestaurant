@@ -27,6 +27,7 @@ class Panel extends Component {
 		this.clickPrev = this.clickPrev.bind(this);
 	}
 	componentDidMount() {
+		console.log("dadas");
 		if (this.state.date === "")
 			this.setState({ date: this.state.moment.format("DD-MM-YY") });
 	}
@@ -41,6 +42,10 @@ class Panel extends Component {
 				console.log("child", childData);
 				let newData = childData[this.state.date];
 				console.log("newData", newData);
+				this.url =
+					"https://freesound.org/people/TheBuilder15/sounds/415763/download/415763__thebuilder15__doorbell-notification.wav";
+				this.audio = new Audio(this.url);
+				this.audio.play();
 				this.setState({ valuesArray: [newData] });
 			});
 			dbRef.on("child_added", snapshot => {

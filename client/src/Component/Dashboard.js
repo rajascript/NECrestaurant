@@ -14,7 +14,7 @@ class Dashboard extends Component {
 					</div>
 					<div className="bottomhalfcontentwrapper">
 						<div className="navbarlinkwrapper">
-							<Link className="navbarlink" to="/">
+							<Link className="navbarlink" to="/about">
 								ABOUT
 							</Link>
 
@@ -124,7 +124,7 @@ class Dashboard extends Component {
 					<div className="bottomrightwrapper">
 						<script src="https://cdn.lightwidget.com/widgets/lightwidget.js" />
 						<iframe
-							src="//lightwidget.com/widgets/6dc4c7539a805e3099b47d49508d7674.html"
+							src="//lightwidget.com/widgets/8b957057e118514f9b9c7b3b8b647a15.html"
 							scrolling="no"
 							title="insta"
 							allowTransparency
