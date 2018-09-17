@@ -45,7 +45,7 @@ test("SignUp Button", async() => {
     console.log(await page.getContentsOf('#loginPopupButtonSignup'));
 }); //SignUp successful.
 
-test("Booking", async() => {
+test("Booking Button", async() => {
     await page.click('#headerButtonBook');
     console.log(await page.url());
    

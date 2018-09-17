@@ -1,5 +1,5 @@
-const Page = require("./helpers/page");
-const { testHost } = require("../config/keys");
+const Page = require("../helpers/page");
+const { testHost } = require("../../config/keys");
 console.log(testHost);
 beforeEach(async () => {
 	page = await Page.build();

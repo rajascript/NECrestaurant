@@ -139,8 +139,11 @@ passport.use(
 		async (req, username, password, done) => {
 			try {
 				if (!performStringCheck(username)) return done(null, false);
+				console.log(username);
 				if (!performPasswordCheck(password)) return done(null, false);
+				console.log(password);
 				const existingAdmin = await Admin.findOne({ username });
+				console.log(existingAdmin);
 				if (existingAdmin) {
 					bcrypt.compare(password, existingAdmin.password, function(err, res) {
 						if (err) return done(err, false);

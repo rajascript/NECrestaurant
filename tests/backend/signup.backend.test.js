@@ -1,6 +1,6 @@
 const Page = require("../helpers/page");
 const { testHost } = require("../../config/keys");
-const axios = require("axios");
+var shortid = require("shortid");
 let curHost = testHost + "/api/signup";
 console.log(curHost);
 beforeEach(async () => {
@@ -20,10 +20,67 @@ test("phone wrong", async () => {
 		password: "sadaax"
 	};
 	let res = await page.post(curHost, user);
-	console.log(res);
-	//expect(res).toEqual(42);
+	
+	expect(res.message).toEqual("signup failed");
 });
-
+test("name wrong", async () => {
+	let user = {
+		phone: 9823368654,
+		name: "",
+		email: "sdaa@fa.com",
+		password: "sadaax"
+	};
+	let res = await page.post(curHost, user);
+	
+	expect(res.message).toEqual("signup failed");
+});
+test("email wrong", async () => {
+	let user = {
+		phone: 9823368654,
+		name: "urvashi",
+		email: "sdaa@facom",
+		password: "sadaax"
+	};
+	let res = await page.post(curHost, user);
+	
+	expect(res.message).toEqual("signup failed");
+});
+test("email wrong", async () => {
+	let user = {
+		phone: 9823368654,
+		name: "urvashi",
+		email: "sdaafa.com",
+		password: "sadaax"
+	};
+	let res = await page.post(curHost, user);
+	
+	expect(res.message).toEqual("signup failed");
+});
+test("password wrong", async () => {
+	let user = {
+		phone: 9823368654,
+		name: "urvashi",
+		email: "sdaa@fa.com",
+		password: "sad"
+	};
+	let res = await page.post(curHost, user);
+	
+	expect(res.message).toEqual("signup failed");
+});
+test.only("signup successful", async () => {
+	let ves= shortid.generate()
+	let sum= ves+"140@gmail.com";
+	console.log(sum);
+	let user = {
+		phone: 9823368654,
+		name: "urvashi",
+		email: sum,
+		password: "sadaax"
+	};
+	let res = await page.post(curHost, user);
+	console.log(res);
+	expect(res.message).toEqual("success");
+});
 //TO-DO add signup tests
 /*
 	query http://localhost:5000/api/signup
