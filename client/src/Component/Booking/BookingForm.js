@@ -55,20 +55,20 @@ class BookingForm extends Component {
 		let PhoneCheck = performPhoneCheck(Number(this.state.phoneValue));
 		let StringCheck = performStringCheck(this.state.nameValue);
 		let EmailCheck = performEmailCheck(this.state.emailValue);
-
-		if (!PhoneCheck.sucess) {
+		console.log(PhoneCheck, StringCheck, EmailCheck);
+		if (!PhoneCheck.success) {
 			console.log("error", PhoneCheck.message);
 			this.setState({
 				bookingErrorVisible: true,
 				bookingErrorMessage: PhoneCheck.message
 			});
-		} else if (!StringCheck.sucess) {
+		} else if (!StringCheck.success) {
 			console.log("error", StringCheck.message);
 			this.setState({
 				bookingErrorVisible: true,
 				bookingErrorMessage: StringCheck.message
 			});
-		} else if (!EmailCheck.sucess) {
+		} else if (!EmailCheck.success) {
 			console.log("error", EmailCheck.message);
 			this.setState({
 				bookingErrorVisible: true,
@@ -219,7 +219,7 @@ class BookingForm extends Component {
 					<br />
 					<input type="submit" value="Submit" onClick={this.handleBooking} />
 				</form>
-				<p id = "error">
+				<p id="error">
 					{this.state.bookingErrorVisible && this.state.bookingErrorMessage}
 				</p>
 			</div>
@@ -232,10 +232,12 @@ function mapStateToProps({ bookings, auth }) {
 }
 
 function performEmailCheck(val) {
+	console.log(val);
 	if (typeof val !== "string" || val === null || typeof val === "undefined")
 		return { success: false, message: "Phone number poorly formatted" };
 	var re = /^(([^<>()\\.,;:\s@"]+(\.[^<>()\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 	let temp = re.test(String(val).toLowerCase());
+	console.log(temp);
 	return { success: temp, message: "Email poorly formatted" };
 }
 

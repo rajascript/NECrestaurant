@@ -23,6 +23,7 @@ export const bookTable = values => {
 				payload: res.data
 			});
 		} catch (err) {
+			console.log(err);
 			dispatch({
 				type: BOOK_TABLE_FAILED,
 				payload: err.response.status

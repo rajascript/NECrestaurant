@@ -42,6 +42,8 @@
 		"puppeteer": "1.7.0",
 		"react-spinners": "^0.4.5",
 		"redis": "^2.8.0",
+		"request": "^2.88.0",
+		"sendgrid": "^5.2.3",
 		"shortid": "^2.2.13",
 		"stripe": "^6.8.0",
 		"uuid": "^3.3.2"

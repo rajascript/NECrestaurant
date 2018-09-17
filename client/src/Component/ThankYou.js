@@ -8,7 +8,7 @@ var config = {
 	storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET_KEY,
 	messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGE_KEY
 };
-
+//firebase.initializeApp(config);
 export default class ThankYou extends Component {
 	constructor(props) {
 		super(props);
@@ -18,7 +18,6 @@ export default class ThankYou extends Component {
 		};
 	}
 	componentDidMount() {
-		firebase.initializeApp(config);
 		console.log("pa", this.props);
 		let db = firebase.database();
 		let dbRef = db

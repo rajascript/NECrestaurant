@@ -71,6 +71,8 @@ class DataRow extends Component {
 			bookingId: this.props.data.bookingId,
 			date: this.props.data.date,
 			slot: this.props.data.slot,
+			name: this.props.data.name,
+			userEmail: this.props.data.email,
 			by: this.props.admin.username + this.props.admin.empId
 		};
 		this.setState({
@@ -85,6 +87,8 @@ class DataRow extends Component {
 			bookingId: this.props.data.bookingId,
 			date: this.props.data.date,
 			slot: this.props.data.slot,
+			name: this.props.data.name,
+			userEmail: this.props.data.email,
 			by: this.props.admin.username + this.props.admin.empId
 		};
 		this.setState({
@@ -99,6 +103,8 @@ class DataRow extends Component {
 			bookingId: this.props.data.bookingId,
 			date: this.props.data.date,
 			slot: this.props.data.slot,
+			name: this.props.data.name,
+			userEmail: this.props.data.email,
 			by: this.props.admin.username + this.props.admin.empId,
 			refundAmount: 100
 		};
@@ -213,6 +219,7 @@ class DataRow extends Component {
 		}
 	}
 	render() {
+		console.log(this.props);
 		return (
 			<Fragment>
 				{this.state.unread && (

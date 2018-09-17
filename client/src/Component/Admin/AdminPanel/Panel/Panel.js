@@ -34,7 +34,16 @@ class Panel extends Component {
 		if (this.state.valuesArray.length === 0) {
 			let db = firebase.database();
 			let dbRef = db.ref().child("bookings" + "/" + this.state.date);
-			dbRef.limitToLast(1).on("child_added", snapshot => {
+			let dbRef2 = db.ref().child("bookings" + "/");
+			dbRef2.on("child_changed", snapshot => {
+				console.log(snapshot.val());
+				let childData = snapshot.val();
+				console.log("child", childData);
+				let newData = childData[this.state.date];
+				console.log("newData", newData);
+				this.setState({ valuesArray: [newData] });
+			});
+			dbRef.on("child_added", snapshot => {
 				console.log(snapshot.val());
 				let ans = this.state.valuesArray;
 				ans.push(snapshot.val());
