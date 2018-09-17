@@ -14,6 +14,8 @@ afterEach(async () => {
 test("logging with google", async () => {
     await page.click("#Options")
     await page.click("#googleButton") 
-    console.log(await page.url());
+    await page.url();
+    await page.goto(page.url(), {waitUntil: 'networkidle'})
+
     
 })
