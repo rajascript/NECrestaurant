@@ -2,6 +2,7 @@ language: node_js
 node_js:
   - "9"
 dist: trusty
+warnings_are_errors: false
 addons:
   chrome: stable
 services:
@@ -20,9 +21,15 @@ install:
   - npm run build
 script:
   - nohup npm run start &
-  - sleep 10
+  - sleep 3
   - npm run test
 
 branches:
   only:
     - master
+deploy:
+  provider: heroku
+  app: indique
+  api_key:
+    secure: "WhIWS6MXPzTjHkwouO2Fe56GSqEiTz6ujmK/Hi/oD0m7F0vYi6ltRVqTPYRza3YvFzyZH0J3L8YgQTlAviXlRTtapUPRhobd9RdQ2EOIDSWf3OcWlXGTogJxd2h4pQCwuYvHI0DTTQnWHJ/atLyztfJB2w08Fsc/L08cliWif3bCtrrjKTu1bdHIiJQOjhthA5NSnTVmmOsjWS3QekSM/jlJ6oPCARu0wawD23QIyEo7Io+Q/0L8Gl9ko0JdYfCSHaj/kAdz4TU8Np/RxxJiDsVWSJwH47NQ34FIkxNpH36ixdNpYo/PCF2+s6enqJAPv90ev6mCUmV+W5qGcKdsToFuKlRSUj2SUW/fSVJ9CtAbY/xtnesK1OpzetQWabOckwBW/MMw/FYxAHU4LAn36XVKbH21nZRQ9NJ2/IXuX/29wJIQmFHg4G9ygqKp2ws3mxByQEbwt3B9bkVkGhKmsxq7705gpNCm2oqolmwO1vIE+kYvt0Dj8lIkeE+EvSUhADZCKOtKyDPkOAxYKTuTX6Y32aqwXPhTy1ooltCeFPUNBvQlr87cdqHJNgfUJkWlsHArwdis/k0nVn+e3M3B1bUm+pHThP5XTFc07VVKislbVhkhQd9BbHwvFV6cshweLGzmyxSr2q3GtgQvD08xAy6EuvWSmHoObxR3vj8Yl/E="
+  on: master

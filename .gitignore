@@ -2,3 +2,9 @@
 /client/node_modules
 /node_modules
 .history
+Project.todo
+.DS_Store
+client/html/app.css
+client/html/login2.html
+client/.env.development
+client/.env.production
