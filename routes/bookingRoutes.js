@@ -243,9 +243,18 @@ module.exports = (app, firebaseDB) => {
 	 */
 	app.post("/api/requestBooking", async (req, res) => {
 		const shortId = shortid.generate();
+
 		const bookingId = shortid.generate();
+
 		const { email, phone, slot, date, name, seats } = req.body;
+
+
+
+
+
+
 		const userId = req.body.userId || shortId;
+
 		bookingsRef = await firebaseDB.ref(
 			bookingsRefString + "/" + date + "/" + date + "/" + slot
 		);
