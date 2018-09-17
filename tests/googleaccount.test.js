@@ -14,8 +14,8 @@ afterEach(async () => {
 test("logging with google", async () => {
     await page.click("#Options")
     await page.click("#googleButton") 
-    await page.url();
-    await page.goto(page.url(), {waitUntil: 'networkidle'})
+    const x = await page.url();
+    await page.waitForNavigation(x, {waitUntil: 'networkidle'})
 
     
 })
