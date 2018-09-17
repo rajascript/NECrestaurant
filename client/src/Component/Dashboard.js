@@ -71,9 +71,9 @@ class Dashboard extends Component {
                 />
                 <div className="reviewtext">
                   <center>
-                    It's located near to teashop in sec 37. They is always rush,
-                    so u may find difficulties in getting a parking. I hv
-                    ordered paneer sandwich, French fries and ice tea.
+                    It's Located near the Startbucks on Boulevard Road. There's
+                    always rush, and parking is a headache. ut then i've been
+                    coming here for two years now, and it's always worth it.
                   </center>
                 </div>
               </div>
@@ -84,7 +84,11 @@ class Dashboard extends Component {
                   alt="Review Avatar"
                 />
                 <div className="reviewtext">
-                  <center>Awesome food.</center>
+                  <center>
+                    Had dinner with Girl friends. Menu is perfect, something for
+                    everyone. Service was awesome and Jason was very
+                    accommodating. Will be back definitely!
+                  </center>
                 </div>
               </div>
               <div className="griditem">
@@ -104,7 +108,10 @@ class Dashboard extends Component {
                   alt="Review Avatar"
                 />
                 <div className="reviewtext">
-                  <center>Must have the sandwiches and paneer.</center>
+                  <center>
+                    The food was absolutely wonderful, from preparation to
+                    presentation, very pleasing. Much love from Gremany.
+                  </center>
                 </div>
               </div>
             </div>
