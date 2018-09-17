@@ -56,6 +56,7 @@ class AdminLogin extends Component {
 				<div id="loginFormContainer" className="loginForm__container">
 					<form onSubmit={this.handleLogin}>
 						<input
+							id = "adminUsername"
 							className="loginForm__Form--userName"
 							placeholder="Enter Username"
 							type="Name"
@@ -64,6 +65,7 @@ class AdminLogin extends Component {
 						/>
 						<br />
 						<input
+							id = "adminPassword"
 							className="loginForm__Form--password"
 							placeholder="Enter password"
 							type="password"
@@ -71,7 +73,10 @@ class AdminLogin extends Component {
 							onChange={this.handlePasswordChange}
 						/>
 						<br />
-						<input type="submit" value="Submit" />
+						<input 
+							id="submitA"
+							type="submit"
+							value="Submit" />
 					</form>
 				</div>
 			);

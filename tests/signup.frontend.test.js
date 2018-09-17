@@ -12,10 +12,12 @@ afterEach(async () => {
 });
 
 test("successful Signup", async () => {
+	var dice = Math.floor(Math.random()*200)+1;
+	var mail = dice + "abc@yahoo.com"
 	await page.click("#headerButtonSignup");
 	await page.waitForSelector("#signupFormContainer");
 	await page.click("input[id=signupFormEmail]");
-	await page.type("input[id=signupFormEmail]", "abc@yahoo.com");
+	await page.type("input[id=signupFormEmail]", dice);
 	await page.click("input[id=signupFormPassword]");
 	await page.type("input[id=signupFormPassword]", "123qwerty");
 	await page.click("input[id=signupFormConfirmPassword]");
@@ -25,8 +27,7 @@ test("successful Signup", async () => {
 	await page.click("input[id=signupFormPhone]");
 	await page.type("input[id=signupFormPhone]", "8482592952");
 	await page.click("#submitS");
-	await page.waitForNavigation()
-	//const success = await page.click("#headerButtonLogin")
+	console.log(await page.url());
 });
 
 test("signup fails because email is poorly formatted", async () => {
