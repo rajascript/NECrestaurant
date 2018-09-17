@@ -219,7 +219,7 @@ class BookingForm extends Component {
 					<br />
 					<input type="submit" value="Submit" onClick={this.handleBooking} />
 				</form>
-				<p>
+				<p id = "error">
 					{this.state.bookingErrorVisible && this.state.bookingErrorMessage}
 				</p>
 			</div>

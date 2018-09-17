@@ -319,4 +319,117 @@ color: #000000;
 
 /*=====================================================LOGIN PAGE===========================================================*/
 
+.loginwrapper{
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height:100%;
+  background: #1e1e1e;
+}
 
+
+.maincard{
+  display: flex;
+  width: 30%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  height:80%;
+  border-radius: 20px;
+  background: #F3F9F9;
+  padding: 20px;
+}
+
+.sH1{
+  display: flex;
+  font-family: Abril Fatface;
+  font-size: 4em;
+  align-self: center;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  text-align: center;
+  color: #000;
+}
+
+.sdetails{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.sEmail{
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  outline: none;
+  background: none;
+  font-size: 1em;
+  
+  width: 250px;
+  padding: 10px;
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+  box-sizing: border-box;         /* Opera/IE 8+ */
+  
+  border-bottom: solid 1px lavender;
+  color: darkgray;
+  
+
+}
+
+.sPass{
+  
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  outline: none;
+  background: none;
+  font-size:1em;
+  letter-spacing: 0.4em;
+  
+  width: 250px;
+  padding: 10px;
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+  box-sizing: border-box;         /* Opera/IE 8+ */
+  
+  border-bottom: solid 1px lavender;
+
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    opacity: 1; /* Firefox */
+    font-size: 0.6em;
+    letter-spacing: 0.2em;
+    font-family: Raleway;
+
+ 
+}
+
+.or{
+  font-family: Raleway;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 0.7rem;
+  text-align: center;
+  text-decoration:none;
+  letter-spacing: 0em;
+  color: darkgray;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  
+}
+
+.belowlogin{
+  font-family: Raleway;
+  color: #000;
+  font-size: 0.7em;
+}
+
+.belowlogin:hover{
+  color: #000;
+}
