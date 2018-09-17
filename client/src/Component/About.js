@@ -73,12 +73,12 @@ export default class About extends Component {
         <div class="aboutchefrow">
           <img alt="imgchef1" class="aboutchefleft" src="assets/chef3.png" />
           <div class="aboutcheftext">
-            <span class="aboutchefname">Gopal</span>
+            <span class="aboutchefname">Ram Singh Gopal</span>
             <span class="aboutchefquote">
               He is a Commis Chef, which is a junior member of staff that works
               under a chef de partie in order to learn the ins and outs of a
               specific station. His work duties are Kitchen Porter and dish
-              washer His speciality is in Chinese food.
+              washer. His speciality is in Italian food.
             </span>
           </div>
           <div class="aboutchefright" />
