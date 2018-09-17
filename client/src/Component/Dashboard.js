@@ -151,7 +151,7 @@ class Dashboard extends Component {
               </a>
 
               <p className="navbarlink" href=" ">
-                This was a project made for NEC Technologies by Group 7
+                This is a working project made for NEC Technologies by Group 4{" "}
               </p>
 
               <a className="navbarlink" href="">

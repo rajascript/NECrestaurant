@@ -108,7 +108,7 @@ export default class About extends Component {
               </a>
 
               <a class="navbarlink" href=" ">
-                This was a project made for NEC Technologies by Group 7
+                This is a working project made for NEC Technologies by Group 4{" "}
               </a>
 
               <a class="navbarlink" href="">
