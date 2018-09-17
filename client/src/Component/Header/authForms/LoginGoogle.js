@@ -1,7 +1,17 @@
-import React from "react";
-const LoginGoogle = () => {
-	return (
-		<button className="loginBtn loginBtn--google">Login with Google</button>
-	);
-};
-export default LoginGoogle;
+import React, { Component } from "react";
+
+export default class LoginGoogle extends Component {
+	render() {
+		return (
+			<a href="/api/auth/google">
+				<button
+					id = "googleButton"
+					onClick={this.props.loginGoogle}
+					className="loginBtn loginBtn--google loginGoogleBtn"
+				>
+					Login with Google
+				</button>
+			</a>
+		);
+	}
+}

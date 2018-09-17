@@ -34,10 +34,9 @@ passport.use(
 			const existingUser = await User.findOne({
 				email: profile.emails[0].value
 			});
-			console.log("existing", existingUser);
+
 			if (existingUser) {
 				if (existingUser.googleId === null) {
-					console.log("i am existing but don't have account", existingUser);
 					//he already has an account just update google info
 					const user = existingUser;
 					user.googleId = profile.id;
@@ -67,25 +66,20 @@ passport.use(
 			passReqToCallback: true
 		},
 		async (req, email, password, done) => {
+			console.log("daca");
 			if (!performPhoneCheck(Number(req.body.phone))) {
-				return done(JSON.stringify({ responseError: "error in phone" }), false);
+				return done(null, false, { message: "Phone error" });
 			}
 			if (!performStringCheck(req.body.name))
-				return done(JSON.stringify({ responseError: "error in Name" }), false);
+				return done(null, false, { message: "Name error" });
 			if (!performEmailCheck(req.body.email))
-				return done(JSON.stringify({ responseError: "error in email" }), false);
+				return done(null, false, { message: "Email error" });
 			if (!performPasswordCheck(req.body.password))
-				return done(
-					JSON.stringify({ responseError: "error in password" }),
-					false
-				);
+				return done(null, false, { message: "Password error" });
 			try {
 				const existingUser = await User.findOne({ email: email });
 				if (existingUser) {
-					return done(
-						JSON.stringify({ responseError: "already exists" }),
-						false
-					);
+					return done(null, false, { message: "User already exists" });
 				}
 				bcrypt.hash(password, saltRounds, async function(err, hash) {
 					if (err) return done(err, null);
@@ -117,7 +111,10 @@ passport.use(
 				if (!performEmailCheck(email)) return done(null, false);
 				if (!performPasswordCheck(password)) return done(null, false);
 				const existingUser = await User.findOne({ email: email });
+
 				if (existingUser) {
+					if (typeof existingUser.password === "undefined")
+						return done(null, false);
 					bcrypt.compare(password, existingUser.password, function(err, res) {
 						if (err) return done(err, false);
 						if (!res) return done(null, false);
@@ -142,8 +139,11 @@ passport.use(
 		async (req, username, password, done) => {
 			try {
 				if (!performStringCheck(username)) return done(null, false);
+				console.log(username);
 				if (!performPasswordCheck(password)) return done(null, false);
+				console.log(password);
 				const existingAdmin = await Admin.findOne({ username });
+				console.log(existingAdmin);
 				if (existingAdmin) {
 					bcrypt.compare(password, existingAdmin.password, function(err, res) {
 						if (err) return done(err, false);
@@ -187,11 +187,9 @@ function performStringCheck(val) {
 }
 function performPhoneCheck(val) {
 	if (typeof val !== "number" || val === null || typeof val === "undefined") {
-		console.log("nax", typeof val);
 		return false;
 	}
 	if (val.toString().split("").length !== 10) {
-		console.log(val.toString().split("").length);
 		return false;
 	}
 	return true;

@@ -4,3 +4,7 @@
 .history
 Project.todo
 .DS_Store
+client/html/app.css
+client/html/login2.html
+client/.env.development
+client/.env.production

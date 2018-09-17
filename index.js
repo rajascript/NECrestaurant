@@ -18,12 +18,29 @@ firebase.initializeApp(config);
 const firebaseDB = firebase.database();
 
 //firebase config
-
+//app.use(cors);
+app.use((req, res, next) => {
+	res.setHeader("Access-Control-Allow-Origin", req.headers.origin || "*");
+	res.setHeader(
+		"Access-Control-Allow-Methods",
+		"GET, POST, OPTIONS, PUT, PATCH, DELETE"
+	);
+	res.setHeader(
+		"Access-Control-Allow-Headers",
+		"Authorization, Origin, Content-Type, Accept"
+	);
+	res.setHeader("Access-Control-Allow-Credentials", "true");
+	next();
+});
 //mongoose setup
-mongoose.connect(
-	keys.mongooseURI,
-	{ useNewUrlParser: true }
-);
+try {
+	mongoose.connect(
+		keys.mongooseURI,
+		{ useNewUrlParser: true }
+	);
+} catch (err) {
+	console.log("mongoose connection error.", err);
+}
 require("./model/User");
 require("./model/Admin");
 app.use(bodyParser.json());
@@ -44,6 +61,7 @@ require("./routes/adminRoutes")(app);
 require("./routes/authRoutes")(app);
 require("./routes/billingRoutes")(app);
 require("./routes/bookingRoutes")(app, firebaseDB);
+app.disable("etag");
 
 app.use(express.static("client/build"));
 

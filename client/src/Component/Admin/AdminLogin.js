@@ -2,14 +2,13 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { adminLogin, fetchAdmin } from "../../Action/index";
 import { Redirect } from "react-router-dom";
-
+import ButtonLoader from "../utils/ButtonLoader";
 class AdminLogin extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			userNameValue: "",
-			passwordValue: "",
-			admin: false
+			passwordValue: ""
 		};
 		this.handleUserNameChange = this.handleUserNameChange.bind(this);
 		this.handlePasswordChange = this.handlePasswordChange.bind(this);
@@ -49,12 +48,15 @@ class AdminLogin extends Component {
 			this.setState({ admin: props.admin });
 	}
 	render() {
-		if (this.state.admin) return <Redirect push to="/admin" />;
+		if (this.props.admin) return <Redirect push to="/admin" />;
+		else if (typeof this.props.admin === "undefined")
+			return <ButtonLoader size={60} />;
 		else
 			return (
-				<div id="loginForm__container" className="loginForm__container">
+				<div id="loginFormContainer" className="loginForm__container">
 					<form onSubmit={this.handleLogin}>
 						<input
+							id = "adminUsername"
 							className="loginForm__Form--userName"
 							placeholder="Enter Username"
 							type="Name"
@@ -63,6 +65,7 @@ class AdminLogin extends Component {
 						/>
 						<br />
 						<input
+							id = "adminPassword"
 							className="loginForm__Form--password"
 							placeholder="Enter password"
 							type="password"
@@ -70,7 +73,10 @@ class AdminLogin extends Component {
 							onChange={this.handlePasswordChange}
 						/>
 						<br />
-						<input type="submit" value="Submit" />
+						<input 
+							id="submitA"
+							type="submit"
+							value="Submit" />
 					</form>
 				</div>
 			);

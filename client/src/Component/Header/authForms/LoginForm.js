@@ -20,15 +20,22 @@ class LoginForm extends Component {
 			password: this.state.passwordValue
 		};
 
-		if (
-			performPasswordCheck(this.state.passwordValue) &&
-			performEmailCheck(this.state.emailValue)
-		) {
-			console.log("You Entered the correct type of values");
-			this.props.login(user);
+		let PasswordCheck = performPasswordCheck(this.state.passwordValue);
+		let EmailCheck = performEmailCheck(this.state.emailValue);
+
+		if (!EmailCheck.success) {
+			console.log("error", EmailCheck.message);
+			this.props.displayLoginError(EmailCheck.message);
+		} else if (!PasswordCheck.success) {
+			console.log("error", PasswordCheck.message);
+			this.props.displayLoginError(PasswordCheck.message);
 		} else {
-			console.log("You did not enter the correct type of values");
+			console.log("Data types ok");
+			this.props.removeLoginWindowError();
+			console.log(user);
+			this.props.login(user);
 		}
+
 		e.preventDefault();
 	}
 
@@ -43,27 +50,44 @@ class LoginForm extends Component {
 	}
 	render() {
 		return (
-			<div id="loginForm__container" className="loginForm__container">
-				<form onSubmit={this.handleLogin}>
-					<input
-						className="loginForm__Form--email"
-						placeholder="enter email"
-						type="email"
-						value={this.state.emailValue}
-						onChange={this.handleEmailChange}
-					/>
-					<br />
-					<input
-						className="loginForm__Form--password"
-						placeholder="enter password"
-						type="password"
-						value={this.state.passwordValue}
-						onChange={this.handlePasswordChange}
-					/>
-					<br />
-					<input type="submit" value="Submit" />
-				</form>
-				<LoginGoogle />
+			<div class="sign">
+				<div class="sH1">Indique</div>
+				<div class="sdetails">
+					<form onSubmit={this.handleLogin}>
+						<input
+							id="loginFormEmail"
+							class="sEmail"
+							type="name"
+							name="email"
+							placeholder="email"
+							value={this.state.emailValue}
+							onChange={this.handleEmailChange}
+						/>
+						<br />
+						<input
+							id="loginFormPassword"
+							class="sPass"
+							type="password"
+							name="pass"
+							placeholder="Password"
+							value={this.state.passwordValue}
+							onChange={this.handlePasswordChange}
+						/>
+						<br />
+						<button
+							onClick={this.handleLogin}
+							id="submitL"
+							class="blogin"
+							type="button"
+						>
+							Login
+						</button>
+					</form>
+					<div class="orlineL" />
+					<div class="or">OR</div>
+					<div class="orlineR" />
+					<LoginGoogle />
+				</div>
 			</div>
 		);
 	}
@@ -76,16 +100,24 @@ function mapStateToProps({ auth }) {
 
 function performPasswordCheck(val) {
 	if (typeof val !== "string" || val === null || typeof val === "undefined")
-		return false;
-	if (val.split("").length < 5) return false;
-	return true;
+		return { success: false, message: "password poorly formatted" };
+	else if (val.split("").length < 0)
+		return { success: false, message: "password field cannot be left Empty" };
+	else if (val.split("").length < 5)
+		return { success: false, message: "password is too short" };
+	else return { success: true };
 }
-
 function performEmailCheck(val) {
 	if (typeof val !== "string" || val === null || typeof val === "undefined")
-		return false;
-	var re = /^(([^<>()\\.,;:\s@"]+(\.[^<>()\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-	return re.test(String(val).toLowerCase());
+		return { success: false };
+	let re = /^(([^<>()\\.,;:\s@"]+(\.[^<>()\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+	let k = re.test(String(val).toLowerCase());
+	if (k === true) return { success: true };
+	else
+		return {
+			success: false,
+			message: "the email is poorly formated"
+		};
 }
 
 export default connect(

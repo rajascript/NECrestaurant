@@ -1,0 +1,714 @@
+@import url("https://fonts.googleapis.com/css?family=Abril Fatface");
+@import url("https://fonts.googleapis.com/css?family=Great+Vibes");
+@import url("https://fonts.googleapis.com/css?family=Scada");
+@import url("https://fonts.googleapis.com/css?family=Raleway");
+@import url("https://fonts.googleapis.com/css?family=Playfair Display");
+@import url("https://fonts.googleapis.com/css?family=Francois One");
+
+
+h1{
+  font-family: "Abril Fatface";
+  font-size: 4em;
+}
+h2{
+  font-family: Great Vibes;
+  font-size: 2em;
+}
+
+/*==============================================navbar==============================================*/
+html,body
+{
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    overflow-x: hidden;
+}
+
+.pagewrapper{
+  width: 100%;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.navbarwrapper{
+  width: 100%;
+  background-color: black;
+  justify-content: space-around;
+  flex-direction: column;
+}
+
+.tophalfcontentwrapper{
+  display: flex;
+  justify-content: space-around;
+}
+
+
+.topleftcontentwrapper{
+  justify-content: flex-start;
+  align-self: center;
+  height: 50px;
+  width: 150px;
+}
+
+.logowrapper{
+  display: flex;
+  font-family: Abril Fatface;
+  font-size: 4em;
+  align-self: center;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  text-align: center;
+  color: #FFFFFF;
+}
+
+.toprightcontentwrapper{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  align-self: center;
+  height: 35px;
+  width: 150px;
+}
+
+.useravatar {
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+}
+
+
+.bottomhalfcontentwrapper{
+  display: flex;
+  justify-content: center;
+}
+
+.navbarlinkwrapper{
+  display: flex;
+  width: 50%;
+  justify-content: space-between;
+}
+
+.navbarlink{
+  font-family: Scada;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 0.7rem;
+  text-align: center;
+  text-decoration:none;
+  letter-spacing: 0.2em;
+  color: lightgray;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.navbarlink:hover{
+  color: lightblue;
+}
+
+/*==============================================HOMEPAGE==============================================*/
+
+.featuredboxwrapper{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  background-color:#F3F9F9;
+  width: 100%;
+}
+
+.leftwrapper{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 50%;
+  height: 500px;
+}
+
+.featuredheadingwrapper{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  height: 80px;
+    
+  font-family: Great Vibes;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  font-size: 3em;
+  text-align: center;
+  margin-left: 50%;
+  margin-top: 50px;
+  color: #000000;
+}
+
+.featureddetailswrapper{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
+  height: 300px;
+  margin-left: 80%;
+}
+
+.itemheading{
+  display: flex;
+  align-items: center;
+  flex-flow: wrap horizontal;
+  justify-content: flex-start;
+  width: 50%;
+  height: 120px;
+  
+  font-family: Raleway;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  font-size: 2em;
+  
+  color: #000000;
+  
+}
+
+.details{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 40%;
+  height: 200px;
+  
+  margin-left: 10%;
+  
+  font-family: Raleway;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 25px;
+  font-size: 18px;
+  letter-spacing: 0.05em;
+  
+  color: #000000;
+
+  
+}
+
+.featuredpricewrapper{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+  height: 60px;
+  
+  font-family: Raleway;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  font-size: 36px;
+
+color: #000000;
+  
+  margin-right: 10%;
+}
+
+
+.rightwrapper{
+  display: flex;
+  height: 500px;
+  width: 50%;
+}
+
+
+.testimonialswrapper{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  background-color: #EAE8E8;
+  width: 100%;
+  height: 800px;
+}
+
+.testimonialsheadingwrapper{
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+  height: 80px;
+    
+  font-family: Great Vibes;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  font-size: 3em;
+  text-align: center;
+  margin-left: 13%;
+  margin-top: 50px;
+  color: #000000;
+}
+
+.gridwrapwrapper{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.gridwrapper{
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  
+  width: 70%;
+}
+
+.griditem{
+display: flex;
+flex-direction: column;
+align-items: center;
+
+margin: 5px;
+width: 300px;
+background: #fff;
+border-radius: 15px;
+padding: 15px;
+box
+}
+
+.reviewavatar{
+    border-radius: 50%;
+    height: 150px;
+    width: 150px;
+    border: solid #fff;
+}
+ /* Placeholder text about how this was the best place i have ever eaten at and how the chef is super goodlooking. */
+.reviewtext{
+display: flex;
+flex-flow: row wrap;
+
+max-width: 250px;
+font-family: Raleway;
+font-style: normal;
+font-weight: normal;
+line-height: 25px;
+font-size: 1.2em;
+color: #000000;
+ 
+}
+
+.finalwrapper{
+  display: flex;
+  flex-direction: row;
+}
+
+.bottomleftwrapper{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 50%;
+  height: 680px;
+  padding: 5%;
+  
+}
+
+
+.bottomrightwrapper{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  height: 500px;
+  width: 50%;
+  padding: 5%;
+}
+
+
+/*=====================================================LOGIN PAGE===========================================================*/
+
+.loginwrapper{
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height:100%;
+  background: #1e1e1e;
+  
+}
+
+
+.maincard{
+  display: flex;
+  width: 30%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  height:80%;
+  border-radius: 20px;
+  background: #F3F9F9;
+  padding: 20px;
+}
+
+.sH1{
+  display: flex;
+  font-family: Abril Fatface;
+  font-size: 4em;
+  align-self: center;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  text-align: center;
+  color: #000;
+}
+
+.sdetails{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.sEmail{
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  outline: none;
+  background: none;
+  font-size: 1em;
+  
+  width: 250px;
+  padding: 10px;
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+  box-sizing: border-box;         /* Opera/IE 8+ */
+  
+  border-bottom: solid 1px lavender;
+  color: darkgray;
+  
+
+}
+
+.sPass{
+  
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  outline: none;
+  background: none;
+  font-size:1em;
+  letter-spacing: 0.4em;
+  
+  width: 250px;
+  padding: 10px;
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+  box-sizing: border-box;         /* Opera/IE 8+ */
+  
+  border-bottom: solid 1px lavender;
+
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    opacity: 1; /* Firefox */
+    font-size: 0.6em;
+    letter-spacing: 0.2em;
+    font-family: Raleway;
+
+ 
+}
+
+.or{
+  font-family: Raleway;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 0.7rem;
+  text-align: center;
+  text-decoration:none;
+  letter-spacing: 0em;
+  color: darkgray;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  
+}
+
+.belowlogin{
+  font-family: Raleway;
+  color: #000;
+  font-size: 0.7em;
+}
+
+.belowlogin:hover{
+  color: #000;
+}
+
+/*=====================================================SIGN UP PAGE===========================================================*/
+
+
+.biggermaincard{
+  
+  display: flex;
+  width: 30%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  height:90%;
+  border-radius: 20px;
+  background: #F3F9F9;
+  padding: 20px;
+}
+
+input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0;
+}
+
+/*==================================================BOOKING LOGGED OUT PAGE=========================================================*/
+
+
+.bookingbannerheadingwrapper{
+  display: flex;
+  align-items: flex;
+  justify-content: flex-start;
+  width: 100%;
+  height: 500px;
+    
+  font-family: Playfair Display;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  font-size: 5em;
+  margin-left: 20%;
+  margin-top: 120px;
+
+  color: #EC5570;
+}
+
+.bookingleftwrapper{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 50%;
+  height: 500px;
+  background-color: #000;
+}
+
+
+.bookingheadingwrapper{
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: 80px;
+    
+  font-family: Raleway;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  font-size: 2.5em;
+  text-align: center;
+  margin-left:35%;
+  color: #000000;
+  padding: 50px;
+}
+
+.bookinggridwrapper{
+  
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  width: 100%;
+  padding: 20px;
+  
+}
+
+.griditemsall{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15%;
+    height: 150px;
+    width: 150px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border: solid #fff;
+    opacity:0.95;
+    font-family: Roboto;
+    font-size: 80px;
+    text-align: center;
+    
+}
+
+.griditemsall:hover{
+  opacity:1;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.griditemsmall{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15%;
+    height:30px;
+    width: 150px;
+    font-family: Roboto;
+    font-size: 1em;
+    text-align: center;
+    
+}
+
+.signinprompt{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Playfair Display;
+  font-style: normal;
+  font-weight: bold;
+  line-height: normal;
+  font-size: 1.2em;
+  text-align: center;
+  color: #000;
+  text-align: center;
+  padding: 10px;
+  background: #FEADBE;
+  letter-spacing: 0.05;
+}
+
+.signinprompt:hover{
+  color:#000;
+}
+
+/*==================================================ABOUT PAGE =========================================================*/
+
+
+.aboutbannerwrapper{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.48), rgba(0, 0, 0, 0.48)), url(assets/aboutbannerimage.png);
+  mix-blend-mode: normal;
+  width: 100%; height: 618px;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+
+.aboutbannerheading{
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+  height: 80px;
+    
+  font-family: Great Vibes;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  font-size: 3em;
+  text-align: center;
+  margin-left: 13%;
+  margin-top: 50px;
+  color: #E9D526;
+}
+
+.aboutbannerquote{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  letter-spacing: -0.03em;
+  font-family: Playfair Display;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  font-size: 2.7em;
+  margin-top: 100px;
+  color: #F3F9F9;
+}
+
+.aboutchefwrapper{
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: flex-start;
+
+  
+}
+
+.aboutchefrow{
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  width:100%;
+  justify-content: center;
+
+  
+}
+
+.aboutchefleft{
+  width: 250px;
+  height: 250px;
+  border-radius: 10px;
+  border-style: hidden;
+}
+
+.aboutcheftext{
+  padding:10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 40%;
+}
+
+.aboutchefname{
+  padding: 10px;
+  font-family: Raleway;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  font-size: 1.4em;
+  text-align: center;
+  color: #000000;
+}
+
+.aboutchefquote{
+  padding:10px;
+  font-family: Raleway;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  font-size: 1.2em;
+  text-align: center;
+  
+  color: #696969;
+}
+
+.aboutchefright{
+  width:250px;
+  height:250px;
+  border-radius: 10px;
+  border-style: hidden;
+}
+
+/*==================================================DELIVERY PAGE=========================================================*/
+
+.bookingbannerheadingwrapper{
+  display: flex;
+  align-items: flex;
+  justify-content: flex-start;
+  width: 100%;
+  height: 500px;
+    
+  font-family: Francois One;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  font-size: 5em;
+  margin-left: 20%;
+  margin-top: 10px;
+
+  color: yellow;
+}
