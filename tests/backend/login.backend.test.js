@@ -18,7 +18,7 @@ test("email wrong", async () => {
 		password: "sadaax"
 	};
 	let res = await page.post(curHost, user);
-	
+
 	expect(res.message).toEqual("login failed");
 });
 test("password wrong", async () => {
@@ -27,17 +27,15 @@ test("password wrong", async () => {
 		password: "sada"
 	};
 	let res = await page.post(curHost, user);
-	
+
 	expect(res.message).toEqual("login failed");
 });
-test("login successful", async () => {
+test.only("login successful", async () => {
 	let user = {
 		email: "uabc@gmail.com",
 		password: "12345678"
 	};
 	let res = await page.post(curHost, user);
 	console.log(res);
-    expect(res.email).toEqual("uabc@gmail.com");
-    
+	expect(res.email).toEqual("uabc@gmail.com");
 });
-
