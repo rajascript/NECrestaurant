@@ -118,7 +118,7 @@ class Dashboard extends Component {
 							title="maps"
 							height="680px"
 							frameborder="0"
-							allowfullscreen
+							allowFullScreen
 						/>
 					</div>
 					<div className="bottomrightwrapper">
@@ -127,7 +127,7 @@ class Dashboard extends Component {
 							src="//lightwidget.com/widgets/6dc4c7539a805e3099b47d49508d7674.html"
 							scrolling="no"
 							title="insta"
-							allowtransparency="true"
+							allowTransparency
 							class="lightwidget-widget"
 							width="100%"
 						/>

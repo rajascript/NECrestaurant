@@ -27,18 +27,20 @@ class Panel extends Component {
 		this.clickPrev = this.clickPrev.bind(this);
 	}
 	componentDidMount() {
-		console.log("pa", this.props);
 		if (this.state.date === "")
 			this.setState({ date: this.state.moment.format("DD-MM-YY") });
-		this.props.fetchBookings({ date: this.state.moment.format("DD-MM-YY") });
 	}
 	componentDidUpdate() {
-		console.log(this.state.date);
-		let db = firebase.database();
-		let dbRef = db.ref().child("bookings" + "/" + this.state.date);
-		dbRef.limitToLast(1).on("child_added", snapshot => {
-			console.log(snapshot.val());
-		});
+		if (this.state.valuesArray.length === 0) {
+			let db = firebase.database();
+			let dbRef = db.ref().child("bookings" + "/" + this.state.date);
+			dbRef.limitToLast(1).on("child_added", snapshot => {
+				console.log(snapshot.val());
+				let ans = this.state.valuesArray;
+				ans.push(snapshot.val());
+				this.setState({ valuesArray: ans });
+			});
+		}
 	}
 	clickNext() {
 		let currDay = this.state.moment;
