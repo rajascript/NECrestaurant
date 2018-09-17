@@ -92,7 +92,7 @@ class SignupForm extends Component {
 		return (
 			<div class="signSignup">
 				<div class="sH1">Indique</div>
-				<div class="sdetails">
+				<div id="signupFormContainer" class="sdetails">
 					<form onSubmit={this.handleSignup}>
 						<input
 							id="signupFormEmail"

@@ -66,15 +66,16 @@ passport.use(
 			passReqToCallback: true
 		},
 		async (req, email, password, done) => {
+			console.log("daca");
 			if (!performPhoneCheck(Number(req.body.phone))) {
-				return done(true, false, { message: "Phone error" });
+				return done(null, false, { message: "Phone error" });
 			}
 			if (!performStringCheck(req.body.name))
-				return done(true, false, { message: "Name error" });
+				return done(null, false, { message: "Name error" });
 			if (!performEmailCheck(req.body.email))
-				return done(true, false, { message: "Email error" });
+				return done(null, false, { message: "Email error" });
 			if (!performPasswordCheck(req.body.password))
-				return done(true, false, { message: "Password error" });
+				return done(null, false, { message: "Password error" });
 			try {
 				const existingUser = await User.findOne({ email: email });
 				if (existingUser) {
