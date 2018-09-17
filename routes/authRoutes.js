@@ -12,9 +12,28 @@ module.exports = app => {
 		};
 		res.send(currUser);
 	});
+	app.get("/failurejson", function(req, res) {
+		res.json({ message: "signup failed" });
+	});
+	// app.post("/api/signup", function(req, res, next) {
+	// 	passport.authenticate("local-signup", async function(err, user, info) {
+	// 		if (err) {
+	// 			console.log(err);
+	// 			next(err);
+	// 		}
+	// 		savedUser = await User.findOne({ email: req.user.email });
+	// 		savedUser.name = req.body.name;
+	// 		savedUser.phone = req.body.phone;
+	// 		savedUser.save();
+	// 		res.status(200).send("success");
+	// 	})(req, res, next);
+	// });
 	app.post(
 		"/api/signup",
-		passport.authenticate("local-signup", { session: false }),
+		passport.authenticate("local-signup", {
+			session: false,
+			failureRedirect: "/failurejson"
+		}),
 		async (req, res) => {
 			savedUser = await User.findOne({ email: req.user.email });
 			savedUser.name = req.body.name;

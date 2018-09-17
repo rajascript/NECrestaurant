@@ -1,20 +1,26 @@
 const Page = require("../helpers/page");
 const { testHost } = require("../../config/keys");
-let currPath = testHost+"/api/signup";
-console.log(currPath)
+const axios = require("axios");
+let curHost = testHost + "/api/signup";
+console.log(curHost);
 beforeEach(async () => {
 	page = await Page.build();
-	//await page.goto(testHost+"/api/signup");
+	//	await page.goto(testHost);
 });
 
 afterEach(async () => {
 	await page.close();
 });
 
-test("signup fails when phone number is wrong", async () => {
-	let values = {phone:9873,email:"rrrsadka@gmail.com",password:"21312321",name:"raja"}
-	let res = await page.post(currPath,values)
-	console.log(res)
+test("phone wrong", async () => {
+	let user = {
+		phone: 9823,
+		name: "raja",
+		email: "sdaa@fa.com",
+		password: "sadaax"
+	};
+	let res = await page.post(curHost, user);
+	console.log(res);
 	//expect(res).toEqual(42);
 });
 
