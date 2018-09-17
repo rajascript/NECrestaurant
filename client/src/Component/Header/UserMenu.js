@@ -7,19 +7,19 @@ export default class UserMenu extends Component {
 
 	render() {
 		return (
-			<ul>
-				<li>{this.props.user.name}</li>
-				<li>Credits: {this.props.user.credits}</li>
-				<li>
+			<div className="usermenu__container">
+				<div className="usermenu--item">
 					<button
 						onClick={this.props.logout}
 						id="userMenuButtonLoader"
-						className="userMenu__button--loader"
+						className="btn btn-primary userMenu__button--loader"
 					>
 						Logout
 					</button>
-				</li>
-			</ul>
+				</div>
+				<div className="usermenu--item">{this.props.user.name}</div>
+				<div className="usermenu--item">Credits: {this.props.user.credits}</div>
+			</div>
 		);
 	}
 }

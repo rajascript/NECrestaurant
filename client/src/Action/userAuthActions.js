@@ -29,6 +29,7 @@ export const signup = values => {
 	return async dispatch => {
 		try {
 			const res = await axios.post("/api/signup", values);
+			console.log("rqax", res);
 			dispatch({
 				type: USER_SIGNUP,
 				payload: res.data

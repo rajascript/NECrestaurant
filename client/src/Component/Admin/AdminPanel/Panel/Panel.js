@@ -5,6 +5,16 @@ import { IconContext } from "react-icons";
 import { FiChevronRight, FiChevronLeft } from "react-icons/fi";
 import { connect } from "react-redux";
 import { fetchBookings } from "../../../../Action/index";
+import * as firebase from "firebase";
+var config = {
+	apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+	authDomain: process.env.REACT_APP_FIREBASE_AUTH_KEY,
+	databaseURL: process.env.REACT_APP_FIREBASE_DATABASE_KEY,
+	projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID_KEY,
+	storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET_KEY,
+	messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGE_KEY
+};
+firebase.initializeApp(config);
 class Panel extends Component {
 	constructor(props) {
 		super(props);
@@ -17,10 +27,18 @@ class Panel extends Component {
 		this.clickPrev = this.clickPrev.bind(this);
 	}
 	componentDidMount() {
-		console.log("ca");
+		console.log("pa", this.props);
 		if (this.state.date === "")
 			this.setState({ date: this.state.moment.format("DD-MM-YY") });
 		this.props.fetchBookings({ date: this.state.moment.format("DD-MM-YY") });
+	}
+	componentDidUpdate() {
+		console.log(this.state.date);
+		let db = firebase.database();
+		let dbRef = db.ref().child("bookings" + "/" + this.state.date);
+		dbRef.limitToLast(1).on("child_added", snapshot => {
+			console.log(snapshot.val());
+		});
 	}
 	clickNext() {
 		let currDay = this.state.moment;

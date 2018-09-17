@@ -110,13 +110,16 @@ passport.use(
 				if (!performEmailCheck(email)) return done(null, false);
 				if (!performPasswordCheck(password)) return done(null, false);
 				const existingUser = await User.findOne({ email: email });
+
 				if (existingUser) {
+					if (typeof existingUser.password === "undefined")
+						return done(null, false);
 					bcrypt.compare(password, existingUser.password, function(err, res) {
 						if (err) return done(err, false);
 						if (!res) return done(null, false);
 						return done(null, existingUser);
 					});
-				} else return done(null, false);
+				} else return done(true, false);
 			} catch (err) {
 				return done(err, false);
 			}

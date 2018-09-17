@@ -6,7 +6,7 @@ export default class LoginGoogle extends Component {
 			<a href="/api/auth/google">
 				<button
 					onClick={this.props.loginGoogle}
-					className="loginBtn loginBtn--google"
+					className="loginBtn loginBtn--google loginGoogleBtn"
 				>
 					Login with Google
 				</button>

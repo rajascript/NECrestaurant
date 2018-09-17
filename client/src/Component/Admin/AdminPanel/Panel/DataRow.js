@@ -23,7 +23,7 @@ class DataRow extends Component {
 		super(props);
 		this.state = {
 			unread: true,
-			backgroundColor: "purple",
+			backgroundColor: "",
 			popupOption: 3,
 			popupValues: {},
 			popupVisible: false,
@@ -217,7 +217,9 @@ class DataRow extends Component {
 			<Fragment>
 				{this.state.unread && (
 					<div
-						style={{ backgroundColor: this.getBookmark() }}
+						style={{
+							backgroundColor: this.state.backgroundColor || this.getBookmark()
+						}}
 						className="adminPanel__panel__data--item adminPanel__panel__data--unread"
 					/>
 				)}
