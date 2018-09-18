@@ -704,6 +704,7 @@ body {
 	justify-content: space-around;
 	width: 120px;
 	padding: 10px;
+	height:35px;
 	margin-top: -10px;
 }
 .adminPanel__panel__data--unread {
