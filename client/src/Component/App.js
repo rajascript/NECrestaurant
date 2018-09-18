@@ -13,6 +13,13 @@ import "./App.css";
 class App extends Component {
 	componentDidMount() {
 		this.props.fetchUser();
+		console.log(process.env.REACT_APP_FIREBASE_API_KEY)
+		console.log(process.env.REACT_APP_FIREBASE_AUTH_KEY)
+		console.log(process.env.REACT_APP_FIREBASE_DATABASE_KEY)
+		console.log(process.env.REACT_APP_FIREBASE_PROJECT_ID_KEY)
+		console.log(process.env.REACT_APP_FIREBASE_STORAGE_BUCKET_KEY)
+		console.log(process.env.REACT_APP_FIREBASE_MESSAGE_KEY)
+    
 	}
 	render() {
 		return (
