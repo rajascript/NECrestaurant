@@ -1,5 +1,15 @@
 import axios from "axios";
-import { FETCH_ADMIN, ADMIN_LOGIN_FAILED, ADMIN_LOGIN } from "./types";
+import {
+	FETCH_ADMIN,
+	ADMIN_LOGIN_FAILED,
+	ADMIN_LOGIN,
+	CREATE_ADMIN_FAILED,
+	CREATE_ADMIN,
+	DELETE_ADMIN_FAILED,
+	DELETE_ADMIN,
+	UPDATE_ADMIN_FAILED,
+	UPDATE_ADMIN
+} from "./types";
 //axios settings
 axios.defaults.headers.common = {
 	Authorization: "bearer " + localStorage.getItem("adminToken")
@@ -37,13 +47,13 @@ export const adminDelete = values => {
 		try {
 			const res = await axios.post("/api/admin/delete", values);
 			dispatch({
-				type: ADMIN_LOGIN,
+				type: DELETE_ADMIN,
 				payload: res.data
 			});
 		} catch (err) {
 			console.log("eer", err.response.status);
 			dispatch({
-				type: ADMIN_LOGIN_FAILED,
+				type: DELETE_ADMIN_FAILED,
 				payload: err.response.status
 			});
 		}
@@ -55,12 +65,12 @@ export const adminCreate = values => {
 		try {
 			const res = await axios.post("/api/admin/create", values);
 			dispatch({
-				type: ADMIN_LOGIN,
+				type: CREATE_ADMIN,
 				payload: res.data
 			});
 		} catch (err) {
 			dispatch({
-				type: ADMIN_LOGIN_FAILED,
+				type: CREATE_ADMIN_FAILED,
 				payload: err.response.status
 			});
 		}
@@ -73,12 +83,12 @@ export const adminUpdate = values => {
 			const res = await axios.post("/api/admin/update", values);
 
 			dispatch({
-				type: ADMIN_LOGIN,
+				type: UPDATE_ADMIN,
 				payload: res.data
 			});
 		} catch (err) {
 			dispatch({
-				type: ADMIN_LOGIN_FAILED,
+				type: UPDATE_ADMIN_FAILED,
 				payload: err.response.status
 			});
 		}
