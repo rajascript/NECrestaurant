@@ -43,9 +43,11 @@ class Panel extends Component {
         let newData = childData[this.state.date];
         console.log("newData", newData);
         this.url =
-          "https://freesound.org/people/TheBuilder15/sounds/415763/download/415763__thebuilder15__doorbell-notification.wav";
+          "http://s000.tinyupload.com/download.php?file_id=98495897958912879705&t=9849589795891287970501599";
         this.audio = new Audio(this.url);
-        this.audio.play();
+        //this.audio.play();
+        //TODO Find a supported hosting site
+        console.log("playing");
         this.setState({ valuesArray: [newData] });
       });
       dbRef.on("child_added", snapshot => {
