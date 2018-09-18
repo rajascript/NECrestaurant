@@ -5,7 +5,6 @@ import InputMoment from "input-moment";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { bookTable } from "../../Action/index";
-
 class BookingForm extends Component {
 	constructor(props) {
 		super(props);

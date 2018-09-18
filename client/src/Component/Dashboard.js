@@ -124,7 +124,7 @@ class Dashboard extends Component {
               width="100%"
               title="maps"
               height="680px"
-              frameborder="0"
+              frameBorder="0"
               allowFullScreen
             />
           </div>
