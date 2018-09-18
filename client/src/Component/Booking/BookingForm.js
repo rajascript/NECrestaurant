@@ -5,6 +5,7 @@ import InputMoment from "input-moment";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { bookTable } from "../../Action/index";
+import { debug } from "util";
 class BookingForm extends Component {
   constructor(props) {
     super(props);
@@ -52,10 +53,12 @@ class BookingForm extends Component {
       date: this.getDateFromMoment(this.state.dateValue),
       slot: this.getSlotFromMoment(this.state.dateValue)
     };
+    debugger;
     let PhoneCheck = performPhoneCheck(Number(this.state.phoneValue));
     let StringCheck = performStringCheck(this.state.nameValue);
     let EmailCheck = performEmailCheck(this.state.emailValue);
     console.log(PhoneCheck, StringCheck, EmailCheck);
+    debugger;
     if (!PhoneCheck.success) {
       console.log("error", PhoneCheck.message);
       this.setState({
