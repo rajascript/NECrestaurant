@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actions from "../Action";
 import Booking from "./Booking/Booking";
+import Order from "./Order/Order";
 import Dashboard from "./Dashboard";
 import About from "./About";
 import AdminLogin from "./Admin/AdminLogin";
@@ -22,6 +23,7 @@ class App extends Component {
 						<Route exact path="/" component={Dashboard} />
 						<Route exact path="/about" component={About} />
 						<Route exact path="/booking" component={Booking} />
+						<Route exact path="/order" component={Order} />
 						<Route exact path="/adminLogin" component={AdminLogin} />
 						<Route exact path="/admin" component={Admin} />
 						<Route exact path="/thankyou" component={ThankYou} />

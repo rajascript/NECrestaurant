@@ -43,6 +43,7 @@ try {
 }
 require("./model/User");
 require("./model/Admin");
+require("./model/Transactions");
 app.use(bodyParser.json());
 app.use(
 	cookieSession({
@@ -61,12 +62,15 @@ require("./routes/adminRoutes")(app);
 require("./routes/authRoutes")(app);
 require("./routes/billingRoutes")(app);
 require("./routes/bookingRoutes")(app, firebaseDB);
+require("./routes/orderingRoutes")(app, firebaseDB);
 app.disable("etag");
-
-app.use(express.static("client/build"));
 
 app.get("/checkserver", (req, res) => {
 	res.send("42");
+});
+app.use(express.static("client/build"));
+app.get("*", (req, res) => {
+	res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
 });
 
 const port = process.env.PORT || 5000;

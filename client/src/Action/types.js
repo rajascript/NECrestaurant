@@ -28,3 +28,16 @@ export const RESERVE_BOOKINGS = "reserve_bookings";
 export const REVOKE_AND_REFUND_BOOKINGS_FAILED =
 	"revoke_refund_bookings_failed";
 export const REVOKE_AND_REFUND_BOOKINGS = "revoke_refund_bookings";
+
+export const ORDER_FOOD = "order_food";
+export const ORDER_FOOD_FAILED = "order_food_failed";
+export const FETCH_ORDERS = "fetch_orders";
+export const FETCH_ORDERS_FAILED = "fetch_orders_failed";
+export const CONFIRM_ORDERS_FAILED = "confirm_orders_failed";
+export const CONFIRM_ORDERS = "confirm_orders";
+export const CANCEL_ORDERS_FAILED = "cancel_orders_failed";
+export const CANCEL_ORDERS = "cancel_orders";
+export const RESERVE_ORDERS_FAILED = "reserve_orders_failed";
+export const RESERVE_ORDERS = "reserve_orders";
+export const REVOKE_AND_REFUND_ORDERS_FAILED = "revoke_refund_orders_failed";
+export const REVOKE_AND_REFUND_ORDERS = "revoke_refund_orders";
