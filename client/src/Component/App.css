@@ -715,20 +715,11 @@ body {
   left: 30px;
 }
 .adminPanel__panel__data--actions {
-<<<<<<< HEAD
   display: flex;
   justify-content: space-around;
   width: 120px;
   padding: 10px;
   margin-top: -10px;
-=======
-	display: flex;
-	justify-content: space-around;
-	width: 120px;
-	padding: 10px;
-	height:35px;
-	margin-top: -10px;
->>>>>>> c79530fc7812c6d622c97ccfdbeb9f843b254bf1
 }
 .adminPanel__panel__data--unread {
   width: 5px;
