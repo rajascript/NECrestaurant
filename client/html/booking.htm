@@ -54,17 +54,17 @@
           </div>
         </div>
       </div>
-      <div class="featuredboxwrapper">
+    <div class="featuredboxwrapper">
         <div class="rightwrapper">
           <img src="assets/bookingbannerimage.jpg" alt="Pink Subtext Image" width=100% >
         </div>
         <div class="bookingleftwrapper">
           <div class="bookingbannerheadingwrapper">
-            <br>Join us, <br> Won't you?
+            Join us, <br> Won't you?
           </div>
         </div>
       </div>
-            <div class="bookingwrapper">
+    <div class="bookingwrapper">
         <div class="bookingheadingwrapper">Tables Available Now</div>
         <div class="bookinggridwrapper">
             <img class="griditemsall" src="assets/2seater.png">
@@ -77,16 +77,17 @@
           </div>
         </div>
         
-    <div class="bookingheadingwrapper">Book a for Later</div>
+    <div class="bookingheadingwrapper">Book a Table for Later</div>
 
-    <div id="bookingFormContainer" className="bookingForm__container">
+    <div id="bookingFormContainer" className="bookingFsEorm__container">
         <form>
         <center>
             <br>
             <input
             id="bookingFormName"
             className="bookingForm__Form--name"
-            placeholder="Name"
+            class="sEmail"
+            placeholder="NAME"
             type="text"
             value={this.state.nameValue}
             onChange={this.handleNameChange}
@@ -96,17 +97,20 @@
           <input
             id="bookingFormPhone"
             className="bookingForm__Form--phone"
-            placeholder="Phone"
+            class="sEmail"
+            placeholder="MOBILE NUMBER"
             type="phone"
             value={this.state.phoneValue}
             onChange={this.handlePhoneChange}
+              border-top= none;
           />
           <br />
           <br />
           <input
             id="bookingFormEmail"
             className="bookingForm__Form--seats"
-            placeholder="enter email"
+            class="sEmail"
+            placeholder="EMAIL"
             type="email"
             value={this.state.emailValue}
             onChange={this.handleEmailChange}
@@ -116,7 +120,8 @@
           <input
             id="bookingFormDate"
             className="bookingForm__Form--date"
-            placeholder="Date"
+            class="sEmail"
+            placeholder="DATE"
             type="text"
             value={this.state.dateValue}
             onClick={this.toggleCalendar}
@@ -139,6 +144,7 @@
           <select
             type="number"
             id="seatsSelector"
+            class="sEmail"
             value={this.state.seatsValue}
             onChange={this.handleSelectChange}
           >
@@ -154,12 +160,35 @@
           <br />
           <br />
           <br />
-          <input type="submit" value="Submit" onClick={this.handleBooking} />
+          <input type="submit" class="btn btn-dark" value="Submit" onClick={this.handleBooking} />
         </form>
-        <p id="error">
+        <p class="sEmail" id="error">
           {this.state.bookingErrorVisible && this.state.bookingErrorMessage}
         </p>
         </center>
       </div>
+            <div class="navbarwrapper">
+        <div class="tophalfcontentwrapper">
+          <div class="topleftcontentwrapper">
+          </div>
+        </div>
+        <div class="bottomhalfcontentwrapper">
+          <div class="navbarlinkwrapper">
+            
+            <a class="navbarlink" href="">
+            <span class="glyphicon glyphicon-earphone"></span> 7656576565
+            </a>
+            
+            <a class="navbarlink" href=" ">
+            This was a project made for NEC Technologies by Group 4
+            </a>
+            
+            <a class="navbarlink" href=""><span class="glyphicon glyphicon-envelope"></span> hi@indique.com
+            </a>
+            
+          </div>
+        </div>
+      </div>
+
   </body>
   </html>
