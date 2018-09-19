@@ -21,21 +21,33 @@ class Panel extends Component {
 		this.state = {
 			valuesArray: [],
 			moment: moment(),
-			date: ""
+			date: "",
+			fbRef: "bookings/",
+			ordersWindowVisible: false
 		};
 		this.clickNext = this.clickNext.bind(this);
 		this.clickPrev = this.clickPrev.bind(this);
+		this.moveToBookings = this.moveToBookings.bind(this);
+		this.moveToOrders = this.moveToOrders.bind(this);
 	}
 	componentDidMount() {
 		console.log("dadas");
 		if (this.state.date === "")
 			this.setState({ date: this.state.moment.format("DD-MM-YY") });
 	}
+	moveToBookings() {
+		if (this.ordersWindowVisible)
+			this.setState({ ordersWindowVisible: false, fbRef: "bookings/" });
+	}
+	moveToOrders() {
+		if (!this.ordersWindowVisible)
+			this.setState({ ordersWindowVisible: true, fbRef: "orders/" });
+	}
 	componentDidUpdate() {
 		if (this.state.valuesArray.length === 0) {
 			let db = firebase.database();
-			let dbRef = db.ref().child("bookings/" + this.state.date);
-			let dbRef2 = db.ref().child("bookings/");
+			let dbRef = db.ref().child(this.state.fbRef + this.state.date);
+			let dbRef2 = db.ref().child(this.state.fbRef);
 			dbRef2.on("child_changed", snapshot => {
 				console.log(snapshot.val());
 				let childData = snapshot.val();
@@ -103,11 +115,66 @@ class Panel extends Component {
 			return dat;
 		});
 	}
+
 	componentWillReceiveProps(props) {
-		console.log(props.bookings);
-		this.setState({ valuesArray: [props.bookings] });
+		console.log(props);
+		if (!this.state.ordersWindowVisible)
+			this.setState({ valuesArray: [props.bookings] });
+		if (this.state.ordersWindowVisible)
+			this.setState({ valuesArray: [props.orders] });
 	}
 	render() {
+		if (!this.state.ordersWindowVisible) {
+			return (
+				<Fragment>
+					<div className="adminPanel__panel__date">
+						<div className="adminPanel__panel__container">
+							<div
+								onClick={this.clickPrev}
+								className="adminPanel__panel__date--prev"
+							>
+								<IconContext.Provider
+									value={{ color: "red", className: "global-class-name" }}
+								>
+									<Fragment>
+										<FiChevronLeft />
+									</Fragment>
+								</IconContext.Provider>
+							</div>
+							<div className="adminPanel__panel__date--date">
+								{this.state.date}
+							</div>
+							<div
+								onClick={this.clickNext}
+								className="adminPanel__panel__date--next"
+							>
+								<IconContext.Provider
+									value={{ color: "red", className: "global-class-name" }}
+								>
+									<Fragment>
+										<FiChevronRight />
+									</Fragment>
+								</IconContext.Provider>
+							</div>
+						</div>
+					</div>
+					<div className="adminPanel__panel__header">
+						<div className="adminPanel__panel__bookings__container">
+							<div className="adminPanel__panel__heading">#Booking Id</div>
+							<div className="adminPanel__panel__heading">Name</div>
+							<div className="adminPanel__panel__heading">Phone</div>
+							<div className="adminPanel__panel__heading">Email</div>
+							<div className="adminPanel__panel__heading">Seats</div>
+							<div className="adminPanel__panel__heading adminPanel__panel__heading--slot">
+								Slot
+							</div>
+							<div className="adminPanel__panel__heading">Action</div>
+						</div>
+					</div>
+					<div className="adminPanel__panel__body">{this.renderData()}</div>
+				</Fragment>
+			);
+		}
 		return (
 			<Fragment>
 				<div className="adminPanel__panel__date">
@@ -143,11 +210,11 @@ class Panel extends Component {
 				</div>
 				<div className="adminPanel__panel__header">
 					<div className="adminPanel__panel__bookings__container">
-						<div className="adminPanel__panel__heading">#Booking Id</div>
+						<div className="adminPanel__panel__heading">#Order Id</div>
 						<div className="adminPanel__panel__heading">Name</div>
 						<div className="adminPanel__panel__heading">Phone</div>
 						<div className="adminPanel__panel__heading">Email</div>
-						<div className="adminPanel__panel__heading">Seats</div>
+						<div className="adminPanel__panel__heading">Items</div>
 						<div className="adminPanel__panel__heading adminPanel__panel__heading--slot">
 							Slot
 						</div>
@@ -159,9 +226,9 @@ class Panel extends Component {
 		);
 	}
 }
-function mapStateToProps({ bookings }) {
-	console.log(bookings);
-	return { bookings };
+function mapStateToProps({ bookings, orders }) {
+	console.log(bookings, orders);
+	return { bookings, orders };
 }
 export default connect(
 	mapStateToProps,

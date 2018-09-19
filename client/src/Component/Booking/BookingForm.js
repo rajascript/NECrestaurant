@@ -153,75 +153,95 @@ class BookingForm extends Component {
 				/>
 			);
 		return (
-			<div id="bookingFormContainer" className="bookingForm__container">
+			<div id="bookingFormContainer" className="bookingFsEorm__container">
 				<form>
-					<input
-						id="bookingFormName"
-						className="bookingForm__Form--name"
-						placeholder="Name"
-						type="text"
-						value={this.state.nameValue}
-						onChange={this.handleNameChange}
-					/>
-					<br />
-					<input
-						id="bookingFormPhone"
-						className="bookingForm__Form--phone"
-						placeholder="Phone"
-						type="phone"
-						value={this.state.phoneValue}
-						onChange={this.handlePhoneChange}
-					/>
-					<br />
-					<input
-						id="bookingFormEmail"
-						className="bookingForm__Form--seats"
-						placeholder="enter email"
-						type="email"
-						value={this.state.emailValue}
-						onChange={this.handleEmailChange}
-					/>
-					<br />
-					<input
-						id="bookingFormDate"
-						className="bookingForm__Form--date"
-						placeholder="Date"
-						type="text"
-						value={this.state.dateValue}
-						onClick={this.toggleCalendar}
-					/>
-					<br />
-					{this.state.calendarVisible && (
-						<InputMoment
-							moment={this.state.moment}
-							onChange={this.handleDateChange}
-							onSave={this.handleSave}
-							minStep={1}
-							hourStep={1}
-							prevMonthIcon="ion-ios-arrow-left"
-							nextMonthIcon="ion-ios-arrow-right"
+					<center>
+						<br />
+						<input
+							id="bookingFormName"
+							className="bookingForm__Form--name"
+							class="sEmail"
+							placeholder="NAME"
+							type="text"
+							value={this.state.nameValue}
+							onChange={this.handleNameChange}
 						/>
-					)}
-					<br />
-					<select
-						type="number"
-						id="seatsSelector"
-						value={this.state.seatsValue}
-						onChange={this.handleSelectChange}
-					>
-						<option value="1">1</option>
-						<option value="2">2</option>
-						<option value="3">3</option>
-						<option value="4">4</option>
-						<option value="5">5</option>
-						<option value="6">6</option>
-						<option value="7">7</option>
-						<option value="8">8</option>
-					</select>
-					<br />
-					<input type="submit" value="Submit" onClick={this.handleBooking} />
+						<br />
+						<br />
+						<input
+							id="bookingFormPhone"
+							className="bookingForm__Form--phone"
+							class="sEmail"
+							placeholder="MOBILE NUMBER"
+							type="phone"
+							value={this.state.phoneValue}
+							onChange={this.handlePhoneChange}
+						/>
+						<br />
+						<br />
+						<input
+							id="bookingFormEmail"
+							className="bookingForm__Form--seats"
+							class="sEmail"
+							placeholder="EMAIL"
+							type="email"
+							value={this.state.emailValue}
+							onChange={this.handleEmailChange}
+						/>
+						<br />
+						<br />
+						<input
+							id="bookingFormDate"
+							className="bookingForm__Form--date"
+							class="sEmail"
+							placeholder="DATE"
+							type="text"
+							value={this.state.dateValue}
+							onClick={this.toggleCalendar}
+						/>
+						<br />
+						<br />
+						{this.state.calendarVisible && (
+							<InputMoment
+								moment={this.state.moment}
+								onChange={this.handleDateChange}
+								onSave={this.handleSave}
+								minStep={1}
+								hourStep={1}
+								prevMonthIcon="ion-ios-arrow-left"
+								nextMonthIcon="ion-ios-arrow-right"
+							/>
+						)}
+						<br />
+						<br />
+						<select
+							type="number"
+							id="seatsSelector"
+							class="sEmail"
+							value={this.state.seatsValue}
+							onChange={this.handleSelectChange}
+						>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
+						</select>
+						<br />
+						<br />
+						<br />
+						<input
+							type="submit"
+							class="btn btn-dark"
+							value="Submit"
+							onClick={this.handleBooking}
+						/>
+					</center>
 				</form>
-				<p id="error">
+				<p class="sEmail" id="error">
 					{this.state.bookingErrorVisible && this.state.bookingErrorMessage}
 				</p>
 			</div>
