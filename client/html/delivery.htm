@@ -1,94 +1,185 @@
 <html>
-
-<head>
-  <title>
-    Indique
-  </title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <!-- Link to CSS stylesheet for the project -->
-  <link rel="stylesheet" href="sapp.css">
-  <!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-  <!-- jQuery library -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <!-- Latest compiled JavaScript -->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <!-- Only for the featured items section -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
-
-<body>
-  <div class="navbarwrapper">
-    <div class="tophalfcontentwrapper">
-      <div class="topleftcontentwrapper">
-
+  <head>
+    <title>
+      Indique
+    </title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Link to CSS stylesheet for the project -->
+    <link rel="stylesheet" href="sapp.css">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+            <!-- Only for the featured items section -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+  <body>
+    <div class="navbarwrapper">
+      <div class="tophalfcontentwrapper">
+          <div class="topleftcontentwrapper">
+            
+          </div>
+          <div class="logowrapper">
+            Indique
+          </div>
+          <div class="toprightcontentwrapper">
+            <button type="button" class="btn btn-danger btn-sm">Login</button>
+            <button type="button" class="btn btn-outline-light btn-sm" >Sign Up</button>
+          </div>
+        </div>
+        <div class="bottomhalfcontentwrapper">
+          <div class="navbarlinkwrapper">
+            <a class="navbarlink" href="about.htm">
+            ABOUT
+            </a>
+            
+            <a class="navbarlink" href="">
+            BOOKING
+            </a>
+            
+            <a class="navbarlink" href=" ">
+            MENU
+            </a>
+            
+            <a class="navbarlink" href="">
+            DELIVERY
+            </a>
+            
+            
+            <a class="navbarlink" href="">
+            CONTACT
+            </a>
+          </div>
+        </div>
       </div>
-      <div class="logowrapper">
-        Indique
+    <div class="featuredboxwrapper">
+      <div class="bookingleftwrapper">
+        <div class="bookingbannerheadingwrapper">
+         Fast Food<br>Faster Delivery
+        </div>
       </div>
-      <div class="toprightcontentwrapper">
-        <button type="button" class="btn btn-warning btn-sm">Login</button>
-        <button type="button" class="btn btn-outline-light btn-sm">Sign Up</button>
-      </div>
+       
+       
+       <div class="rightwrapper">
+          <img src="assets/pinkphone.jpg" alt="yellow food bike" width=100% >
+        </div>
+      
+    
     </div>
-    <div class="bottomhalfcontentwrapper">
-      <div class="navbarlinkwrapper">
-        <a class="navbarlink" href="about.htm">
-          ABOUT
-        </a>
+    
 
-        <a class="navbarlink" href="">
-          BOOKING
-        </a>
-
-        <a class="navbarlink" href=" ">
-          MENU
-        </a>
-
-        <a class="navbarlink" href="">
-          DELIVERY
-        </a>
-
-
-        <a class="navbarlink" href="">
-          CONTACT
-        </a>
+    
+    <div id="orderFormContainer" className="orderForm__container">
+				<form>
+				  <center>
+				  <br />
+				  
+					<input
+						id="orderFormAddress"
+						className="orderForm__Form--order"
+						class="sEmail"
+						placeholder="TYPE IN YOUR ORDER"
+						type="text"
+						value={this.state.orderValue}
+						onChange={this.handleOrderChange}
+					/>
+					<br />
+					<br />
+					
+					
+					<input
+						id="orderFormName"
+						className="orderForm__Form--name"
+						class="sEmail"
+						placeholder="NAME"
+						type="text"
+						value={this.state.nameValue}
+						onChange={this.handleNameChange}
+					/>
+					<br />
+					<br />
+					<input
+						id="orderFormPhone"
+						className="orderForm__Form--phone"
+						class="sEmail"
+						placeholder="PHONE NUMBER"
+						type="phone"
+						value={this.state.phoneValue}
+						onChange={this.handlePhoneChange}
+					/>
+					<br />
+					<br />
+					<input
+						id="orderFormEmail"
+						className="orderForm__Form--email"
+						class="sEmail"
+						placeholder="EMAIL"
+						type="email"
+						value={this.state.emailValue}
+						onChange={this.handleEmailChange}
+					/>
+					<br />
+					<br />
+					<input
+						id="orderFormAddress"
+						className="orderForm__Form--address"
+						class="sEmail"
+						placeholder="DELIVERY LOCATION"
+						type="text"
+						value={this.state.addressValue}
+						onChange={this.handleAddressChange}
+					/>
+					<br />
+					<br />
+					<select
+						type="number"
+						id="seatsSelector"
+						class="sEmail"
+						value={this.state.seatsValue}
+						onChange={this.handleSelectChange}
+					>
+						<option value="true">Cash on Delivery</option><br />
+						<option value="false">Online</option>
+					</select>
+					<br />
+					<br />
+					<br />
+					<input type="submit" value="Submit" class="btn btn-dark" onClick={this.handleOrder} />
+					<br />
+					<br />
+				</form>
+				<p id="error">
+					{this.state.orderErrorVisible && this.state.orderErrorMessage}
+				</p>
+				</center>
+			</div>
+    
+    
+    
+    <div class="navbarwrapper">
+        <div class="tophalfcontentwrapper">
+          <div class="topleftcontentwrapper">
+          </div>
+        </div>
+        <div class="bottomhalfcontentwrapper">
+          <div class="navbarlinkwrapper">
+            
+            <a class="navbarlink" href="">
+            <span class="glyphicon glyphicon-earphone"></span> 7656576565
+            </a>
+            
+            <a class="navbarlink" href=" ">
+            This was a project made for NEC Technologies by Group 4
+            </a>
+            
+            <a class="navbarlink" href=""><span class="glyphicon glyphicon-envelope"></span> hi@indique.com
+            </a>
+            
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-  <div class="featuredboxwrapper">
-    <div class="rightwrapper">
-      <img src="assets/yellowbanner.jpg" alt="yellow food bike" width=100%>
-    </div>
-    <div class="bookingleftwrapper">
-      <div class="bookingbannerheadingwrapper">
-        Fast Food<br>Faster Delivery<br><br>COMING SOON!
-      </div>
-    </div>
-  </div>
-  <div class="navbarwrapper">
-    <div class="tophalfcontentwrapper">
-      <div class="topleftcontentwrapper">
-      </div>
-    </div>
-    <div class="bottomhalfcontentwrapper">
-      <div class="navbarlinkwrapper">
 
-        <a class="navbarlink" href="">
-          <span class="glyphicon glyphicon-earphone"></span> 7656576565
-        </a>
-
-        <a class="navbarlink" href=" ">
-          This is a working project made for NEC Technologies by Group 4
-        </a>
-
-        <a class="navbarlink" href=""><span class="glyphicon glyphicon-envelope"></span> hi@indique.com
-        </a>
-
-      </div>
-    </div>
-  </div>
-
-</body>
-
+  </body>
 </html>
