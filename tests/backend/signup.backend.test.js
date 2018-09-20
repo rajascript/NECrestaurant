@@ -20,7 +20,7 @@ test("phone wrong", async () => {
 		password: "sadaax"
 	};
 	let res = await page.post(curHost, user);
-	
+
 	expect(res.message).toEqual("signup failed");
 });
 test("name wrong", async () => {
@@ -31,7 +31,7 @@ test("name wrong", async () => {
 		password: "sadaax"
 	};
 	let res = await page.post(curHost, user);
-	
+
 	expect(res.message).toEqual("signup failed");
 });
 test("email wrong", async () => {
@@ -42,7 +42,7 @@ test("email wrong", async () => {
 		password: "sadaax"
 	};
 	let res = await page.post(curHost, user);
-	
+
 	expect(res.message).toEqual("signup failed");
 });
 test("email wrong", async () => {
@@ -53,7 +53,7 @@ test("email wrong", async () => {
 		password: "sadaax"
 	};
 	let res = await page.post(curHost, user);
-	
+
 	expect(res.message).toEqual("signup failed");
 });
 test("password wrong", async () => {
@@ -64,12 +64,12 @@ test("password wrong", async () => {
 		password: "sad"
 	};
 	let res = await page.post(curHost, user);
-	
+
 	expect(res.message).toEqual("signup failed");
 });
 test.only("signup successful", async () => {
-	let ves= shortid.generate()
-	let sum= ves+"140@gmail.com";
+	let ves = shortid.generate();
+	let sum = ves + "140@gmail.com";
 	console.log(sum);
 	let user = {
 		phone: 9823368654,

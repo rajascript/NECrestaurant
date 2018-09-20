@@ -43,7 +43,12 @@ nav,
 section {
 	display: block;
 }
-
+.flexContCenter {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
 /**
  * Correct the font size and margin on `h1` elements within `section` and
  * `article` contexts in Chrome, Firefox, and Safari.
@@ -2134,4 +2139,78 @@ input {
 
 	outline: none;
 	border-radius: 12px;
+}
+.fooditem {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-start;
+
+	width: 250px;
+	height: 250px;
+	background: #ffffff;
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	border-radius: 10px;
+	padding-right: 15px;
+	padding-left: 15px;
+	padding-top: 10px;
+	margin-top: 5px;
+}
+
+.fooditem:hover {
+	transform: scale(1.1);
+}
+.foodpic {
+	width: 230px;
+	height: 200px;
+	border-radius: 15px;
+}
+
+.menuheadingwrapper {
+	display: flex;
+	align-items: flex-start;
+	justify-content: flex-start;
+	width: 100%;
+	height: 80px;
+
+	font-family: Raleway;
+	font-style: normal;
+	font-weight: bold;
+	line-height: normal;
+	font-size: 2em;
+	text-align: center;
+	margin-left: 13%;
+	margin-top: 50px;
+	color: #000000;
+}
+
+.menuwrapper {
+	display: flex;
+	flex-direction: column;
+
+	width: 100%;
+	padding: 10px;
+}
+
+.menucategory {
+	display: flex;
+	flex-direction: column;
+
+	width: 100%;
+	padding: 10px;
+}
+.menuwrapper {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: flex-start;
+	background-color: #fff;
+	width: 100%;
+}
+
+.menugridwrapper {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-around;
+	width: 75%;
 }

@@ -22,7 +22,7 @@ class Dashboard extends Component {
 								BOOKING
 							</Link>
 
-							<Link className="navbarlink" to="/">
+							<Link className="navbarlink" to="/menu">
 								MENU
 							</Link>
 

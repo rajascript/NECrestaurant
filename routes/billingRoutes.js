@@ -4,7 +4,7 @@ const requireLogin = require("../middlewares/requireLogin");
 const mongoose = require("mongoose");
 const Transaction = mongoose.model("Transaction");
 module.exports = app => {
-	app.post("/api/stripe", requireLogin, async (req, res) => {
+	app.post("/api/stripe",  async (req, res) => {
 		console.log(req.body);
 		let token = req.body.id;
 		let transactionId = req.body.orderId;

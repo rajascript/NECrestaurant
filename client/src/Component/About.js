@@ -20,7 +20,7 @@ export default class About extends Component {
 								BOOKING
 							</Link>
 
-							<Link className="navbarlink" to="/">
+							<Link className="navbarlink" to="/menu">
 								MENU
 							</Link>
 

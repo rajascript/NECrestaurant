@@ -27,6 +27,7 @@ class Order extends Component {
 		this.setState({ user, orderUserConfirmed: true });
 	}
 	orderFromMenuCompleted(total, items) {
+		console.log(total);
 		this.setState({ orderMenuConfirmed: true, total, items });
 	}
 	componentWillReceiveProps(props) {
@@ -53,7 +54,7 @@ class Order extends Component {
 	}
 	render() {
 		if (!this.state.orderMenuConfirmed) {
-			return <OrderMenu orderMenuConfirmed={this.orderFromMenuCompleted} />;
+			return <OrderMenu orderMenuConfix={this.orderFromMenuCompleted} />;
 		}
 		if (this.state.orderConfirmed) {
 			return (
@@ -62,7 +63,7 @@ class Order extends Component {
 					to={{
 						pathname: "/orderstatus",
 						orderId: this.state.user.orderId,
-						date: this.state.user.orderId,
+						date: this.state.user.date,
 						time: this.state.user.time
 					}}
 				/>
@@ -71,13 +72,16 @@ class Order extends Component {
 		return (
 			<Fragment>
 				{!this.state.orderUserConfirmed && (
-					<OrderForm
-						email={this.state.emailValue}
-						phone={this.state.phoneValue}
-						name={this.state.nameValue}
-						setUser={this.setUser}
-						total={this.state.total}
-					/>
+					<Fragment>
+						<OrderForm
+							email={this.state.emailValue}
+							phone={this.state.phoneValue}
+							name={this.state.nameValue}
+							setUser={this.setUser}
+							total={this.state.total}
+							orderItems={this.state.items}
+						/>
+					</Fragment>
 				)}
 				{this.state.orderUserConfirmed && (
 					<Payments

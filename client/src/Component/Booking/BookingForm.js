@@ -214,6 +214,7 @@ class BookingForm extends Component {
 						)}
 						<br />
 						<br />
+						<label htmlFor="seatsSelector">Seats: </label>
 						<select
 							type="number"
 							id="seatsSelector"

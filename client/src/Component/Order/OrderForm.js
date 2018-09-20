@@ -1,6 +1,7 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import moment from "moment";
 import shortId from "shortid";
+import { Link } from "react-router-dom";
 
 class OrderForm extends Component {
 	constructor(props) {
@@ -114,60 +115,113 @@ class OrderForm extends Component {
 	render() {
 		console.log(this.state.dateValue);
 		return (
-			<div id="orderFormContainer" className="orderForm__container">
-				<form>
-					<input
-						id="orderFormName"
-						className="orderForm__Form--name"
-						placeholder="Name"
-						type="text"
-						value={this.state.nameValue}
-						onChange={this.handleNameChange}
-					/>
-					<br />
-					<input
-						id="orderFormPhone"
-						className="orderForm__Form--phone"
-						placeholder="Phone"
-						type="phone"
-						value={this.state.phoneValue}
-						onChange={this.handlePhoneChange}
-					/>
-					<br />
-					<input
-						id="orderFormEmail"
-						className="orderForm__Form--email"
-						placeholder="enter email"
-						type="email"
-						value={this.state.emailValue}
-						onChange={this.handleEmailChange}
-					/>
-					<br />
-					<input
-						id="orderFormAddress"
-						className="orderForm__Form--address"
-						placeholder="enter address"
-						type="text"
-						value={this.state.addressValue}
-						onChange={this.handleAddressChange}
-					/>
-					<br />
-					<select
-						type="number"
-						id="seatsSelector"
-						value={this.state.seatsValue}
-						onChange={this.handleSelectChange}
-					>
-						<option value="true">COD</option>
-						<option value="false">Online</option>
-					</select>
-					<br />
-					<input type="submit" value="Submit" onClick={this.handleOrder} />
-				</form>
-				<p id="error">
-					{this.state.orderErrorVisible && this.state.orderErrorMessage}
-				</p>
-			</div>
+			<Fragment>
+				<div class="navbarwrapper">
+					<Link to="/">
+						<div class="logowrapper">Indique</div>
+					</Link>
+					<div class="bottomhalfcontentwrapper">
+						<div className="navbarlinkwrapper">
+							<Link className="navbarlink" to="/about">
+								ABOUT
+							</Link>
+
+							<Link className="navbarlink" to="/booking">
+								BOOKING
+							</Link>
+
+							<Link className="navbarlink" to="/menu">
+								MENU
+							</Link>
+
+							<Link className="navbarlink" to="/order">
+								DELIVERY
+							</Link>
+
+							<Link className="navbarlink" to="/">
+								CONTACT
+							</Link>
+						</div>
+					</div>
+				</div>
+				<div class="bookingheadingwrapper">Order food.</div>
+				<div id="bookingFormContainer" className="bookingFsEorm__container">
+					<form>
+						<center>
+							<br />
+							<input
+								id="orderFormName"
+								placeholder="Name"
+								type="text"
+								value={this.state.nameValue}
+								onChange={this.handleNameChange}
+								className="sEmail"
+							/>
+							<br />
+							<br />
+							<input
+								id="orderFormPhone"
+								placeholder="Phone"
+								type="phone"
+								value={this.state.phoneValue}
+								onChange={this.handlePhoneChange}
+								className="sEmail"
+							/>
+							<br />
+							<br />
+							<input
+								id="orderFormAddress"
+								placeholder="enter address"
+								type="text"
+								value={this.state.addressValue}
+								onChange={this.handleAddressChange}
+								className="sEmail"
+							/>
+							<br />
+							<label htmlFor="seatsSelector">Payment option: </label>
+							<select
+								type="number"
+								id="seatsSelector"
+								value={this.state.seatsValue}
+								onChange={this.handleSelectChange}
+								className="sEmail"
+							>
+								<option value="true">COD</option>
+								<option value="false">Online</option>
+							</select>
+							<br />
+							<br />
+							<br />
+							<input
+								type="submit"
+								class="btn blogin btn-dark"
+								value="Submit"
+								onClick={this.handleOrder}
+							/>
+						</center>
+					</form>
+				</div>
+				<div class="navbarwrapper">
+					<div class="tophalfcontentwrapper">
+						<div class="topleftcontentwrapper" />
+					</div>
+					<div class="bottomhalfcontentwrapper">
+						<div class="navbarlinkwrapper">
+							<a class="navbarlink" href="">
+								<span class="glyphicon glyphicon-earphone" /> 7656576565
+							</a>
+
+							<a class="navbarlink" href=" ">
+								This was a project made for NEC Technologies by Group 4
+							</a>
+
+							<a class="navbarlink" href="">
+								<span class="glyphicon glyphicon-envelope" /> hi@indique.com
+							</a>
+						</div>
+					</div>
+				</div>
+			</Fragment>
 		);
 	}
 }
