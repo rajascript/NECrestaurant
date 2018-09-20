@@ -10,6 +10,7 @@ import AdminLogin from "./Admin/AdminLogin";
 import Admin from "./Admin/Admin";
 import ThankYou from "./ThankYou";
 import "./App.css";
+import OrderStatus from "./Order/orderStatus";
 
 class App extends Component {
 	componentDidMount() {
@@ -24,6 +25,7 @@ class App extends Component {
 						<Route exact path="/about" component={About} />
 						<Route exact path="/booking" component={Booking} />
 						<Route exact path="/order" component={Order} />
+						<Route exact path="/orderStatus" component={OrderStatus} />
 						<Route exact path="/adminLogin" component={AdminLogin} />
 						<Route exact path="/admin" component={Admin} />
 						<Route exact path="/thankyou" component={ThankYou} />

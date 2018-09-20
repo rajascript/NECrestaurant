@@ -8,13 +8,6 @@ import {
 	USER_LOGIN_FAILED
 } from "./types";
 
-export const handleToken = Token => {
-	return async dispatch => {
-		const res = await axios.post("/api/stripe", Token);
-		dispatch({ type: FETCH_USER, payload: res.data });
-	};
-};
-
 export const fetchUser = () => {
 	return async dispatch => {
 		try {

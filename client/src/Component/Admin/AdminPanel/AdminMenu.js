@@ -8,6 +8,10 @@ export default class AdminMenu extends Component {
   render() {
     return (
       <div className="adminmenu__container">
+        <div style={{ color: "black" }} className="adminmenu--item">
+          {this.props.admin.name}
+        </div>
+
         <div className="adminmenu--item">
           <button
             onClick={this.props.logout} //edit the function
@@ -16,10 +20,6 @@ export default class AdminMenu extends Component {
           >
             Logout
           </button>
-        </div>
-
-        <div style={{ color: "black" }} className="adminmenu--item">
-          {this.props.admin.name}
         </div>
 
         <div className="adminmenu--item">

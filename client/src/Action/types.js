@@ -6,6 +6,9 @@ export const USER_LOGIN = "login_user";
 export const USER_LOGOUT = "logout_user";
 export const USER_LOGIN_FAILED = "login_user_failed";
 
+export const TRANSACTION = "transaction";
+export const TRANSACTION_FAILED = "transaction_failed";
+
 export const ADMIN_LOGIN = "login_admin";
 export const ADMIN_LOGIN_FAILED = "login_admin_failed";
 export const CREATE_ADMIN_FAILED = "admin_create_failed";

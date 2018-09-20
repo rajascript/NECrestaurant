@@ -36,6 +36,16 @@ class OrderForm extends Component {
 	getSlotFromMoment(momentDate) {
 		return momentDate.split(" ")[1].replace(":", "-");
 	}
+	componentWillReceiveProps(props) {
+		console.log(props);
+		if (this.state.emailValue === "") {
+			this.setState({
+				emailValue: props.email,
+				nameValue: props.name,
+				phoneValue: props.phone
+			});
+		}
+	}
 	handleOrder(e) {
 		let orderId = shortId.generate();
 		let user = {
@@ -83,7 +93,7 @@ class OrderForm extends Component {
 			console.log("All data entered was of correct type");
 			console.log(user);
 			this.setState({ orderErrorVisible: false });
-			this.props.orderFormCompleted();
+			this.props.setUser(user);
 		}
 		e.preventDefault();
 	}

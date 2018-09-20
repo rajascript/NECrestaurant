@@ -8,17 +8,28 @@ class AdminPanel extends Component {
 		super(props);
 		this.state = {};
 	}
-
+	moveToBookings() {
+		this.childPanel.moveToBookings();
+	}
+	moveToOrders() {
+		this.childPanel.moveToOrders();
+	}
+	componentDidMount() {
+		console.log(this.childPanel);
+	}
 	render() {
 		return (
 			<div className="adminPanel">
-				<AdminPanelSidebar />
+				<AdminPanelSidebar
+					moveToBookings={this.moveToBookings}
+					moveToOrders={this.moveToOrders}
+				/>
 				<div className="adminPanel__body">
 					<div className="adminPanel__header">
 						<AdminPanelHeader admin={this.props.admin} />
 					</div>
 					<div className="adminPanel__panel">
-						<Panel />
+						<Panel ref={ref => (this.childPanel = ref)} />
 					</div>
 				</div>
 			</div>
