@@ -137,10 +137,6 @@ class OrderForm extends Component {
 							<Link className="navbarlink" to="/order">
 								DELIVERY
 							</Link>
-
-							<Link className="navbarlink" to="/">
-								CONTACT
-							</Link>
 						</div>
 					</div>
 				</div>
@@ -155,6 +151,16 @@ class OrderForm extends Component {
 								type="text"
 								value={this.state.nameValue}
 								onChange={this.handleNameChange}
+								className="sEmail"
+							/>
+							<br />
+							<br />
+							<input
+								id="orderFormEmail"
+								placeholder="Email"
+								type="text"
+								value={this.state.emailValue}
+								onChange={this.handleEmailChange}
 								className="sEmail"
 							/>
 							<br />

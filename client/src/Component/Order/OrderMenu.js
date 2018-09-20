@@ -27,7 +27,7 @@ export default class OrderMenu extends Component {
 		let itemId = "00" + item;
 		if (currQty < 5) {
 			currItems.push(itemId);
-			let newTotal = currItems.length * 100;
+			let newTotal = currItems.length * 10000;
 			this.setState({
 				[currItem]: currQty + 1,
 				total: newTotal,
@@ -44,7 +44,7 @@ export default class OrderMenu extends Component {
 			let currItems = this.state.items;
 			var index = currItems.indexOf(itemId);
 			if (index !== -1) currItems.splice(index, 1);
-			let newTotal = currItems.length * 100;
+			let newTotal = currItems.length * 10000;
 			let currQty = this.state[currItem];
 			this.setState({
 				[currItem]: currQty - 1,
@@ -54,7 +54,7 @@ export default class OrderMenu extends Component {
 		}
 	}
 	orderMenuCompleted() {
-		this.props.orderMenuCompleted();
+		this.props.orderMenuConfix(this.state.total, this.state.items);
 	}
 	render() {
 		return (
@@ -82,9 +82,7 @@ export default class OrderMenu extends Component {
 								DELIVERY
 							</Link>
 
-							<Link className="navbarlink" to="/">
-								CONTACT
-							</Link>
+							
 						</div>
 					</div>
 				</div>
@@ -319,7 +317,7 @@ export default class OrderMenu extends Component {
 							/>
 							<div className="orderMenu--item--info">
 								<h5 className="orderMenu--item--info1">
-									Red Rosses and Champagne
+									Red Roses and Champagne
 								</h5>
 								<h6 className="orderMenu--item--info2">
 									Champagne Wrapped in hundered Beautiful Red Roses.
@@ -346,13 +344,10 @@ export default class OrderMenu extends Component {
 						<div className="orderMenu__done">
 							{this.state.total > 0 && (
 								<h5 className="orderMenu__done--total">
-									Total: ₹{this.state.total}
+									Total: ₹{this.state.total / 100}
 								</h5>
 							)}
-							<button
-								className="blogin"
-								onClick={this.props.orderMenuConfirmed}
-							>
+							<button className="blogin" onClick={this.orderMenuCompleted}>
 								Order
 							</button>
 						</div>

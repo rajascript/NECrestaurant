@@ -71,10 +71,6 @@ export default class ThankYou extends Component {
 							<Link className="navbarlink" to="/order">
 								DELIVERY
 							</Link>
-
-							<Link className="navbarlink" to="/">
-								CONTACT
-							</Link>
 						</div>
 					</div>
 				</div>
