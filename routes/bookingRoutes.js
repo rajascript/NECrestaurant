@@ -233,24 +233,7 @@ module.exports = (app, firebaseDB) => {
 		const by = req.body.by;
 		const name = req.body.name;
 		const email = req.body.userEmail;
-		try {
-			axios.post(`${keys.testHost}/api/bookingEmail`, {
-				bookingId: req.body.bookingId,
-				slot: req.body.slot,
-				date: req.body.date,
-				userEmail: email,
-				name: name,
-				status: bookingData.status
-			});
-		} catch (ex) {
-			console.log("request exception in sending mail.");
-			res
-				.status(200)
-				.json({
-					response: "Booking canceled and refunded.",
-					bookingId: bookingId
-				});
-		}
+
 		bookingData = {};
 		bookingData.by = by;
 		bookingData.status = "canceled and refunded";
@@ -266,24 +249,33 @@ module.exports = (app, firebaseDB) => {
 				});
 			}
 			try {
+				var bookingsRef = await firebaseDB.ref(
+					bookingsRefString +
+						"/" +
+						date +
+						"/" +
+						date +
+						"/" +
+						slot +
+						"/" +
+						bookingId
+				);
 				await bookingsRef.update(bookingData);
 				try {
-					request.post({
-						form: {
-							bookingId: req.body.bookingId,
-							slot: req.body.slot,
-							date: req.body.date,
-							userEmail: email,
-							name: name,
-							status: bookingData.status
-						},
-						url: `${keys.testHost}/api/bookingEmail`
+					axios.post(`${keys.testHost}/api/bookingEmail`, {
+						bookingId: req.body.bookingId,
+						slot: req.body.slot,
+						date: req.body.date,
+						userEmail: email,
+						name: name,
+						status: bookingData.status
 					});
 				} catch (ex) {
 					console.log("request exception in sending mail.");
-					res
-						.status(200)
-						.json({ response: "Booking confirmed.", bookingId: bookingId });
+					res.status(200).json({
+						response: "Booking canceled and refunded.",
+						bookingId: bookingId
+					});
 				}
 				res.status(200).json({
 					response: "Booking canceled and user refunded",
@@ -320,11 +312,6 @@ module.exports = (app, firebaseDB) => {
 
 		const { email, phone, slot, date, name, seats } = req.body;
 
-
-
-
-
-
 		const userId = req.body.userId || shortId;
 
 		bookingsRef = await firebaseDB.ref(
@@ -341,24 +328,6 @@ module.exports = (app, firebaseDB) => {
 		bookingData.by = "user";
 		try {
 			await bookingsRef.child(bookingId).set(bookingData);
-			try {
-				request.post({
-					form: {
-						bookingId: req.body.bookingId,
-						slot: req.body.slot,
-						date: req.body.date,
-						userEmail: email,
-						name: name,
-						status: bookingData.status
-					},
-					url: `${keys.testHost}/api/bookingEmail`
-				});
-			} catch (ex) {
-				console.log("request exception in sending mail.");
-				res
-					.status(200)
-					.json({ response: "Booking confirmed.", bookingId: bookingId });
-			}
 			res.status(200).send(bookingData);
 		} catch (ex) {
 			console.log("exception in requestBooking", ex);

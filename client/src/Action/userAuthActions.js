@@ -7,6 +7,7 @@ import {
 	USER_LOGOUT,
 	USER_LOGIN_FAILED
 } from "./types";
+
 export const fetchUser = () => {
 	return async dispatch => {
 		try {

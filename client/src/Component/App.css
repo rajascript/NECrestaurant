@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Abril Fatface");
+@import url("https://fonts.googleapis.com/css?family=Abril+Fatface");
 @import url("https://fonts.googleapis.com/css?family=Great+Vibes");
 @import url("https://fonts.googleapis.com/css?family=Scada");
 @import url("https://fonts.googleapis.com/css?family=Raleway");
@@ -43,7 +43,12 @@ nav,
 section {
 	display: block;
 }
-
+.flexContCenter {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
 /**
  * Correct the font size and margin on `h1` elements within `section` and
  * `article` contexts in Chrome, Firefox, and Safari.
@@ -531,11 +536,9 @@ body {
 	color: #337ab7;
 }
 .header__button--user {
-	border-radius: 50%;
-	padding: 12px 14px;
 	outline: none;
-	margin-top: 20px;
-	margin-right: 10px;
+	background-color: transparent !important;
+	border: none;
 	background-color: #fff;
 }
 .usermenu {
@@ -552,6 +555,21 @@ body {
 	margin-bottom: 10px;
 	padding-bottom: 5px;
 }
+.adminmenu {
+	position: absolute;
+	background-color: white;
+	top: 70px;
+	right: 10px;
+	box-shadow: 1px 1px 1px 1px #999;
+	padding: 20px 30px;
+}
+.adminmenu--item:not(:last-child) {
+	text-align: center;
+	border-bottom: #999 0.5px solid;
+	margin-bottom: 10px;
+	padding-bottom: 5px;
+}
+
 .loginPopup__button--close {
 	border-radius: 50%;
 	z-index: 1;
@@ -630,8 +648,14 @@ body {
 }
 .adminPanel__sidebar {
 	box-shadow: 1px 4px 10px 1px #000;
-	width: 60px;
+	width: 80px;
 	height: 100vh;
+	position: absolute;
+	transition: all 0.2s;
+	background: white;
+}
+.adminPanel__sidebar:hover {
+	width: 200px;
 }
 .adminPanel__header {
 	color: white;
@@ -658,7 +682,7 @@ body {
 }
 .adminPanel__panel {
 	width: 99%;
-	margin-left: 10px;
+	margin-left: 60px;
 	box-shadow: 1px 2px 5px 1px #777;
 	height: 90vh;
 }
@@ -704,6 +728,7 @@ body {
 	justify-content: space-around;
 	width: 120px;
 	padding: 10px;
+	height: 35px;
 	margin-top: -10px;
 }
 .adminPanel__panel__data--unread {
@@ -747,6 +772,7 @@ adminPanel__panel__date--prev {
 	border-radius: 50%;
 	padding: 6px 10px;
 	margin-right: 10px;
+	height: 35px;
 	cursor: pointer;
 }
 .adminPanel__sidebar {
@@ -754,6 +780,7 @@ adminPanel__panel__date--prev {
 }
 .adminPanel__sidebar--item {
 	margin-bottom: 10px;
+	cursor: pointer;
 }
 .adminPanel__sidebar--logo {
 	height: 51px;
@@ -821,7 +848,6 @@ body {
 }
 
 .logowrapper {
-	display: flex;
 	font-family: Abril Fatface;
 	font-size: 4em;
 	align-self: center;
@@ -1179,7 +1205,15 @@ body {
 	color: #f3f9f9;
 	border-radius: 10px;
 }
-
+.bookingheadingwrapper {
+	margin-top: 50px;
+	font-size: 30px;
+	text-align: center;
+	/* font-family: "Abril Fatface"; */
+	font-family: "Great Vibes";
+	/* font-family: "Scada"; */
+	/* font-family: "Raleway"; */
+}
 .Lbooking {
 	position: absolute;
 	height: 41.25px;
@@ -1477,7 +1511,59 @@ input {
 }
 
 /*===========home Page=========*/
+.featuredboxwrapperBooking {
+	width: 100%;
+	position: relative;
+	height: 95vh;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-image: url(/assets/bookingBack2.jpg);
+}
+.featuredboxwrapper-txt {
+	top: 50%;
+	/* font-family: "Abril Fatface"; */
+	/* font-family: "Great Vibes"; */
+	/* font-family: "Scada"; */
+	font-family: "Raleway";
 
+	left: 50%;
+	position: absolute;
+	font-size: 50px;
+	text-align: center;
+	color: white;
+	z-index: 1200;
+	transform: translate(-50%, -50%);
+}
+.featuredboxwrapper-txt::after {
+	position: absolute;
+	content: "";
+	top: 0;
+	left: 0;
+	border-left: #fff 5px solid;
+	border-top: #fff 5px solid;
+	width: 50px;
+	height: 50px;
+}
+.featuredboxwrapper-txt::before {
+	position: absolute;
+	content: "";
+	top: 70%;
+	left: 88%;
+	border-right: #fff 5px solid;
+	border-bottom: #fff 5px solid;
+	width: 50px;
+	height: 50px;
+}
+.featuredboxwrapperBooking::after {
+	position: absolute;
+	content: "";
+	top: 0;
+	left: 0;
+	background-color: #000;
+	opacity: 0.6;
+	width: 100%;
+	height: 100%;
+}
 #hP1 {
 	position: absolute;
 	width: 320px;
@@ -1978,4 +2064,153 @@ input {
 	height: 250px;
 	border-radius: 10px;
 	border-style: hidden;
+}
+
+/* ==================================================ORDER MENU========================================== */
+.orderMenu {
+	display: flex;
+	justify-content: center;
+	align-self: center;
+}
+.orderMenu--intro {
+	font-family: "Great Vibes";
+	margin: 50px 0;
+	text-align: center;
+}
+.orderMenu__container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	margin-bottom: 75px;
+}
+.orderMenu--item {
+	display: flex;
+	align-items: center;
+	margin-bottom: 50px;
+}
+.orderMenu--item--thumb {
+	margin-right: 40px;
+	border: #dd4b39 20px solid;
+	padding: 2px;
+}
+.orderMenu__done {
+	margin-top: 75px;
+}
+.orderMenu__done--total {
+	margin-bottom: 25px;
+	font-weight: bold;
+}
+.orderMenu--item--info {
+	margin-right: 20px;
+}
+.orderMenu--item--info1 {
+	font-weight: bold;
+}
+.orderMenu--item--info2 {
+	max-width: 250px;
+}
+.orderMenu--item--price {
+	margin-right: 14px;
+	font-weight: bold;
+}
+.orderMenu--item--qtyContainer {
+	display: flex;
+	align-items: center;
+}
+.orderMenu--item--buttonLess {
+	width: 50px;
+	height: 25px;
+	background-color: white;
+	outline: none;
+	border-radius: 12px;
+}
+.orderFooter {
+	bottom: 0;
+}
+.orderMenu--item--h6 {
+	margin-right: 10px;
+	margin-left: 10px;
+}
+.orderMenu--item--buttonMore {
+	width: 50px;
+	height: 25px;
+	background-color: white;
+
+	outline: none;
+	border-radius: 12px;
+}
+.fooditem {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-start;
+
+	width: 250px;
+	height: 250px;
+	background: #ffffff;
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	border-radius: 10px;
+	padding-right: 15px;
+	padding-left: 15px;
+	padding-top: 10px;
+	margin-top: 5px;
+}
+
+.fooditem:hover {
+	transform: scale(1.1);
+}
+.foodpic {
+	width: 230px;
+	height: 200px;
+	border-radius: 15px;
+}
+
+.menuheadingwrapper {
+	display: flex;
+	align-items: flex-start;
+	justify-content: flex-start;
+	width: 100%;
+	height: 80px;
+
+	font-family: Raleway;
+	font-style: normal;
+	font-weight: bold;
+	line-height: normal;
+	font-size: 2em;
+	text-align: center;
+	margin-left: 13%;
+	margin-top: 50px;
+	color: #000000;
+}
+
+.menuwrapper {
+	display: flex;
+	flex-direction: column;
+
+	width: 100%;
+	padding: 10px;
+}
+
+.menucategory {
+	display: flex;
+	flex-direction: column;
+
+	width: 100%;
+	padding: 10px;
+}
+.menuwrapper {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: flex-start;
+	background-color: #fff;
+	width: 100%;
+}
+
+.menugridwrapper {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-around;
+	width: 75%;
 }
