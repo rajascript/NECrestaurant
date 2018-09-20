@@ -12,6 +12,7 @@ class OrderForm extends Component {
 			addressValue: "",
 			dateValue: moment().format("DD-MM-YY HH:mm"),
 			selectorValue: true,
+			total: this.props.total || 40000,
 			items: this.props.orderItems || ["001", "002"],
 			orderErrorVisible: false,
 			orderErrorMessage: "",

@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-export default class AdminMenu extends Component {
+import { adminLogout } from "../../../Action/index";
+import { connect } from "react-redux";
+class AdminMenu extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -8,18 +10,18 @@ export default class AdminMenu extends Component {
   render() {
     return (
       <div className="adminmenu__container">
-        <div style={{ color: "black" }} className="adminmenu--item">
-          {this.props.admin.name}
-        </div>
-
         <div className="adminmenu--item">
           <button
-            onClick={this.props.logout} //edit the function
+            onClick={this.props.adminLogout}
             id="adminMenuButtonLoader"
             className="btn btn-primary adminMenu__button--loader"
           >
             Logout
           </button>
+        </div>
+
+        <div style={{ color: "black" }} className="adminmenu--item">
+          {this.props.admin.name}
         </div>
 
         <div className="adminmenu--item">
@@ -54,3 +56,8 @@ export default class AdminMenu extends Component {
     );
   }
 }
+
+export default connect(
+  null,
+  { adminLogout }
+)(AdminMenu);

@@ -4,6 +4,7 @@ import moment from "moment";
 import { IconContext } from "react-icons";
 import { FiChevronRight, FiChevronLeft } from "react-icons/fi";
 import { connect } from "react-redux";
+
 import { fetchBookings } from "../../../../Action/index";
 import * as firebase from "firebase";
 var config = {
@@ -20,9 +21,11 @@ class Panel extends Component {
 		super(props);
 		this.state = {
 			valuesArray: [],
+			ordersArray: [],
 			moment: moment(),
 			date: "",
-			fbRef: "bookings/",
+			fbBookRef: "bookings/",
+			fbOrderRef: "orders/",
 			ordersWindowVisible: false
 		};
 		this.clickNext = this.clickNext.bind(this);
@@ -36,18 +39,21 @@ class Panel extends Component {
 			this.setState({ date: this.state.moment.format("DD-MM-YY") });
 	}
 	moveToBookings() {
-		if (this.ordersWindowVisible)
-			this.setState({ ordersWindowVisible: false, fbRef: "bookings/" });
+		console.log("hit");
+		if (this.state.ordersWindowVisible)
+			this.setState({ ordersWindowVisible: false });
 	}
+
 	moveToOrders() {
-		if (!this.ordersWindowVisible)
-			this.setState({ ordersWindowVisible: true, fbRef: "orders/" });
+		if (!this.state.ordersWindowVisible)
+			this.setState({ ordersWindowVisible: true });
 	}
 	componentDidUpdate() {
+		console.log("updated");
+		let db = firebase.database();
 		if (this.state.valuesArray.length === 0) {
-			let db = firebase.database();
-			let dbRef = db.ref().child(this.state.fbRef + this.state.date);
-			let dbRef2 = db.ref().child(this.state.fbRef);
+			let dbRef = db.ref().child(this.state.fbBookRef + this.state.date);
+			let dbRef2 = db.ref().child(this.state.fbBookRef);
 			dbRef2.on("child_changed", snapshot => {
 				console.log(snapshot.val());
 				let childData = snapshot.val();
@@ -67,6 +73,30 @@ class Panel extends Component {
 				let ans = this.state.valuesArray;
 				ans.push(snapshot.val());
 				this.setState({ valuesArray: ans });
+			});
+		}
+		if (this.state.ordersArray.length === 0) {
+			let dbRefOrder = db.ref().child(this.state.fbOrderRef + this.state.date);
+			let dbRefOrder2 = db.ref().child(this.state.fbOrderRef);
+			dbRefOrder2.on("child_changed", snapshot => {
+				console.log(snapshot.val());
+				let childData = snapshot.val();
+				console.log("child", childData);
+				let newData = childData[this.state.date];
+				console.log("newData", newData);
+				this.url =
+					"http://s000.tinyupload.com/download.php?file_id=98495897958912879705&t=9849589795891287970501599";
+				this.audio = new Audio(this.url);
+				//this.audio.play();
+				//TODO Find a supported hosting site
+				console.log("playing");
+				this.setState({ ordersArray: [newData] });
+			});
+			dbRefOrder.on("child_added", snapshot => {
+				console.log(snapshot.val());
+				let ans = this.state.ordersArray;
+				ans.push(snapshot.val());
+				this.setState({ ordersArray: ans });
 			});
 		}
 	}
@@ -107,7 +137,7 @@ class Panel extends Component {
 					currBooking.date = this.state.date;
 					dat.push(
 						<div className="adminPanel__panel__data" key={key}>
-							<DataRow data={currBooking} />
+							<DataRow renderOrder={false} data={currBooking} />
 						</div>
 					);
 				}
@@ -115,13 +145,43 @@ class Panel extends Component {
 			return dat;
 		});
 	}
-
+	renderOrdersData() {
+		if (
+			this.state.ordersArray[0] === 404 ||
+			this.state.ordersArray[0] === "404"
+		) {
+			return (
+				<div className="adminPanel__panel--fetchError">
+					No data exists for the specified date.
+				</div>
+			);
+		}
+		let key = -1;
+		return this.state.ordersArray.map(data => {
+			let dat = [];
+			for (let slot in data) {
+				let currSlot = data[slot];
+				for (let order in currSlot) {
+					key += 1;
+					let currOrder = currSlot[order];
+					currOrder.time = slot;
+					currOrder.date = this.state.date;
+					dat.push(
+						<div className="adminPanel__panel__data" key={key}>
+							<DataRow renderOrder data={currOrder} />
+						</div>
+					);
+				}
+			}
+			return dat;
+		});
+	}
 	componentWillReceiveProps(props) {
 		console.log(props);
 		if (!this.state.ordersWindowVisible)
 			this.setState({ valuesArray: [props.bookings] });
 		if (this.state.ordersWindowVisible)
-			this.setState({ valuesArray: [props.orders] });
+			this.setState({ ordersArray: [props.orders] });
 	}
 	render() {
 		if (!this.state.ordersWindowVisible) {
@@ -221,7 +281,7 @@ class Panel extends Component {
 						<div className="adminPanel__panel__heading">Action</div>
 					</div>
 				</div>
-				<div className="adminPanel__panel__body">{this.renderData()}</div>
+				<div className="adminPanel__panel__body">{this.renderOrdersData()}</div>
 			</Fragment>
 		);
 	}
@@ -232,5 +292,7 @@ function mapStateToProps({ bookings, orders }) {
 }
 export default connect(
 	mapStateToProps,
-	{ fetchBookings }
+	{ fetchBookings },
+	null,
+	{ withRef: true }
 )(Panel);

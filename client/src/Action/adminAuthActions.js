@@ -41,6 +41,23 @@ export const adminLogin = values => {
 		}
 	};
 };
+export const adminLogout = () => {
+	return async dispatch => {
+		try {
+			localStorage.removeItem("adminToken");
+			dispatch({
+				type: ADMIN_LOGIN,
+				payload: undefined
+			});
+		} catch (err) {
+			console.log("eer", err);
+			dispatch({
+				type: ADMIN_LOGIN_FAILED,
+				payload: err
+			});
+		}
+	};
+};
 
 export const adminDelete = values => {
 	return async dispatch => {

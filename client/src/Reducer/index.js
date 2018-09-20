@@ -4,6 +4,7 @@ import adminReducer from "./adminReducer";
 import bookingReducer from "./bookingReducer";
 import orderReducer from "./orderReducer";
 import bookingTasksReducer from "./bookingTasksReducer";
+import ordersTasksReducer from "./ordersTasksReducer";
 import transactionReducer from "./transactionReducer";
 
 export default combineReducers({
@@ -12,5 +13,6 @@ export default combineReducers({
 	bookings: bookingReducer,
 	orders: orderReducer,
 	bookingsTasks: bookingTasksReducer,
+	ordersTasks: ordersTasksReducer,
 	transaction: transactionReducer
 });

@@ -57,6 +57,7 @@ export const confirmOrder = values => {
 				payload: { type: CONFIRM_ORDERS, data: res.data }
 			});
 		} catch (err) {
+			console.log(err);
 			let errCode = err.response.status;
 			dispatch({
 				type: CONFIRM_ORDERS_FAILED,

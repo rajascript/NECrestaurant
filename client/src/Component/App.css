@@ -843,7 +843,6 @@ body {
 }
 
 .logowrapper {
-	display: flex;
 	font-family: Abril Fatface;
 	font-size: 4em;
 	align-self: center;
@@ -1201,7 +1200,15 @@ body {
 	color: #f3f9f9;
 	border-radius: 10px;
 }
-
+.bookingheadingwrapper {
+	margin-top: 50px;
+	font-size: 30px;
+	text-align: center;
+	/* font-family: "Abril Fatface"; */
+	font-family: "Great Vibes";
+	/* font-family: "Scada"; */
+	/* font-family: "Raleway"; */
+}
 .Lbooking {
 	position: absolute;
 	height: 41.25px;
@@ -1499,7 +1506,59 @@ input {
 }
 
 /*===========home Page=========*/
+.featuredboxwrapperBooking {
+	width: 100%;
+	position: relative;
+	height: 95vh;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-image: url(/assets/bookingBack2.jpg);
+}
+.featuredboxwrapper-txt {
+	top: 50%;
+	/* font-family: "Abril Fatface"; */
+	/* font-family: "Great Vibes"; */
+	/* font-family: "Scada"; */
+	font-family: "Raleway";
 
+	left: 50%;
+	position: absolute;
+	font-size: 50px;
+	text-align: center;
+	color: white;
+	z-index: 1200;
+	transform: translate(-50%, -50%);
+}
+.featuredboxwrapper-txt::after {
+	position: absolute;
+	content: "";
+	top: 0;
+	left: 0;
+	border-left: #fff 5px solid;
+	border-top: #fff 5px solid;
+	width: 50px;
+	height: 50px;
+}
+.featuredboxwrapper-txt::before {
+	position: absolute;
+	content: "";
+	top: 70%;
+	left: 88%;
+	border-right: #fff 5px solid;
+	border-bottom: #fff 5px solid;
+	width: 50px;
+	height: 50px;
+}
+.featuredboxwrapperBooking::after {
+	position: absolute;
+	content: "";
+	top: 0;
+	left: 0;
+	background-color: #000;
+	opacity: 0.6;
+	width: 100%;
+	height: 100%;
+}
 #hP1 {
 	position: absolute;
 	width: 320px;
@@ -2000,4 +2059,64 @@ input {
 	height: 250px;
 	border-radius: 10px;
 	border-style: hidden;
+}
+
+/* ==================================================ORDER MENU========================================== */
+.orderMenu {
+	display: flex;
+	justify-content: center;
+	align-self: center;
+}
+.orderMenu--intro {
+	font-family: "Great Vibes";
+	margin: 50px 0;
+	text-align: center;
+}
+.orderMenu__container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+.orderMenu--item {
+	display: flex;
+	align-items: center;
+	margin-bottom: 50px;
+}
+.orderMenu--item--thumb {
+	margin-right: 40px;
+	border: #dd4b39 20px solid;
+	padding: 2px;
+}
+.orderMenu__done {
+	margin-top: 75px;
+}
+.orderMenu--item--info {
+	margin-right: 20px;
+}
+.orderMenu--item--info1 {
+	font-weight: bold;
+}
+.orderMenu--item--info2 {
+	max-width: 250px;
+}
+.orderMenu--item--price {
+	margin-right: 14px;
+	font-weight: bold;
+}
+.orderMenu--item--qtyContainer {
+	display: flex;
+	align-items: center;
+}
+.orderMenu--item--buttonLess {
+	margin-right: 10px;
+}
+.orderFooter {
+	position: fixed;
+	bottom: 0;
+}
+.orderMenu--item--h6 {
+	margin-right: 10px;
+}
+.orderMenu--item--buttonMore {
 }

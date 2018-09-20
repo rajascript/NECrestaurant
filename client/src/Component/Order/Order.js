@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from "react";
 import OrderForm from "./OrderForm";
+import OrderMenu from "./OrderMenu";
 import Payments from "./Payments";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
@@ -11,17 +12,22 @@ class Order extends Component {
 			emailValue: "",
 			nameValue: "",
 			phoneValue: "",
+			orderMenuConfirmed: false,
 			orderConfirmed: false,
 			orderUserConfirmed: false,
+			items: [],
 			total: this.props.total || 40000,
 			user: {}
 		};
 		this.setUser = this.setUser.bind(this);
+		this.orderFromMenuCompleted = this.orderFromMenuCompleted.bind(this);
 	}
 	setUser(user) {
-		console.log("hdai");
 		user.total = this.state.total;
 		this.setState({ user, orderUserConfirmed: true });
+	}
+	orderFromMenuCompleted(total, items) {
+		this.setState({ orderMenuConfirmed: true, total, items });
 	}
 	componentWillReceiveProps(props) {
 		console.log(props);
@@ -46,6 +52,9 @@ class Order extends Component {
 		}
 	}
 	render() {
+		if (!this.state.orderMenuConfirmed) {
+			return <OrderMenu orderMenuConfirmed={this.orderFromMenuCompleted} />;
+		}
 		if (this.state.orderConfirmed) {
 			return (
 				<Redirect
@@ -67,6 +76,7 @@ class Order extends Component {
 						phone={this.state.phoneValue}
 						name={this.state.nameValue}
 						setUser={this.setUser}
+						total={this.state.total}
 					/>
 				)}
 				{this.state.orderUserConfirmed && (
