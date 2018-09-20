@@ -44,6 +44,7 @@ class AdminLogin extends Component {
 		this.props.fetchAdmin();
 	}
 	componentWillReceiveProps(props) {
+		console.log(props);
 		if (typeof props.admin !== "undefined" || props.admin !== false)
 			this.setState({ admin: props.admin });
 	}
@@ -56,7 +57,7 @@ class AdminLogin extends Component {
 				<div id="loginFormContainer" className="loginForm__container">
 					<form onSubmit={this.handleLogin}>
 						<input
-							id = "adminUsername"
+							id="adminUsername"
 							className="loginForm__Form--userName"
 							placeholder="Enter Username"
 							type="Name"
@@ -65,7 +66,7 @@ class AdminLogin extends Component {
 						/>
 						<br />
 						<input
-							id = "adminPassword"
+							id="adminPassword"
 							className="loginForm__Form--password"
 							placeholder="Enter password"
 							type="password"
@@ -73,10 +74,7 @@ class AdminLogin extends Component {
 							onChange={this.handlePasswordChange}
 						/>
 						<br />
-						<input 
-							id="submitA"
-							type="submit"
-							value="Submit" />
+						<input id="submitA" type="submit" value="Submit" />
 					</form>
 				</div>
 			);

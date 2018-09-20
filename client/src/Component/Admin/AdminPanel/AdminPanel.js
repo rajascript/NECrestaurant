@@ -7,16 +7,17 @@ class AdminPanel extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {};
+		this.moveToBookings = this.moveToBookings.bind(this);
+		this.moveToOrders = this.moveToOrders.bind(this);
 	}
 	moveToBookings() {
-		this.childPanel.moveToBookings();
+		console.log("dancnu");
+		this["childPanel"].getWrappedInstance().moveToBookings();
 	}
 	moveToOrders() {
-		this.childPanel.moveToOrders();
+		this["childPanel"].getWrappedInstance().moveToOrders();
 	}
-	componentDidMount() {
-		console.log(this.childPanel);
-	}
+
 	render() {
 		return (
 			<div className="adminPanel">
@@ -29,7 +30,11 @@ class AdminPanel extends Component {
 						<AdminPanelHeader admin={this.props.admin} />
 					</div>
 					<div className="adminPanel__panel">
-						<Panel ref={ref => (this.childPanel = ref)} />
+						<Panel
+							ref={ref => {
+								this["childPanel"] = ref;
+							}}
+						/>
 					</div>
 				</div>
 			</div>

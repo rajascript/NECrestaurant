@@ -235,7 +235,7 @@ class BookingForm extends Component {
 						<br />
 						<input
 							type="submit"
-							class="btn btn-dark"
+							class="btn blogin btn-dark"
 							value="Submit"
 							onClick={this.handleBooking}
 						/>

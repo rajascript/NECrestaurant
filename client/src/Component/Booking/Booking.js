@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import BookingForm from "./BookingForm";
-
+import { Link } from "react-router-dom";
 export default class Booking extends Component {
 	constructor(props) {
 		super(props);
@@ -11,49 +11,41 @@ export default class Booking extends Component {
 		return (
 			<Fragment>
 				<div class="navbarwrapper">
-					<div class="tophalfcontentwrapper">
+					<Link to="/">
 						<div class="logowrapper">Indique</div>
-					</div>
+					</Link>
 					<div class="bottomhalfcontentwrapper">
-						<div class="navbarlinkwrapper">
-							<a class="navbarlink" href="about.htm">
+						<div className="navbarlinkwrapper">
+							<Link className="navbarlink" to="/about">
 								ABOUT
-							</a>
+							</Link>
 
-							<a class="navbarlink" href="">
+							<Link className="navbarlink" to="/booking">
 								BOOKING
-							</a>
+							</Link>
 
-							<a class="navbarlink" href=" ">
+							<Link className="navbarlink" to="/">
 								MENU
-							</a>
+							</Link>
 
-							<a class="navbarlink" href="">
+							<Link className="navbarlink" to="/order">
 								DELIVERY
-							</a>
+							</Link>
 
-							<a class="navbarlink" href="">
+							<Link className="navbarlink" to="/">
 								CONTACT
-							</a>
+							</Link>
 						</div>
 					</div>
 				</div>
-				<div class="featuredboxwrapper">
-					<div class="rightwrapper">
-						<img
-							src="assets/bookingbannerimage.jpg"
-							alt="Pink Subtext"
-							width="100%"
-						/>
-					</div>
-					<div class="bookingleftwrapper">
-						<div class="bookingbannerheadingwrapper">
-							Join us, <br /> Won't you?
-						</div>
+				<div class="featuredboxwrapperBooking">
+					<div class="featuredboxwrapper-txt">
+						Join us,
+						<br /> Won't you?
 					</div>
 				</div>
 
-				<div class="bookingheadingwrapper">Book a Table for Later</div>
+				<div class="bookingheadingwrapper">Book a Table.</div>
 
 				<BookingForm />
 				<div class="navbarwrapper">

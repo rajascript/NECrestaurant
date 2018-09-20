@@ -42,7 +42,7 @@ module.exports = (app, firebaseDB) => {
 			const email = req.body.userEmail;
 			const by = req.body.by;
 			try {
-				ordersRef = await firebaseDB.ref(
+				let ordersRef = await firebaseDB.ref(
 					ordersRefString + "/" + date + "/" + date + "/" + time + "/" + orderId
 				);
 				orderData = {};
@@ -62,13 +62,13 @@ module.exports = (app, firebaseDB) => {
 					console.log("request exception in sending mail.");
 					res
 						.status(200)
-						.json({ response: "Booking confirmed.", orderId: orderId });
+						.json({ response: "Order confirmed.", orderId: orderId });
 				}
 				res
 					.status(200)
-					.json({ response: "Booking confirmed.", orderId: orderId });
+					.json({ response: "Order confirmed.", orderId: orderId });
 			} catch (ex) {
-				console.log("exception in confirmBookin", ex);
+				console.log("exception in confirmorder", ex);
 				res.status(500).json({
 					responseError: "Internal Server Error, try again.",
 					orderId: orderId
@@ -88,7 +88,7 @@ module.exports = (app, firebaseDB) => {
 			const name = req.body.name;
 			const email = req.body.userEmail;
 			try {
-				ordersRef = await firebaseDB.ref(
+				let ordersRef = await firebaseDB.ref(
 					ordersRefString + "/" + date + "/" + date + "/" + time + "/" + orderId
 				);
 				orderData = {};
@@ -108,13 +108,11 @@ module.exports = (app, firebaseDB) => {
 					console.log("request exception in sending mail.");
 					res
 						.status(200)
-						.json({ response: "Booking canceled.", orderId: orderId });
+						.json({ response: "Order canceled.", orderId: orderId });
 				}
-				res
-					.status(200)
-					.json({ response: "Booking canceled", orderId: orderId });
+				res.status(200).json({ response: "Order canceled", orderId: orderId });
 			} catch (ex) {
-				console.log("exception in cancelBooking", ex);
+				console.log("exception in cancelOrder", ex);
 				res.status(500).json({
 					responseError: "Internal Server Error, try again.",
 					orderId: orderId
@@ -147,13 +145,11 @@ module.exports = (app, firebaseDB) => {
 				});
 			} catch (ex) {
 				console.log("request exception in sending mail.");
-				res
-					.status(200)
-					.json({ response: "Booking revoked.", orderId: orderId });
+				res.status(200).json({ response: "Order revoked.", orderId: orderId });
 			}
-			res.status(200).json({ response: "Booking revoked.", orderId: orderId });
+			res.status(200).json({ response: "Order revoked.", orderId: orderId });
 		} catch (ex) {
-			console.log("exception in revokeBooking", ex);
+			console.log("exception in revokeOrder", ex);
 			res.status(500).json({
 				responseError: "Internal Server Error, try again.",
 				orderId: orderId
@@ -177,22 +173,7 @@ module.exports = (app, firebaseDB) => {
 		const by = req.body.by;
 		const name = req.body.name;
 		const email = req.body.userEmail;
-		try {
-			axios.post(`${keys.testHost}/api/orderMailer`, {
-				orderId: req.body.orderId,
-				time: req.body.time,
-				date: req.body.date,
-				userEmail: email,
-				name: name,
-				status: orderData.status
-			});
-		} catch (ex) {
-			console.log("request exception in sending mail.");
-			res.status(200).json({
-				response: "Booking canceled and refunded.",
-				orderId: orderId
-			});
-		}
+
 		orderData = {};
 		orderData.by = by;
 		orderData.status = "canceled and refunded";
@@ -201,31 +182,32 @@ module.exports = (app, firebaseDB) => {
 			try {
 				await new User(req.user).save();
 			} catch (ex) {
-				console.log("exception in rnrbooking", ex);
+				console.log("exception in rnrorder", ex);
 				res.status(500).json({
 					responseError: "Internal Server Error, try again.",
 					orderId: orderId
 				});
 			}
 			try {
+				ordersRef = await firebaseDB.ref(
+					ordersRefString + "/" + date + "/" + date + "/" + time + "/" + orderId
+				);
 				await ordersRef.update(orderData);
 				try {
-					request.post({
-						form: {
-							orderId: req.body.orderId,
-							time: req.body.time,
-							date: req.body.date,
-							userEmail: email,
-							name: name,
-							status: orderData.status
-						},
-						url: `${keys.testHost}/api/orderMailer`
+					axios.post(`${keys.testHost}/api/orderMailer`, {
+						orderId: req.body.orderId,
+						time: req.body.time,
+						date: req.body.date,
+						userEmail: email,
+						name: name,
+						status: orderData.status
 					});
 				} catch (ex) {
 					console.log("request exception in sending mail.");
-					res
-						.status(200)
-						.json({ response: "Booking confirmed.", orderId: orderId });
+					res.status(200).json({
+						response: "Order canceled and refunded.",
+						orderId: orderId
+					});
 				}
 				res.status(200).json({
 					response: "Booking canceled and user refunded",
