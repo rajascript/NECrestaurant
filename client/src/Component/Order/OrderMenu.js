@@ -113,13 +113,19 @@ export default class OrderMenu extends Component {
 								</button>
 							</div>
 						</div>
-
-						<button
-							className="orderMenu__done blogin"
-							onClick={this.props.orderMenuConfirmed}
-						>
-							Order
-						</button>
+						<div className="orderMenu__done">
+							{this.state.total > 0 && (
+								<h5 className="orderMenu__done--total">
+									Total: ₹{this.state.total}
+								</h5>
+							)}
+							<button
+								className="blogin"
+								onClick={this.props.orderMenuConfirmed}
+							>
+								Order
+							</button>
+						</div>
 					</div>
 				</div>
 				<footer class="navbarwrapper orderFooter">

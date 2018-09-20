@@ -2091,6 +2091,10 @@ input {
 .orderMenu__done {
 	margin-top: 75px;
 }
+.orderMenu__done--total {
+	margin-bottom: 25px;
+	font-weight: bold;
+}
 .orderMenu--item--info {
 	margin-right: 20px;
 }
@@ -2109,7 +2113,11 @@ input {
 	align-items: center;
 }
 .orderMenu--item--buttonLess {
-	margin-right: 10px;
+	width: 50px;
+	height: 25px;
+	background-color: white;
+	outline: none;
+	border-radius: 12px;
 }
 .orderFooter {
 	position: fixed;
@@ -2117,6 +2125,13 @@ input {
 }
 .orderMenu--item--h6 {
 	margin-right: 10px;
+	margin-left: 10px;
 }
 .orderMenu--item--buttonMore {
+	width: 50px;
+	height: 25px;
+	background-color: white;
+
+	outline: none;
+	border-radius: 12px;
 }
